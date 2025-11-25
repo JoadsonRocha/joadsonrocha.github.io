@@ -9,12 +9,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- CSS EXTERNO -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Botão Hambúrguer -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Menu lateral -->
+  <nav class="menu-side" id="menuSide">
+    <ul>
+      <li><a href="#sobre">Sobre Mim</a></li>
+      <li><a href="mailto:seuemail@gmail.com">Contato</a></li>
+      <li><a href="https://wa.me/5595999999999" target="_blank">WhatsApp</a></li>
+      <li><a href="https://github.com/joadsonrocha" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/joadson-rocha" target="_blank">LinkedIn</a></li>
+    </ul>
+  </nav>
+
   <div class="container">
 
     <!-- Header -->
@@ -60,7 +74,6 @@
 
       <div class="projects-grid">
 
-        <!-- EXISTENTES -->
         <div class="project-card">
           <h3>MediaFinder</h3>
           <p>Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.</p>
@@ -116,13 +129,11 @@
           <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn">Ver no GitHub</a>
         </div>
 
-        <!-- 🔥 NOVOS CARDS 🔥 -->
-
         <div class="project-card">
           <h3>HIASD</h3>
           <p>Sistema desenvolvido em HTML/CSS/JS com funcionalidades de interface moderna e lógica em JavaScript.</p>
           <div class="tech">
-              <span>Electronjs</span>
+            <span>Electronjs</span>
             <span>HTML</span>
             <span>CSS</span>
             <span>JavaScript</span>
@@ -174,6 +185,11 @@
         }, 300 + i * 200);
       });
     });
+
+    // Função do menu
+    function toggleMenu() {
+      document.getElementById('menuSide').classList.toggle('open');
+    }
   </script>
 
 </body>

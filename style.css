@@ -208,3 +208,65 @@ footer {
   height: 100%;
   object-fit: cover;
 }
+/* BOTÃO HAMBURGUER */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  color: var(--text);
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.3s;
+}
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+/* MENU LATERAL COM GLASSMORPHISM */
+.menu-side {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 250px;
+  height: 100vh;
+  
+  /* Glass effect */
+  backdrop-filter: blur(15px);
+  background: rgba(26, 23, 46, 0.45); /* tom do seu card, com transparência */
+  
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 0 20px;
+  
+  transition: right 0.4s ease;
+  padding: 60px 20px;
+  z-index: 999;
+}
+
+.menu-side.open {
+  right: 0;
+}
+
+.menu-side ul {
+  list-style: none;
+}
+
+.menu-side li {
+  margin: 20px 0;
+}
+
+.menu-side a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: transform 0.2s, color 0.3s;
+  display: block;
+  padding: 8px 0;
+}
+
+.menu-side a:hover {
+  color: var(--primary);
+  transform: translateX(5px);
+}
