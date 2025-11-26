@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato • Joadson Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1.0.1" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6c63ff;
+      --primary-dark: #564ecc;
+      --bg: #0f0c29;
+      --card-bg: #1a172e;
+      --text: #f8f9ff;
+      --text-muted: #b0a9d2;
+      --border: #2a2742;
+    }
+
+    body {
+      background: linear-gradient(180deg, var(--bg), #16132a);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #fff, #a0a0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .info-section h2,
+    .form-section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(108, 99, 255, 0.15);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .contact-text h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: white;
+    }
+
+    .contact-text a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-text a:hover {
+      color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: white;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    textarea.form-control {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #a0a0ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Entre em Contato</h1>
+      <p>Estou sempre aberto a novos projetos, colaborações e conversas sobre tecnologia. Envie sua mensagem!</p>
+    </header>
+
+    <div class="contact-grid">
+      <div class="info-section">
+        <h2>Informações</h2>
+        <div class="contact-methods">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <h3>Localização</h3>
+              <p>Boa Vista, Roraima – Brasil</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-text">
+              <h3>Email</h3>
+              <a href="mailto:joadsonrocha@gmail.com">joadsonrocha@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div class="contact-text">
+              <h3>Site</h3>
+              <a href="https://leving.com.br" target="_blank">leving.com.br</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💻</div>
+            <div class="contact-text">
+              <h3>GitHub</h3>
+              <a href="https://github.com/joadsonrocha" target="_blank">github.com/joadsonrocha</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <div class="contact-text">
+              <h3>LinkedIn</h3>
+              <a href="https://www.linkedin.com/in/joadson-rocha" target="_blank">linkedin.com/in/joadson-rocha</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2>Envie uma Mensagem</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" class="form-control" placeholder="Olá, Joadson! Gostaria de..." required></textarea>
+          </div>
+          <button type="submit" class="btn">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Joadson Rocha — Desenvolvedor Web • <a href="index.html">← Voltar à página inicial</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Em um projeto real, você enviaria para um backend ou serviço como Formspree, Netlify Forms, etc.
+      // Aqui, apenas mostramos um alerta simulado.
+      
+      const name = document.getElementById('name').value;
+      alert(`Obrigado, ${name}! 🙌\n\nSua mensagem foi recebida. Responderemos em breve.`);
+      
+      this.reset();
+    });
+  </script>
+</body>
+</html>
+
