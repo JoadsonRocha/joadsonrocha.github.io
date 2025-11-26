@@ -7,6 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="style.css?v=1.0.1" />
+
   <style>
     * {
       margin: 0;
@@ -177,8 +180,24 @@
       .content { padding: 24px; }
     }
   </style>
+  
 </head>
 <body>
+  
+  <!-- Botão Hambúrguer -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Menu lateral -->
+  <nav class="menu-side" id="menuSide">
+    <ul>
+      <li><a href="/sobre.html">Sobre Mim</a></li>
+      <li><a href="/contato.html">Contato</a></li>
+      <li><a href="https://github.com/joadsonrocha" target="_blank">GitHub</a></li>
+ 
+    </ul>
+  </nav>
   <div class="container">
     <div class="profile">
       <div class="avatar">JR</div>
