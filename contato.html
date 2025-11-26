@@ -7,7 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1.0.1" />
+  <!-- Font Awesome para ícone do hambúrguer -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<!-- Ícone da página -->
+  <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
+
   <style>
     * {
       margin: 0;
@@ -35,6 +39,73 @@
       flex-direction: column;
     }
 
+    /* ===== HAMBÚRGUER (canto superior direito) ===== */
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: rgba(26, 23, 46, 0.8);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .hamburger i {
+      color: white;
+      font-size: 20px;
+    }
+
+    /* ===== MENU LATERAL DA DIREITA ===== */
+    .menu-side {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      width: 260px;
+      height: 100vh;
+      background: var(--card-bg);
+      border-left: 1px solid var(--border);
+      padding: 20px;
+      z-index: 90;
+      transition: right 0.3s ease;
+    }
+
+    .menu-side.open {
+      right: 0;
+    }
+
+    .menu-side ul {
+      list-style: none;
+      margin-top: 60px;
+    }
+
+    .menu-side li {
+      margin-bottom: 16px;
+    }
+
+    .menu-side a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 10px;
+      display: block;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .menu-side a:hover {
+      background: rgba(108, 99, 255, 0.15);
+      color: white;
+    }
+
+    /* ===== CONTEÚDO PRINCIPAL ===== */
     .container {
       max-width: 1000px;
       margin: 0 auto;
@@ -187,6 +258,22 @@
   </style>
 </head>
 <body>
+
+  <!-- Botão Hambúrguer (superior direito) -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Menu lateral -->
+  <nav class="menu-side" id="menuSide">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sobre.html">Sobre Mim</a></li>
+      <li><a href="contato.html" class="active">Contato</a></li>
+      <li><a href="https://github.com/joadsonrocha" target="_blank">GitHub</a></li>
+    </ul>
+  </nav>
+
   <div class="container">
     <header>
       <h1>Entre em Contato</h1>
@@ -208,7 +295,14 @@
             <div class="contact-icon">📧</div>
             <div class="contact-text">
               <h3>Email</h3>
-              <a href="mailto:joadsonrocha@gmail.com">joadsonrocha@gmail.com</a>
+              <a href="mailto:joadsonrocharr@gmail.com">joadsonrocharr@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-text">
+              <h3>Instagram</h3>
+              <a href="https://instagram.com/joadsonrocha_29" target="_blank">@rochajoadson_29</a>
             </div>
           </div>
           <div class="contact-item">
@@ -261,15 +355,22 @@
   </footer>
 
   <script>
+    function toggleMenu() {
+      document.getElementById('menuSide').classList.toggle('open');
+    }
+
+    // Fecha menu ao clicar em um link
+    document.querySelectorAll('.menu-side a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('menuSide').classList.remove('open');
+      });
+    });
+
+    // Formulário
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
-      // Em um projeto real, você enviaria para um backend ou serviço como Formspree, Netlify Forms, etc.
-      // Aqui, apenas mostramos um alerta simulado.
-      
       const name = document.getElementById('name').value;
       alert(`Obrigado, ${name}! 🙌\n\nSua mensagem foi recebida. Responderemos em breve.`);
-      
       this.reset();
     });
   </script>
