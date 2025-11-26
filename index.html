@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joadson Rocha • Desenvolvedor Web</title>
 
-  <!-- 🔍 SEO Básico -->
- <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joadson Rocha • Desenvolvedor Web</title>
@@ -15,14 +10,17 @@
   <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
 
   <!-- 🔍 SEO Básico -->
-  <meta name="description" content="Portfólio de Joadson Rocha — Desenvolvedor Web especializado em aplicações desktop, automação, React, Electron e Python. Confira meus projetos e minha jornada profissional.">
-  <meta name="keywords" content="Desenvolvedor Web, Electron, React, Python, Node.js, Automação, Portfólio, Arquitetura de Software, Kivy, JavaScript, Joadson Rocha, Boa Vista, Projetos">
+  <meta name="description"
+    content="Portfólio de Joadson Rocha — Desenvolvedor Web especializado em aplicações desktop, automação, React, Electron e Python. Confira meus projetos e minha jornada profissional.">
+  <meta name="keywords"
+    content="Desenvolvedor Web, Electron, React, Python, Node.js, Automação, Portfólio, Arquitetura de Software, Kivy, JavaScript, Joadson Rocha, Boa Vista, Projetos">
   <meta name="author" content="Joadson Rocha">
   <link rel="canonical" href="https://joadsonrocha.github.io">
 
   <!-- 📣 SEO para Compartilhamento (WhatsApp, LinkedIn, Facebook) -->
   <meta property="og:title" content="Portfólio — Joadson Rocha">
-  <meta property="og:description" content="Desenvolvedor Web e criador de soluções desktop, mobile e automações. Veja meus principais projetos e trajetória.">
+  <meta property="og:description"
+    content="Desenvolvedor Web e criador de soluções desktop, mobile e automações. Veja meus principais projetos e trajetória.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://joadsonrocha.github.io">
   <meta property="og:image" content="minha-foto.png">
@@ -37,25 +35,61 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- CSS EXTERNO -->
-  <link rel="stylesheet" href="style.css?v=1.0.1" />
+  <link rel="stylesheet" href="style.css?v=1.0.3" />
+
+  <!-- 🤖 JSON-LD para SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Joadson Rocha",
+      "url": "https://joadsonrocha.github.io",
+      "image": "https://joadsonrocha.github.io/minha-foto.png",
+      "sameAs": [
+        "https://github.com/joadsonrocha",
+        "https://www.linkedin.com/in/joadson-rocha",
+        "https://instagram.com/joadsonrocha_29",
+        "https://leving.com.br"
+      ],
+      "jobTitle": "Desenvolvedor Web",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelancer"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Boa Vista",
+        "addressRegion": "RR",
+        "addressCountry": "BR"
+      }
+    }
+  </script>
 </head>
 
-
-
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema">
+    <i class="fas fa-moon"></i>
+  </button>
+
   <!-- Botão Hambúrguer -->
-  <div class="hamburger" onclick="toggleMenu()">
+  <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Abrir menu" tabindex="0"
+    onkeypress="if(event.key === 'Enter') toggleMenu()">
     <i class="fas fa-bars"></i>
   </div>
 
   <!-- Menu lateral -->
   <nav class="menu-side" id="menuSide">
     <ul>
-      <li><a href="/index.html">Inicio</a></li>
-      <li><a href="/sobre.html">Sobre Mim</a></li>
-      <li><a href="/contato.html">Contato</a></li>
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="sobre.html">Sobre Mim</a></li>
+      <li><a href="contato.html">Contato</a></li>
       <li><a href="https://github.com/joadsonrocha" target="_blank">GitHub</a></li>
- 
     </ul>
   </nav>
 
@@ -69,11 +103,11 @@
 
       <h1>Joadson Rocha</h1>
       <p class="subtitle">Desenvolvedor Web • Formado em Gestão em TI • Apaixonado por open source</p>
-      
+
       <div>
         <span class="tag">HTML</span>
         <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>       
+        <span class="tag">JavaScript</span>
         <span class="tag">Node.js</span>
         <span class="tag">Electron</span>
         <span class="tag">React</span>
@@ -115,10 +149,11 @@
           <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank">Executavel</a>
         </div>
         <!-- project-card -->
-          <!-- INICIO-->
+        <!-- INICIO-->
         <div class="project-card">
           <h3>YouFinder</h3>
-          <p>O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a forma de assistir conteúdos online com controle de telas.</p>
+          <p>O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a
+            forma de assistir conteúdos online com controle de telas.</p>
           <div class="tech">
             <span>Electron</span>
             <span>yt-dlp</span>
@@ -127,7 +162,7 @@
           <a href="https://github.com/JoadsonRocha/YouFinder" class="btn" target="_blank">Ver no GitHub</a>
           <a href="https://github.com/JoadsonRocha/YouFinder/releases" class="btn" target="_blank">Executavel</a>
         </div>
-<!-- FIM-->
+        <!-- FIM-->
         <div class="project-card">
           <h3>MultDownloader</h3>
           <p>Aplicativo em Python/Tk Desktop para baixar vídeos e reels com FFMPEG integrado.</p>
@@ -137,7 +172,7 @@
             <span>FFmpeg</span>
           </div>
           <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn" target="_blank">Ver no GitHub</a>
-           <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank">Executavel</a>
+          <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank">Executavel</a>
         </div>
 
         <div class="project-card">
@@ -171,9 +206,10 @@
             <span>Python</span>
             <span>Android</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank">Ver no GitHub</a>
+          <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank">Ver no
+            GitHub</a>
         </div>
- <div class="project-card">
+        <div class="project-card">
           <h3>CalculadoraFlex</h3>
           <p>Aplicativo web simples para cálculo entre gasolina e etanol.</p>
           <div class="tech">
@@ -182,6 +218,43 @@
             <span>JavaScript</span>
           </div>
           <a href="https://github.com/JoadsonRocha/CalculadoraFlex" class="btn" target="_blank">Ver no GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2 class="section-title">Artigos Recentes</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <span class="blog-date">20 Nov 2024</span>
+          <h3>Como criei o MediaFinder com Electron</h3>
+          <p>Um mergulho profundo na arquitetura do meu aplicativo de gerenciamento de mídia local.</p>
+          <div class="tech">
+            <span>Electron</span>
+            <span>Node.js</span>
+          </div>
+          <a href="#" class="btn-outline">Ler Artigo</a>
+        </div>
+        <div class="blog-card">
+          <span class="blog-date">15 Out 2024</span>
+          <h3>Automação com Python: Simplificando Tarefas</h3>
+          <p>Dicas práticas de como usar scripts Python para automatizar processos repetitivos do dia a dia.</p>
+          <div class="tech">
+            <span>Python</span>
+            <span>Automação</span>
+          </div>
+          <a href="#" class="btn-outline">Ler Artigo</a>
+        </div>
+        <div class="blog-card">
+          <span class="blog-date">01 Set 2024</span>
+          <h3>React vs Vanilla JS: Quando usar qual?</h3>
+          <p>Minha experiência migrando projetos simples para frameworks modernos e quando vale a pena.</p>
+          <div class="tech">
+            <span>React</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="#" class="btn-outline">Ler Artigo</a>
         </div>
       </div>
     </section>
@@ -235,45 +308,20 @@
         </div>
       </div>
     </section>
-    
+
   </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <footer>
     <p>© 2025 Joadson Rocha — Desenvolvedor Web • Boa Vista - RR</p>
   </footer>
 
-  <script>
-    // Animação dos cards
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.project-card').forEach((card, i) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-          card.style.transition = 'opacity 0.5s, transform 0.5s';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, 300 + i * 200);
-      });
-    });
-
-    // Menu
-    function toggleMenu() {
-      document.getElementById('menuSide').classList.toggle('open');
-    }
-
-    // Timeline animação
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    function showTimelineOnScroll() {
-      timelineItems.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          item.classList.add('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', showTimelineOnScroll);
-    showTimelineOnScroll();
-  </script>
+  <script src="script.js"></script>
 
 </body>
+
 </html>
