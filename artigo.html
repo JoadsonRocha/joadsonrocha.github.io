@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Como criei o MediaFinder com Electron • Joadson Rocha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Ícone -->
+    <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
+
+    <!-- CSS EXTERNO -->
+    <link rel="stylesheet" href="style.css?v=1.0.3" />
+
+    <!-- 🤖 JSON-LD para SEO (Article) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Como criei o MediaFinder com Electron",
+      "image": "https://joadsonrocha.github.io/minha-foto.png",
+      "author": {
+        "@type": "Person",
+        "name": "Joadson Rocha"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Joadson Rocha"
+      },
+      "datePublished": "2024-11-20",
+      "description": "Um mergulho profundo na arquitetura do meu aplicativo de gerenciamento de mídia local criado com Electron e React."
+    }
+  </script>
+</head>
+
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Botão Hambúrguer -->
+    <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Abrir menu" tabindex="0"
+        onkeypress="if(event.key === 'Enter') toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Menu lateral -->
+    <nav class="menu-side" id="menuSide">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre.html">Sobre Mim</a></li>
+            <li><a href="/artigo.html" class="active">Artigos</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="article-container">
+
+        <header class="article-header">
+            <div class="article-meta">
+                <span>📅 20 Nov 2024</span>
+                <span>⏱️ 5 min de leitura</span>
+            </div>
+            <h1 class="article-title">Como criei o MediaFinder com Electron</h1>
+            <div class="article-tags">
+                <span class="tag">Electron</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+            </div>
+        </header>
+
+        <article class="article-content">
+            <p>
+                O <strong>MediaFinder</strong> nasceu de uma necessidade pessoal: organizar minha coleção de vídeos
+                locais de forma visual e intuitiva, algo que o explorador de arquivos padrão do Windows não oferecia com
+                a qualidade que eu desejava.
+            </p>
+
+            <p>
+                Neste artigo, vou compartilhar os desafios técnicos e as soluções que encontrei ao desenvolver essa
+                aplicação desktop usando <strong>Electron</strong>, <strong>React</strong> e <strong>FFmpeg</strong>.
+            </p>
+
+            <h2>O Problema</h2>
+            <p>
+                Eu tinha centenas de vídeos espalhados em pastas. Encontrar um vídeo específico ou apenas navegar pela
+                coleção era uma tarefa árdua. Eu queria uma interface estilo "Netflix", com capas automáticas, busca
+                rápida e reprodução integrada.
+            </p>
+
+            <h2>A Stack Tecnológica</h2>
+            <p>Para resolver isso, escolhi as seguintes tecnologias:</p>
+            <ul>
+                <li><strong>Electron</strong>: Para criar a aplicação desktop cross-platform.</li>
+                <li><strong>React</strong>: Para construir uma interface de usuário dinâmica e responsiva.</li>
+                <li><strong>Node.js</strong>: Para acesso ao sistema de arquivos (FileSystem).</li>
+                <li><strong>FFmpeg</strong>: Para gerar thumbnails dos vídeos automaticamente.</li>
+            </ul>
+
+            <h2>Desafio 1: Gerando Thumbnails</h2>
+            <p>
+                A parte mais crítica foi gerar as capas dos vídeos. Ler arquivos de vídeo pesados em tempo real travaria
+                a interface. A solução foi usar o <code>fluent-ffmpeg</code> para extrair um frame do vídeo em segundo
+                plano.
+            </p>
+
+            <pre><code>const ffmpeg = require('fluent-ffmpeg');
+
+function generateThumbnail(videoPath, outputPath) {
+  return new Promise((resolve, reject) => {
+    ffmpeg(videoPath)
+      .screenshots({
+        count: 1,
+        folder: outputPath,
+        filename: 'thumbnail.png',
+        size: '320x180'
+      })
+      .on('end', resolve)
+      .on('error', reject);
+  });
+}</code></pre>
+
+            <p>
+                Essa função é chamada quando o aplicativo indexa uma nova pasta. Os thumbnails são salvos em cache para
+                carregamento instantâneo nas próximas execuções.
+            </p>
+
+            <h2>Desafio 2: Performance com Listas Grandes</h2>
+            <p>
+                Renderizar milhares de componentes React de uma vez causava lentidão. Implementei
+                <strong>Virtualização</strong> (usando <code>react-window</code>) para renderizar apenas os itens
+                visíveis na tela, melhorando drasticamente a performance de scroll.
+            </p>
+
+            <blockquote>
+                "A otimização prematura é a raiz de todo o mal, mas a virtualização em listas grandes é essencial."
+            </blockquote>
+
+            <h2>Conclusão</h2>
+            <p>
+                O MediaFinder se tornou uma ferramenta indispensável no meu dia a dia. O projeto é open source e você
+                pode conferir o código completo no meu GitHub.
+            </p>
+
+            <p>
+                Se você tem interesse em desenvolvimento desktop com tecnologias web, o Electron é uma porta de entrada
+                fantástica.
+            </p>
+        </article>
+
+        <div class="share-section">
+            <h3>Gostou do artigo? Compartilhe!</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn" aria-label="Compartilhar no LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="share-btn" aria-label="Compartilhar no Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="share-btn" aria-label="Compartilhar no WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <footer>
+        <p>© 2025 Joadson Rocha • Desenvolvedor Web em Boa Vista, RR</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
