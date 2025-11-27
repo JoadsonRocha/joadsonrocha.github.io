@@ -78,217 +78,236 @@
   </button>
 
   <!-- Botão Hambúrguer -->
-  <div class="avatar">
-    <img src="minha-foto.png" alt="Foto de Joadson Rocha" />
+  <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Abrir menu" tabindex="0"
+    onkeypress="if(event.key === 'Enter') toggleMenu()">
+    <i class="fas fa-bars"></i>
   </div>
 
-  <h1>Joadson Rocha</h1>
-  <p class="subtitle">Desenvolvedor Web • Formado em Gestão em TI • Apaixonado por open source</p>
+  <!-- Menu lateral -->
+  <nav class="menu-side" id="menuSide">
+    <ul>
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="sobre.html">Sobre Mim</a></li>
+      <li><a href="#blog">Artigos</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+  </nav>
 
-  <div>
-    <span class="tag">HTML</span>
-    <span class="tag">CSS</span>
-    <span class="tag">JavaScript</span>
-    <span class="tag">Node.js</span>
-    <span class="tag">Electron</span>
-    <span class="tag">React</span>
-    <span class="tag">React Native</span>
-    <span class="tag">Python</span>
-  </div>
+  <div class="container">
 
-  <div class="contact-links">
-    <a href="https://github.com/joadsonrocha" target="_blank" class="contact-link">
-      <i class="fab fa-github"></i> GitHub
-    </a>
-    <a href="https://www.linkedin.com/in/joadson-rocha" target="_blank" class="contact-link">
-      <i class="fab fa-linkedin"></i> LinkedIn
-    </a>
-    <a href="https://instagram.com/joadsonrocha_29" target="_blank" class="contact-link">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a href="https://leving.com.br" target="_blank" class="contact-link">
-      <i class="fas fa-globe"></i> Leving.com.br
-    </a>
-  </div>
-  </header>
-
-  <!-- Projetos -->
-  <section>
-    <h2 class="section-title">Meus Projetos</h2>
-
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <h3>MediaFinder</h3>
-        <p>Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.</p>
-        <div class="tech">
-          <span>Electron</span>
-          <span>FFmpeg</span>
-          <span>JavaScript</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/mediaFinder" class="btn" target="_blank">Ver no GitHub</a>
-        <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank">Executavel</a>
-      </div>
-      <!-- project-card -->
-      <!-- INICIO-->
-      <div class="project-card">
-        <h3>YouFinder</h3>
-        <p>O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a
-          forma de assistir conteúdos online com controle de telas.</p>
-        <div class="tech">
-          <span>Electron</span>
-          <span>yt-dlp</span>
-          <span>React</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/YouFinder" class="btn" target="_blank">Ver no GitHub</a>
-        <a href="https://github.com/JoadsonRocha/YouFinder/releases" class="btn" target="_blank">Executavel</a>
-      </div>
-      <!-- FIM-->
-      <div class="project-card">
-        <h3>MultDownloader</h3>
-        <p>Aplicativo em Python/Tk Desktop para baixar vídeos e reels com FFMPEG integrado.</p>
-        <div class="tech">
-          <span>Python</span>
-          <span>Tkinter</span>
-          <span>FFmpeg</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn" target="_blank">Ver no GitHub</a>
-        <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank">Executavel</a>
+    <!-- Header -->
+    <header id="sobre">
+      <div class="avatar">
+        <img src="minha-foto.png" alt="Foto de Joadson Rocha" />
       </div>
 
-      <div class="project-card">
-        <h3>HIASD</h3>
-        <p>Sistema desenvolvido em HTML/CSS/JS com funcionalidades de interface moderna e lógica em JavaScript.</p>
-        <div class="tech">
-          <span>Electronjs</span>
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/HIASD" class="btn" target="_blank">Ver no GitHub</a>
+      <h1>Joadson Rocha</h1>
+      <p class="subtitle">Desenvolvedor Web • Formado em Gestão em TI • Apaixonado por open source</p>
+
+      <div>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Electron</span>
+        <span class="tag">React</span>
+        <span class="tag">React Native</span>
+        <span class="tag">Python</span>
       </div>
 
-      <div class="project-card">
-        <h3>HIASD-py</h3>
-        <p>Versão Python do sistema HIASD, trazendo automações, lógica avançada e execução local.</p>
-        <div class="tech">
-          <span>Python</span>
-          <span>CLI</span>
-          <span>Automação</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/HIASD-py" class="btn" target="">Ver no GitHub</a>
+      <div class="contact-links">
+        <a href="https://github.com/joadsonrocha" target="_blank" class="contact-link">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/joadson-rocha" target="_blank" class="contact-link">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://instagram.com/joadsonrocha_29" target="_blank" class="contact-link">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="https://leving.com.br" target="_blank" class="contact-link">
+          <i class="fas fa-globe"></i> Leving.com.br
+        </a>
       </div>
+    </header>
 
-      <div class="project-card">
-        <h3>MultDownloader Kivy</h3>
-        <p>Versão Android do MultDownloader desenvolvida com Kivy, interface mobile e FFMPEG integrado.</p>
-        <div class="tech">
-          <span>Kivy</span>
-          <span>Python</span>
-          <span>Android</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank">Ver no
-          GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3>CalculadoraFlex</h3>
-        <p>Aplicativo web simples para cálculo entre gasolina e etanol.</p>
-        <div class="tech">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JavaScript</span>
-        </div>
-        <a href="https://github.com/JoadsonRocha/CalculadoraFlex" class="btn" target="_blank">Ver no GitHub</a>
-      </div>
-    </div>
-  </section>
+    <!-- Projetos -->
+    <section>
+      <h2 class="section-title">Meus Projetos</h2>
 
-  <!-- Blog Section -->
-  <section id="blog">
-    <h2 class="section-title">Artigos Recentes</h2>
-    <div class="blog-grid">
-      <div class="blog-card">
-        <span class="blog-date">20 Nov 2024</span>
-        <h3>Como criei o MediaFinder com Electron</h3>
-        <p>Um mergulho profundo na arquitetura do meu aplicativo de gerenciamento de mídia local.</p>
-        <div class="tech">
-          <span>Electron</span>
-          <span>Node.js</span>
-        </div>
-        <a href="#" class="btn-outline">Ler Artigo</a>
-      </div>
-      <div class="blog-card">
-        <span class="blog-date">15 Out 2024</span>
-        <h3>Automação com Python: Simplificando Tarefas</h3>
-        <p>Dicas práticas de como usar scripts Python para automatizar processos repetitivos do dia a dia.</p>
-        <div class="tech">
-          <span>Python</span>
-          <span>Automação</span>
-        </div>
-        <a href="#" class="btn-outline">Ler Artigo</a>
-      </div>
-      <div class="blog-card">
-        <span class="blog-date">01 Set 2024</span>
-        <h3>React vs Vanilla JS: Quando usar qual?</h3>
-        <p>Minha experiência migrando projetos simples para frameworks modernos e quando vale a pena.</p>
-        <div class="tech">
-          <span>React</span>
-          <span>JavaScript</span>
-        </div>
-        <a href="#" class="btn-outline">Ler Artigo</a>
-      </div>
-    </div>
-  </section>
+      <div class="projects-grid">
 
-  <!-- Timeline -->
-  <section id="timeline">
-    <h2 class="section-title">Minha Jornada</h2>
+        <div class="project-card">
+          <h3>MediaFinder</h3>
+          <p>Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.</p>
+          <div class="tech">
+            <span>Electron</span>
+            <span>FFmpeg</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/mediaFinder" class="btn" target="_blank">Ver no GitHub</a>
+          <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank">Executavel</a>
+        </div>
+        <!-- project-card -->
+        <!-- INICIO-->
+        <div class="project-card">
+          <h3>YouFinder</h3>
+          <p>O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a
+            forma de assistir conteúdos online com controle de telas.</p>
+          <div class="tech">
+            <span>Electron</span>
+            <span>yt-dlp</span>
+            <span>React</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/YouFinder" class="btn" target="_blank">Ver no GitHub</a>
+          <a href="https://github.com/JoadsonRocha/YouFinder/releases" class="btn" target="_blank">Executavel</a>
+        </div>
+        <!-- FIM-->
+        <div class="project-card">
+          <h3>MultDownloader</h3>
+          <p>Aplicativo em Python/Tk Desktop para baixar vídeos e reels com FFMPEG integrado.</p>
+          <div class="tech">
+            <span>Python</span>
+            <span>Tkinter</span>
+            <span>FFmpeg</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn" target="_blank">Ver no GitHub</a>
+          <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank">Executavel</a>
+        </div>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Início da Jornada</h3>
-          <p>Comecei a me interessar por tecnologia e programação.</p>
+        <div class="project-card">
+          <h3>HIASD</h3>
+          <p>Sistema desenvolvido em HTML/CSS/JS com funcionalidades de interface moderna e lógica em JavaScript.</p>
+          <div class="tech">
+            <span>Electronjs</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/HIASD" class="btn" target="_blank">Ver no GitHub</a>
+        </div>
+
+        <div class="project-card">
+          <h3>HIASD-py</h3>
+          <p>Versão Python do sistema HIASD, trazendo automações, lógica avançada e execução local.</p>
+          <div class="tech">
+            <span>Python</span>
+            <span>CLI</span>
+            <span>Automação</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/HIASD-py" class="btn" target="">Ver no GitHub</a>
+        </div>
+
+        <div class="project-card">
+          <h3>MultDownloader Kivy</h3>
+          <p>Versão Android do MultDownloader desenvolvida com Kivy, interface mobile e FFMPEG integrado.</p>
+          <div class="tech">
+            <span>Kivy</span>
+            <span>Python</span>
+            <span>Android</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank">Ver no
+            GitHub</a>
+        </div>
+        <div class="project-card">
+          <h3>CalculadoraFlex</h3>
+          <p>Aplicativo web simples para cálculo entre gasolina e etanol.</p>
+          <div class="tech">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="https://github.com/JoadsonRocha/CalculadoraFlex" class="btn" target="_blank">Ver no GitHub</a>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Formação em Gestão de TI</h3>
-          <p>Primeiros projetos acadêmicos voltados à área tecnológica.</p>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2 class="section-title">Artigos Recentes</h2>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <span class="blog-date">20 Nov 2024</span>
+          <h3>Como criei o MediaFinder com Electron</h3>
+          <p>Um mergulho profundo na arquitetura do meu aplicativo de gerenciamento de mídia local.</p>
+          <div class="tech">
+            <span>Electron</span>
+            <span>Node.js</span>
+          </div>
+          <a href="#" class="btn-outline">Ler Artigo</a>
+        </div>
+        <div class="blog-card">
+          <span class="blog-date">15 Out 2024</span>
+          <h3>Automação com Python: Simplificando Tarefas</h3>
+          <p>Dicas práticas de como usar scripts Python para automatizar processos repetitivos do dia a dia.</p>
+          <div class="tech">
+            <span>Python</span>
+            <span>Automação</span>
+          </div>
+          <a href="#" class="btn-outline">Ler Artigo</a>
+        </div>
+        <div class="blog-card">
+          <span class="blog-date">01 Set 2024</span>
+          <h3>React vs Vanilla JS: Quando usar qual?</h3>
+          <p>Minha experiência migrando projetos simples para frameworks modernos e quando vale a pena.</p>
+          <div class="tech">
+            <span>React</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="#" class="btn-outline">Ler Artigo</a>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Primeiros Projetos</h3>
-          <p>Início da criação de soluções práticas utilizando tecnologia.</p>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline">
+      <h2 class="section-title">Minha Jornada</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Início da Jornada</h3>
+            <p>Comecei a me interessar por tecnologia e programação.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Formação em Gestão de TI</h3>
+            <p>Primeiros projetos acadêmicos voltados à área tecnológica.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Primeiros Projetos</h3>
+            <p>Início da criação de soluções práticas utilizando tecnologia.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Expansão Técnica</h3>
+            <p>Desenvolvimento de softwares desktop, web e mobile.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Atualidade</h3>
+            <p>Projetos próprios, automação e soluções reais para o mercado.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>O Futuro</h3>
+            <p>Em constante evolução. Novos desafios e grandes projetos surgindo!</p>
+          </div>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Expansão Técnica</h3>
-          <p>Desenvolvimento de softwares desktop, web e mobile.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Atualidade</h3>
-          <p>Projetos próprios, automação e soluções reais para o mercado.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>O Futuro</h3>
-          <p>Em constante evolução. Novos desafios e grandes projetos surgindo!</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
   </div>
 
