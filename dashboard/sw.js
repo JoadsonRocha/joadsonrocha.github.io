@@ -1,49 +1,83 @@
-const CACHE_NAME = 'alerr-study-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/CONHECIMENTO%20GERAIS.html',
-  '/ESPECIFICOS.html',
-  '/cronograma.html',
-  '/dicas.html',
-  '/microaprendizado.html',
-  '/manifest.json',
+const CACHE_NAME = 'alerr-dashboard-v2';
+
+const STATIC_ASSETS = [
+  '/dashboard/index.html',
+  '/dashboard/pages/gerais.html',
+  '/dashboard/pages/especificos.html',
+  '/dashboard/pages/cronograma.html',
+  '/dashboard/pages/microaprendizado.html',
+  '/dashboard/pages/dicas.html',
+  '/dashboard/manifest.json',
+];
+
+const EXTERNAL_ASSETS = [
   'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
-// Instalar o service worker
+// ── Install: pré-cacheia assets locais ─────────────────────────────
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
-  );
-});
-
-// Ativar o service worker
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
+    caches.open(CACHE_NAME).then(cache => {
+      // Cacheia locais (críticos)
+      return cache.addAll(STATIC_ASSETS).then(() => {
+        // Cacheia externos de forma silenciosa (não bloqueia install)
+        return Promise.allSettled(
+          EXTERNAL_ASSETS.map(url =>
+            cache.add(url).catch(() => {/* ignora falha de CDN */})
+          )
+        );
+      });
     })
   );
+  self.skipWaiting();
 });
 
-// Interceptar requisições
+// ── Activate: remove caches antigos ────────────────────────────────
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+// ── Fetch: Cache-first para locais, Network-first para externos ─────
 self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // Ignora requisições não-GET e chrome-extension
+  if (event.request.method !== 'GET') return;
+  if (url.protocol === 'chrome-extension:') return;
+
+  // Navegação (HTML): Network-first, fallback para cache
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Assets estáticos e externos: Cache-first
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Retorna do cache se disponível, senão busca na rede
-        return response || fetch(event.request);
-      })
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        }
+        return response;
+      }).catch(() => cached);
+    })
   );
 });

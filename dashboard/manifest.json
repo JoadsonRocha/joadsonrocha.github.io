@@ -1,25 +1,57 @@
 {
   "name": "ALE-RR Study Dashboard",
-  "short_name": "ALE-RR Study",
+  "short_name": "ALE-RR",
   "description": "Painel de estudos para concurso ALE-RR com cronograma, checklists e dicas",
-  "start_url": "/index.html",
+  "start_url": "/dashboard/index.html",
+  "scope": "/dashboard/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#6366f1",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "categories": ["education", "productivity"],
+  "lang": "pt-BR",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%236366f1'/><text x='256' y='280' font-size='200' fill='white' text-anchor='middle'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%236366f1'/><text x='256' y='310' font-size='220' fill='white' text-anchor='middle'>📚</text></svg>",
       "sizes": "192x192",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%236366f1'/><text x='256' y='280' font-size='200' fill='white' text-anchor='middle'>📚</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%236366f1'/><text x='256' y='310' font-size='220' fill='white' text-anchor='middle'>📚</text></svg>",
       "sizes": "512x512",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%236366f1'/><text x='256' y='310' font-size='220' fill='white' text-anchor='middle'>📚</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Cronograma",
+      "short_name": "Cronograma",
+      "description": "Ver cronograma de estudos",
+      "url": "/dashboard/pages/cronograma.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>📅</text></svg>", "sizes": "96x96" }]
+    },
+    {
+      "name": "Gerais",
+      "short_name": "Gerais",
+      "description": "Conhecimentos Gerais",
+      "url": "/dashboard/pages/gerais.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>📖</text></svg>", "sizes": "96x96" }]
+    },
+    {
+      "name": "Específicos",
+      "short_name": "TI/Seg",
+      "description": "Conhecimentos Específicos de TI",
+      "url": "/dashboard/pages/especificos.html",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>🛡️</text></svg>", "sizes": "96x96" }]
     }
   ]
 }

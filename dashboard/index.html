@@ -36,6 +36,8 @@
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            /* PWA safe area */
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         .container {
@@ -49,8 +51,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            gap: 16px;
             animation: fadeInDown 0.8s ease-out;
+            flex-wrap: wrap;
         }
 
         .welcome h1 {
@@ -361,7 +365,8 @@
         /* Quick Tools */
         .extra-tools {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
             margin-top: 50px;
             animation: fadeInUp 1s ease-out;
         }
@@ -369,21 +374,47 @@
         .tool-btn {
             background: var(--glass);
             border: 1px solid var(--border);
-            padding: 15px 25px;
+            padding: 14px 20px;
             border-radius: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
             transition: 0.2s;
+            flex: 1 1 auto;
+            min-width: 140px;
+            justify-content: center;
         }
 
         .tool-btn:hover {
             background: var(--border);
             color: var(--primary);
         }
+
+        /* PWA install banner */
+        #pwa-install-btn {
+            display: none;
+            position: fixed;
+            bottom: calc(20px + env(safe-area-inset-bottom));
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.5);
+            z-index: 9999;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+        #pwa-install-btn:hover { transform: scale(1.05); }
 
         /* Motivational Quote */
         .quote-card {
@@ -507,13 +538,87 @@
             font-size: 1rem;
         }
 
-        @media (max-width: 768px) {
-            .timer { gap: 15px; }
+        /* ── Tablet ─────────────────────────── */
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* ── Mobile ─────────────────────────── */
+        @media (max-width: 640px) {
+            .container { padding: 20px 14px; }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 24px;
+                gap: 8px;
+            }
+
+            .welcome h1 { font-size: 1.8rem; }
+            .welcome p  { font-size: 0.95rem; }
+
+            #current-date {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+            }
+
+            /* Countdown */
+            .countdown-container {
+                padding: 18px 12px;
+                border-radius: 16px;
+                margin-bottom: 28px;
+            }
+            .timer { gap: 12px; }
             .timer-unit span:first-child { font-size: 2rem; }
-            .welcome h1 { font-size: 2rem; }
-            .grid { grid-template-columns: 1fr; }
-            .navbar { padding: 0 10px; }
-            .nav-link { padding: 12px 12px; font-size: 0.8rem; }
+            .timer-unit span:last-child  { font-size: 0.7rem; }
+            .countdown-title { font-size: 0.78rem; letter-spacing: 1px; }
+
+            /* Cards */
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 28px;
+            }
+            .card { padding: 22px 18px; border-radius: 18px; }
+            .card-title { font-size: 1.2rem; }
+            .card-desc  { font-size: 0.88rem; margin-bottom: 16px; }
+            .card:hover { transform: none; } /* sem hover flutuante em touch */
+
+            /* Navbar */
+            .navbar { padding: 0 6px; margin-bottom: 20px; }
+            .nav-link { padding: 10px 10px; font-size: 0.75rem; gap: 5px; }
+            .nav-link i { font-size: 0.9rem; }
+
+            /* Today study */
+            .today-study { margin: 28px 0; }
+            .today-study h3 { font-size: 1.4rem; margin-bottom: 16px; }
+            .today-study .day-card { padding: 18px 16px; }
+            .today-study .theme { font-size: 1.05rem; }
+            .today-study .meta { flex-direction: column; gap: 8px; }
+
+            /* Stats */
+            .stats-section { margin: 28px 0; }
+            .stats-section h3 { font-size: 1.4rem; margin-bottom: 16px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 12px; }
+            .stat-item { padding: 18px; }
+
+            /* Tools */
+            .extra-tools { margin-top: 28px; gap: 10px; }
+            .tool-btn { font-size: 0.85rem; padding: 12px 14px; }
+
+            /* Quote / Tips */
+            .quote-card, .tips-card { padding: 24px 18px; margin-top: 32px; }
+            .quote-text { font-size: 1.1rem; }
+            .tips-card h3 { font-size: 1.2rem; }
+            .tips-card p  { font-size: 0.95rem; }
+        }
+
+        /* ── Very small phones ───────────────── */
+        @media (max-width: 380px) {
+            .welcome h1 { font-size: 1.5rem; }
+            .timer-unit span:first-child { font-size: 1.6rem; }
+            .nav-link span { display: none; } /* mostra só ícone na navbar */
         }
     </style>
 </head>
@@ -702,6 +807,11 @@
         <p id="study-tip">"Pratique questões diariamente para fixar o conteúdo. Foque nos tópicos de 'Muito Alta' incidência primeiro."</p>
     </div>
 </div>
+
+<!-- PWA Install Button -->
+<button id="pwa-install-btn">
+    <i class="fa-solid fa-download"></i> Instalar App
+</button>
 
 <script>
     // Configuration
@@ -941,19 +1051,44 @@
     window.onload = init;
 </script>
 
-<!-- Register Service Worker -->
+<!-- Register Service Worker + PWA Install -->
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('./sw.js')
       .then(registration => {
-        console.log('Service Worker registrado com sucesso:', registration);
+        console.log('Service Worker registrado:', registration.scope);
       })
       .catch(error => {
         console.log('Falha ao registrar Service Worker:', error);
       });
   });
 }
+
+// PWA Install Prompt
+let deferredPrompt;
+const installBtn = document.getElementById('pwa-install-btn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'flex';
+});
+
+installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+        installBtn.style.display = 'none';
+    }
+    deferredPrompt = null;
+});
+
+window.addEventListener('appinstalled', () => {
+    installBtn.style.display = 'none';
+    deferredPrompt = null;
+});
 </script>
 
 </body>
