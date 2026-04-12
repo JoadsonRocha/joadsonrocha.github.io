@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dicas de Estudos - ALE-RR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding: 20px;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at top right, rgba(99, 102, 241, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.05), transparent);
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            background: rgba(255,255,255,0.05);
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover { background: var(--border); transform: translateY(-50%) translateX(-5px); }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; background: linear-gradient(to right, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .intro p { font-size: 1.1rem; color: var(--text-muted); }
+
+        .tips-section {
+            margin-bottom: 50px;
+        }
+
+        .tips-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tip-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .tip-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+
+        .tip-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .tip-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .tip-content {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .tip-content ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .tip-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .back-btn { position: static; transform: none; margin-bottom: 20px; display: inline-flex; }
+            .tips-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar ao Dashboard</a>
+        <h1>Dicas de Estudos</h1>
+        <p>Estratégias comprovadas para maximizar seu aprendizado</p>
+    </header>
+
+    <div class="intro">
+        <p>Esta página reúne dicas práticas baseadas em técnicas de estudo eficazes. Implemente-as gradualmente para melhorar sua produtividade e retenção de conteúdo. Lembre-se: consistência é mais importante que intensidade.</p>
+    </div>
+
+    <!-- Técnicas de Estudo -->
+    <section class="tips-section">
+        <h2><i class="fas fa-brain"></i> Técnicas de Estudo</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-clock"></i></div>
+                <div class="tip-title">Técnica Pomodoro</div>
+                <div class="tip-content">
+                    <p>Estude por 25 minutos focados, seguido de 5 minutos de pausa. Após 4 ciclos, faça uma pausa maior de 15-30 minutos.</p>
+                    <div class="highlight">
+                        <strong>Dica:</strong> Use um timer e evite distrações durante os 25 minutos.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-map"></i></div>
+                <div class="tip-title">Mapas Mentais</div>
+                <div class="tip-content">
+                    <p>Crie diagramas visuais conectando conceitos. Comece com o tema central e ramifique para subtópicos.</p>
+                    <ul>
+                        <li>Use cores para categorizar</li>
+                        <li>Adicione imagens e símbolos</li>
+                        <li>Revise periodicamente</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-repeat"></i></div>
+                <div class="tip-title">Revisão Ativa</div>
+                <div class="tip-content">
+                    <p>Não apenas releia o material. Teste seu conhecimento fazendo perguntas e explicando conceitos em voz alta.</p>
+                    <div class="highlight">
+                        <strong>Método Feynman:</strong> Explique o tópico como se ensinasse a uma criança.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-link"></i></div>
+                <div class="tip-title">Conexão de Conceitos</div>
+                <div class="tip-content">
+                    <p>Relacione matérias diferentes. Por exemplo, conecte LGPD com Direito Administrativo ou Segurança da Informação com Governança.</p>
+                    <ul>
+                        <li>Crie analogias</li>
+                        <li>Encontre aplicações práticas</li>
+                        <li>Identifique padrões</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organização e Planejamento -->
+    <section class="tips-section">
+        <h2><i class="fas fa-calendar-check"></i> Organização e Planejamento</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-list-check"></i></div>
+                <div class="tip-title">Planejamento Semanal</div>
+                <div class="tip-content">
+                    <p>Defina metas realistas por dia. Inclua tempo para estudo, revisão e descanso. Ajuste conforme seu progresso.</p>
+                    <div class="highlight">
+                        <strong>Regra 80/20:</strong> 80% do tempo em tópicos de alta incidência, 20% em revisão.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="tip-title">Acompanhamento de Progresso</div>
+                <div class="tip-content">
+                    <p>Use o dashboard para monitorar seu avanço. Celebre pequenas vitórias e identifique áreas que precisam de mais atenção.</p>
+                    <ul>
+                        <li>Marque tópicos concluídos</li>
+                        <li>Faça revisões semanais</li>
+                        <li>Ajuste o plano conforme necessário</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                <div class="tip-title">Rotina de Estudo</div>
+                <div class="tip-content">
+                    <p>Estabeleça horários fixos. Estude no mesmo local e evite multitarefas. Mantenha consistência mesmo em dias difíceis.</p>
+                    <div class="highlight">
+                        <strong>Duração ideal:</strong> 2-3 horas diárias de estudo focado são mais eficazes que maratonas.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Saúde e Bem-Estar -->
+    <section class="tips-section">
+        <h2><i class="fas fa-heart"></i> Saúde e Bem-Estar</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-bed"></i></div>
+                <div class="tip-title">Sono e Descanso</div>
+                <div class="tip-content">
+                    <p>Durma 7-8 horas por noite. O sono consolida memórias e melhora o foco. Evite estudar exausto.</p>
+                    <ul>
+                        <li>Mantenha horário regular</li>
+                        <li>Ambiente escuro e silencioso</li>
+                        <li>Evite telas 1 hora antes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-dumbbell"></i></div>
+                <div class="tip-title">Atividade Física</div>
+                <div class="tip-content">
+                    <p>Exercícios regulares aumentam oxigenação cerebral e reduzem estresse. Mesmo 30 minutos diários fazem diferença.</p>
+                    <div class="highlight">
+                        <strong>Benefícios:</strong> Melhora memória, concentração e humor.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-utensils"></i></div>
+                <div class="tip-title">Alimentação</div>
+                <div class="tip-content">
+                    <p>Alimente-se bem: frutas, verduras, proteínas e carboidratos complexos. Hidrate-se constantemente.</p>
+                    <ul>
+                        <li>Café da manhã reforçado</li>
+                        <li>Lanches saudáveis durante estudo</li>
+                        <li>Evite excesso de açúcar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivação e Mentalidade -->
+    <section class="tips-section">
+        <h2><i class="fas fa-fire"></i> Motivação e Mentalidade</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-trophy"></i></div>
+                <div class="tip-title">Celebre Conquistas</div>
+                <div class="tip-content">
+                    <p>Reconheça seu progresso. Complete uma semana? Recompense-se. Pequenas vitórias constroem motivação.</p>
+                    <div class="highlight">
+                        <strong>Exemplo:</strong> Após marcar um dia no cronograma, faça algo prazeroso.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-users"></i></div>
+                <div class="tip-title">Estude com Outros</div>
+                <div class="tip-content">
+                    <p>Participe de grupos de estudo. Discuta dúvidas e compartilhe conhecimentos. O aprendizado social é poderoso.</p>
+                    <ul>
+                        <li>Explique conceitos para colegas</li>
+                        <li>Faça simulados em grupo</li>
+                        <li>Motive uns aos outros</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="tip-title">Gerencie o Estresse</div>
+                <div class="tip-content">
+                    <p>Ansiedade é normal. Pratique respiração profunda, meditação ou hobbies. Mantenha perspectiva: uma prova não define sua vida.</p>
+                    <div class="highlight">
+                        <strong>Lembre-se:</strong> Você é capaz. Foque no processo, não no resultado.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questões e Simulados -->
+    <section class="tips-section">
+        <h2><i class="fas fa-question-circle"></i> Questões e Simulados</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-pencil-alt"></i></div>
+                <div class="tip-title">Prática Regular</div>
+                <div class="tip-content">
+                    <p>Resolva questões diariamente. Use provas anteriores da FCC. Analise erros para identificar padrões.</p>
+                    <ul>
+                        <li>30 questões por dia</li>
+                        <li>Cronometre o tempo</li>
+                        <li>Revise gabaritos comentados</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="tip-title">Análise de Desempenho</div>
+                <div class="tip-content">
+                    <p>Acompanhe acertos por matéria. Identifique fraquezas e fortaleça-as. Ajuste foco baseado em dados.</p>
+                    <div class="highlight">
+                        <strong>Meta:</strong> 70% de acerto em simulados antes da prova.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon"><i class="fas fa-flag-checkered"></i></div>
+                <div class="tip-title">Simulados Completos</div>
+                <div class="tip-content">
+                    <p>Faça simulados semanais com todas as matérias. Simule condições reais: tempo, ambiente, sem distrações.</p>
+                    <ul>
+                        <li>Use provas anteriores</li>
+                        <li>Cronometre rigorosamente</li>
+                        <li>Analise desempenho detalhadamente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+</script>
+
+</body>
+</html>

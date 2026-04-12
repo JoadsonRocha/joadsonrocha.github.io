@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ALE-RR Study Dashboard</title>
+    <link rel="manifest" href="manifest.json"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #10b981;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --glass: rgba(30, 41, 59, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .welcome h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .welcome p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .countdown-title {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .timer-unit {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timer-unit span:first-child {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1;
+        }
+
+        .timer-unit span:last-child {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Dashboard Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            flex: 1;
+        }
+
+        /* Progress in Cards */
+        .progress-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .progress-mini-bar {
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+
+        .progress-mini-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 1s ease-out;
+        }
+
+        .spec-bg .card-icon { color: var(--secondary); background: rgba(236, 72, 153, 0.1); }
+        .spec-bg .progress-mini-fill { background: var(--secondary); }
+
+        /* Today's Study */
+        .today-study {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .today-study h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+
+        .today-study .day-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+        }
+
+        .today-study .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .today-study .day-number {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .today-study .study-block {
+            margin-bottom: 20px;
+        }
+
+        .today-study .block-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .today-study .theme {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .today-study .subtopics {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .today-study .meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .today-study .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .today-study .meta-item i {
+            color: var(--primary);
+        }
+
+        .today-study .check-day {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .today-study .check-day:hover {
+            background: var(--success);
+            color: white;
+        }
+
+        .today-study .completed .check-day {
+            background: var(--success);
+            color: white;
+        }
+
+        /* Advanced Stats */
+        .stats-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .stats-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Quick Tools */
+        .extra-tools {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .tool-btn {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .tool-btn:hover {
+            background: var(--border);
+            color: var(--primary);
+        }
+
+        /* Motivational Quote */
+        .quote-card {
+            margin-top: 60px;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+            border-radius: 30px;
+            border: 1px dashed var(--border);
+        }
+
+        .quote-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #e2e8f0;
+        }
+
+        .quote-author {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Study Tips */
+        .tips-card {
+            margin-top: 60px;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(99, 102, 241, 0.05));
+            border-radius: 30px;
+            border: 1px dashed var(--border);
+        }
+
+        .tips-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .tips-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .tips-card p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .timer { gap: 15px; }
+            .timer-unit span:first-child { font-size: 2rem; }
+            .welcome h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="welcome">
+            <h1 id="user-greeting">Olá, Joadson!</h1>
+            <p>Seja bem-vindo ao seu painel de controle de estudos.</p>
+        </div>
+        <div class="date-now" id="current-date">--/--/----</div>
+    </header>
+
+    <!-- Countdown Section -->
+    <div class="countdown-container">
+        <div class="countdown-title">Faltam apenas para a prova ALE-RR</div>
+        <div class="timer" id="countdown-timer">
+            <div class="timer-unit"><span id="days">00</span><span>Dias</span></div>
+            <div class="timer-unit"><span id="hours">00</span><span>Horas</span></div>
+            <div class="timer-unit"><span id="minutes">00</span><span>Min</span></div>
+            <div class="timer-unit"><span id="seconds">00</span><span>Seg</span></div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Grid -->
+    <div class="grid">
+        <!-- Gerais Card -->
+        <a href="CONHECIMENTO%20GERAIS.html" class="card">
+            <div class="card-header">
+                <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+                <div class="badge" style="color: var(--accent); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Geral</div>
+            </div>
+            <div class="card-title">Conhecimentos Gerais</div>
+            <div class="card-desc">Português, Administrativo, Constitucional, AFO, Roraima e TI Básico.</div>
+            
+            <div class="progress-stats">
+                <div class="stat-inner">
+                    <div class="stat-row">
+                        <span>Progresso Total</span>
+                        <span id="gerais-percent">0%</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="gerais-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">
+                    <span>Concluídos: <span id="gerais-count">0/102</span></span>
+                    <span>Revisões: <span id="gerais-rev">0%</span></span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Específicos Card -->
+        <a href="ESPECIFICOS.html" class="card spec-bg">
+            <div class="card-header">
+                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="badge" style="color: var(--secondary); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Técnico</div>
+            </div>
+            <div class="card-title">Conhecimentos Específicos</div>
+            <div class="card-desc">Tecnologia da Informação, Segurança, Governança e LGPD.</div>
+            
+            <div class="progress-stats">
+                <div class="stat-inner">
+                    <div class="stat-row">
+                        <span>Progresso Total</span>
+                        <span id="espec-percent">0%</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" id="espec-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">
+                    <span>Concluídos: <span id="espec-count">0/56</span></span>
+                    <span>Revisões: <span id="espec-rev">0%</span></span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Microaprendizado Card -->
+        <a href="microaprendizado.html" class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1)); border: 1px solid var(--primary);">
+            <div class="card-header">
+                <div class="card-icon" style="color: var(--warning);"><i class="fa-solid fa-brain"></i></div>
+                <div class="badge" style="color: var(--warning); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Micro</div>
+            </div>
+            <div class="card-title">Microaprendizado</div>
+            <div class="card-desc">Sessões curtas de estudo: flashcards, quiz e revisão rápida.</div>
+            
+            <div class="progress-stats">
+                <div class="stat-inner">
+                    <div class="stat-row">
+                        <span>Modos Disponíveis</span>
+                        <span style="color: var(--accent);">3</span>
+                    </div>
+                    <div class="progress-mini-bar">
+                        <div class="progress-mini-fill" style="width: 100%; background: var(--warning);"></div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">
+                    <span>Flashcards: 8</span>
+                    <span>Quiz: 5</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Today's Study -->
+    <div class="today-study">
+        <h3>Estudo de Hoje</h3>
+        <div id="today-card" class="day-card">
+            <!-- Conteúdo será preenchido por JavaScript -->
+        </div>
+    </div>
+
+    <!-- Advanced Stats -->
+    <div class="stats-section">
+        <h3>Estatísticas Detalhadas</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h4>Progresso por Categoria</h4>
+                <p>Gerais: <span id="gerais-percent-detail">0%</span></p>
+                <p>Específicos: <span id="espec-percent-detail">0%</span></p>
+            </div>
+            <div class="stat-item">
+                <h4>Dias Restantes</h4>
+                <p><span id="days-remaining">0</span> dias até a prova</p>
+            </div>
+            <div class="stat-item">
+                <h4>Meta Diária</h4>
+                <p>Estude pelo menos 2 horas por dia</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra Tools -->
+    <div class="extra-tools">
+        <a href="cronograma.html" class="tool-btn" style="border-color: var(--primary); background: rgba(99, 102, 241, 0.1);">
+            <i class="fa-solid fa-calendar-days"></i> Meu Cronograma
+        </a>
+        <a href="dicas.html" class="tool-btn" style="border-color: var(--success); background: rgba(16, 185, 129, 0.1);">
+            <i class="fa-solid fa-lightbulb"></i> Dicas de Estudos
+        </a>
+        <a href="PLANO%20DE%20ESTUDO%20ALERR.xlsx" class="tool-btn">
+            <i class="fa-solid fa-file-excel"></i> Plano Excel
+        </a>
+        <div class="tool-btn" style="cursor: default; opacity: 0.7;">
+            <i class="fa-solid fa-pen-to-square"></i> Central de Anotações (Em Breve)
+        </div>
+    </div>
+
+    <!-- Motivation -->
+    <div class="quote-card">
+        <i class="fa-solid fa-quote-left"></i>
+        <p class="quote-text" id="quote">"O sucesso é a soma de pequenos esforços repetidos dia após dia."</p>
+        <p class="quote-author" id="author">Robert Collier</p>
+    </div>
+
+    <!-- Study Tips -->
+    <div class="tips-card">
+        <i class="fa-solid fa-lightbulb"></i>
+        <h3>Dica do Dia para Estudar Melhor</h3>
+        <p id="study-tip">"Pratique questões diariamente para fixar o conteúdo. Foque nos tópicos de 'Muito Alta' incidência primeiro."</p>
+    </div>
+</div>
+
+<script>
+    // Configuration
+    const EXAM_DATE = new Date('2026-06-28T09:00:00');
+    const TOTAL_GERAIS = 102;
+    const TOTAL_ESPEC = 56;
+
+    // Quotes
+    const quotes = [
+        { text: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
+        { text: "Estuda como se fosses viver para sempre; vive como se fosses morrer amanhã.", author: "Mahatma Gandhi" },
+        { text: "A disciplina é a ponte entre metas e realizações.", author: "Jim Rohn" },
+        { text: "O único lugar onde o sucesso vem antes do trabalho é no dicionário.", author: "Vidal Sassoon" },
+        { text: "Quanto mais eu treino, mais sorte eu tenho.", author: "Gary Player" }
+    ];
+
+    const studyTips = [
+        "Pratique questões diariamente para fixar o conteúdo. Foque nos tópicos de 'Muito Alta' incidência primeiro.",
+        "Use a técnica Pomodoro: 25 minutos de estudo + 5 minutos de pausa para manter o foco.",
+        "Revise os erros das questões anteriores – eles são os melhores professores.",
+        "Estude em voz alta para melhorar a memorização e compreensão.",
+        "Priorize os conteúdos específicos de TI, pois são técnicos e exigem mais tempo.",
+        "Faça simulados semanais para se acostumar com o tempo da prova.",
+        "Durma bem e faça exercícios – um corpo saudável estuda melhor.",
+        "Conecte os tópicos: relacione Direito Administrativo com LGPD para fixar melhor."
+    ];
+
+    // Cronograma data
+    const dataWeek1 = [
+        { day: 1, espec: { theme: 'CID + Autenticidade', sub: 'Confidencialidade, Integridade, Disponibilidade, Não-repúdio' }, geral: { theme: 'Interpretação de Textos', sub: 'Compreensão vs. Inferência' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 2, espec: { theme: 'Ameaça x Vulnerabilidade x Risco', sub: 'Classificação, exemplos práticos FCC' }, geral: { theme: 'Reescrita de Frases', sub: 'Substituição sem alterar sentido + conectivos' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 3, espec: { theme: 'ISO 27001/27005', sub: 'Política de segurança, análise de risco' }, geral: { theme: 'Concordância Verbal/Nominal', sub: 'Casos clássicos FCC ("a maioria dos...")' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 4, espec: { theme: 'LGPD - Princípios', sub: 'Finalidade, adequação, transparência' }, geral: { theme: 'Pontuação + Crase', sub: 'Vírgula em orações intercaladas + crase' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 5, espec: { theme: 'LGPD - Bases Legais', sub: 'Consentimento, legítimo interesse' }, geral: { theme: 'Regência + Conectivos', sub: 'Verbos que mudam sentido + conjunções' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 6, espec: { theme: 'Criptografia Simétrica/Assimétrica', sub: 'AES, RSA, chaves públicas/privadas' }, geral: { theme: 'CF/88: Direitos Fundamentais', sub: 'Art. 5º + Direitos Políticos' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 7, espec: { theme: 'Hash + Assinatura Digital + PKI', sub: 'SHA, MD5, certificado digital, ICP-Brasil' }, geral: { theme: 'CF/88: Org. Estado', sub: 'Competências União/Estados/Municípios' }, q: 'Revisão Geral', rev: 'Semanal (1h)' }
+    ];
+
+    const dataWeek2 = [
+        { day: 8, espec: { theme: 'IAM + RBAC + MFA', sub: 'Modelo de papéis, autenticação multifator' }, geral: { theme: 'Licitações: Modalidades', sub: 'Diferenças práticas + valores limites' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 9, espec: { theme: 'SSO + OAuth 2.0 + OpenID', sub: 'Fluxos, tokens, diferenças práticas' }, geral: { theme: 'Contratos Administrativos', sub: 'Cláusulas exorbitantes, alteração unilateral' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 10, espec: { theme: 'Redes: LAN/WAN + Protocolos', sub: 'TCP/IP, DNS, DHCP, HTTP/S' }, geral: { theme: 'Atos Administrativos', sub: 'Requisitos + Atributos' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 11, espec: { theme: 'Firewall + IDS/IPS', sub: 'Stateful vs Stateless, assinaturas' }, geral: { theme: 'Poderes Administrativos', sub: 'Hierárquico, Disciplinar, Polícia' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 12, espec: { theme: 'VPN + DMZ + NAC', sub: 'Túneis, zonas de segurança' }, geral: { theme: 'Agentes Públicos + Lei 8.112', sub: 'Cargo/Emprego, acumulação, estágio' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 13, espec: { theme: 'Protocolos Seguros (TLS, SSH)', sub: 'Handshake, certificados, trânsito' }, geral: { theme: 'Responsabilidade Civil + Improbid.', sub: 'Risco Adm + Lei 8.429/92' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 14, espec: { theme: 'SIMULADO SEMANAL', sub: '60 questões mistas (Semana 1+2)' }, geral: { theme: 'SIMULADO SEMANAL', sub: '60 questões (Português + Admin)' }, q: '120 FCC Total', rev: 'Semanal (2h)' }
+    ];
+
+    const dataWeek3 = [
+        { day: 15, espec: { theme: 'SIEM + Gestão de Logs', sub: 'Correlação, retenção, análise forense' }, geral: { theme: 'PPA / LDO / LOA: Diferenças + Prazos', sub: 'Vigência, conteúdo, iniciativa legislativa' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 16, espec: { theme: 'Resposta a Incidentes (NIST/ISO)', sub: 'Preparação, detecção, contenção, erradicação, recuperação' }, geral: { theme: 'Classificação da Despesa Orçamentária', sub: 'Categoria econômica, grupo, elemento, subelemento' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 17, espec: { theme: 'Gestão de Vulnerabilidades', sub: 'Scan, priorização (CVSS), patch management' }, geral: { theme: 'Princípios Orçamentários + LRF', sub: 'Unidade, universalidade, anualidade + limites de pessoal' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 18, espec: { theme: 'Hardening + Segurança em OS/DB', sub: 'CIS Benchmarks, desabilitação de serviços, princípio do menor privilégio' }, geral: { theme: 'Constituição Estadual RR (arts. 30-67)', sub: 'Organização dos Poderes + competências da ALE/RR' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 19, espec: { theme: 'OWASP Top 10 (2021)', sub: 'Injection, Broken Auth, Sensitive Data Exposure, XSS' }, geral: { theme: 'Regimento Interno ALE/RR + Processo Legislativo', sub: 'Tramitação de projetos + comissões + CPI' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 20, espec: { theme: 'Segurança de APIs + JWT', sub: 'OAuth scopes, rate limiting, validação de entrada' }, geral: { theme: 'Código de Ética Parlamentar + Resolução 015/2024', sub: 'Deveres, vedações, estrutura administrativa' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 21, espec: { theme: 'SIMULADO SEMANAL', sub: '60 questões mistas (Semana 1-3) + correção' }, geral: { theme: 'SIMULADO SEMANAL', sub: '60 questões (AFO + Legislação RR) + correção' }, q: '120 FCC Total', rev: 'Semanal (1h)' }
+    ];
+
+    const dataWeek4 = [
+        { day: 22, espec: { theme: 'Cloud: Modelo de Responsabilidade Compartilhada', sub: 'IaaS/PaaS/SaaS, quem protege o quê' }, geral: { theme: 'Geografia/História RR: Ocupação + Fronteiras', sub: 'Presença portuguesa, criação do Território Federal' }, q: '30+30 FCC', rev: 'Flashcards' },
+        { day: 23, espec: { theme: 'Segurança em Cloud (AWS/Azure/GCP)', sub: 'IAM cloud, KMS, Security Groups, WAF' }, geral: { theme: 'Povos Indígenas + Economia de RR', sub: 'Terras indígenas, extrativismo, mineração' }, q: '30+30 FCC', rev: 'Mapas Mentais' },
+        { day: 24, espec: { theme: 'Backup + RPO + RTO + Tipos de Recuperação', sub: 'Full/incremental/diferencial, teste de restore' }, geral: { theme: 'LGPD (Lei 13.709/18) + Aplicação no Legislativo', sub: 'Princípios, bases legais, direitos do titular' }, q: '30+30 FCC', rev: 'Erros do dia' },
+        { day: 25, espec: { theme: 'Auditoria + Logging + Conformidade', sub: 'Trilhas de auditoria, imutabilidade, LGPD art. 46' }, geral: { theme: 'Revisão Ativa: Português + Administrativo', sub: 'Releitura de mapas + flashcards + erros acumulados' }, q: '30 FCC', rev: 'Flashcards' },
+        { day: 26, espec: { theme: 'Contratações de TI: ETP + TR', sub: 'Elementos essenciais, matriz de riscos, SLA técnico' }, geral: { theme: 'Revisão Ativa: AFO + Legislação RR', sub: 'Foco em classificações, prazos, competências' }, q: '30 FCC', rev: 'Mapas Mentais' },
+        { day: 27, espec: { theme: 'SLA + RACI + Governança', sub: 'Indicadores, papéis e responsabilidades, monitoramento' }, geral: { theme: 'Treino de Redação / Discursiva (se houver)', sub: 'Estrutura FCC: introdução + 2 argumentos + conclusão' }, q: '1 texto', rev: 'Erros do dia' },
+        { day: 28, espec: { theme: 'REVISÃO GERAL ATIVA', sub: 'Releitura de mapas + flashcards + erros acumulados' }, geral: { theme: 'Simulado Parcial', sub: '45 questões mistas (todas as matérias) cronometradas' }, q: '45 FCC', rev: 'Semanal (2h)' }
+    ];
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = EXAM_DATE - now;
+
+        if (diff <= 0) {
+            document.getElementById('countdown-timer').innerHTML = "<h3>É hoje! Boa prova!</h3>";
+            return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = String(d).padStart(2, '0');
+        document.getElementById('hours').innerText = String(h).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(s).padStart(2, '0');
+
+        // Alert for less than 30 days
+        const countdownContainer = document.querySelector('.countdown-container');
+        if (d < 30) {
+            countdownContainer.style.borderColor = '#ef4444';
+            countdownContainer.style.boxShadow = '0 10px 30px rgba(239, 68, 68, 0.3)';
+            countdownContainer.querySelector('.countdown-title').innerText = 'ALERTA: Menos de 30 dias para a prova ALE-RR!';
+            countdownContainer.querySelector('.countdown-title').style.color = '#ef4444';
+        } else if (d < 60) {
+            countdownContainer.style.borderColor = '#f59e0b';
+            countdownContainer.style.boxShadow = '0 10px 30px rgba(245, 158, 11, 0.3)';
+        }
+    }
+
+    function loadProgress() {
+        // Gerais Progress
+        const savedGerais = JSON.parse(localStorage.getItem('alerr_study_progress')) || [];
+        const checkedGeraisMain = savedGerais.filter(id => !id.includes('-rev') && !id.includes('-ques')).length;
+        const checkedGeraisRev = savedGerais.filter(id => id.includes('-rev')).length;
+        
+        const percGerais = Math.round((checkedGeraisMain / TOTAL_GERAIS) * 100);
+        const percGeraisRev = Math.round((checkedGeraisRev / TOTAL_GERAIS) * 100);
+
+        document.getElementById('gerais-percent').innerText = percGerais + '%';
+        document.getElementById('gerais-bar').style.width = percGerais + '%';
+        document.getElementById('gerais-count').innerText = checkedGeraisMain + '/' + TOTAL_GERAIS;
+        document.getElementById('gerais-rev').innerText = percGeraisRev + '%';
+        document.getElementById('gerais-percent-detail').innerText = percGerais + '%';
+
+        // Espec Progress
+        const savedEspec = JSON.parse(localStorage.getItem('studyProgress')) || [];
+        const checkedEspecMain = savedEspec.filter(id => !id.includes('-rev') && !id.includes('-ques')).length;
+        const checkedEspecRev = savedEspec.filter(id => id.includes('-rev')).length;
+
+        const percEspec = Math.round((checkedEspecMain / TOTAL_ESPEC) * 100);
+        const percEspecRev = Math.round((checkedEspecRev / TOTAL_ESPEC) * 100);
+
+        document.getElementById('espec-percent').innerText = percEspec + '%';
+        document.getElementById('espec-bar').style.width = percEspec + '%';
+        document.getElementById('espec-count').innerText = checkedEspecMain + '/' + TOTAL_ESPEC;
+        document.getElementById('espec-rev').innerText = percEspecRev + '%';
+        document.getElementById('espec-percent-detail').innerText = percEspec + '%';
+
+        // Days Remaining
+        const now = new Date();
+        const diff = EXAM_DATE - now;
+        const daysRemaining = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('days-remaining').innerText = daysRemaining > 0 ? daysRemaining : 0;
+    }
+
+    function loadTodayStudy() {
+        const now = new Date();
+        const startDate = new Date('2026-04-12'); // Dia 1 do cronograma
+        const diffTime = now - startDate;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 porque dia 1 é o primeiro
+
+        let todayData = null;
+        const allData = [...dataWeek1, ...dataWeek2, ...dataWeek3, ...dataWeek4];
+        todayData = allData.find(d => d.day === diffDays);
+
+        if (!todayData) {
+            // Se não encontrou (antes do início ou depois), mostra mensagem
+            document.getElementById('today-card').innerHTML = `
+                <div style="text-align: center; color: var(--text-muted);">
+                    <i class="fas fa-calendar-day" style="font-size: 3rem; margin-bottom: 20px; color: var(--primary);"></i>
+                    <p>Hoje não há estudo programado no cronograma.</p>
+                    <p>Verifique o cronograma completo para mais detalhes.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const card = document.getElementById('today-card');
+        card.innerHTML = `
+            <div class="day-header">
+                <span class="day-number">Dia ${todayData.day}</span>
+            </div>
+            <div class="study-block">
+                <span class="block-title">📚 Específicos</span>
+                <span class="theme">${todayData.espec.theme}</span>
+                <span class="subtopics">${todayData.espec.sub}</span>
+            </div>
+            <div class="study-block">
+                <span class="block-title">📖 Gerais</span>
+                <span class="theme">${todayData.geral.theme}</span>
+                <span class="subtopics">${todayData.geral.sub}</span>
+            </div>
+            <div class="meta">
+                <div class="meta-item"><i class="fas fa-pen-nib"></i> ${todayData.q}</div>
+                <div class="meta-item"><i class="fas fa-sync"></i> ${todayData.rev}</div>
+            </div>
+            <button class="check-day" onclick="markTodayDone(${todayData.day})">
+                <i class="fas fa-check"></i> <span class="check-text">Marcar como Feito</span>
+            </button>
+        `;
+
+        // Verificar se já foi marcado como feito
+        const completed = JSON.parse(localStorage.getItem('alerr_cronograma_progress')) || [];
+        if (completed.includes(`day-${todayData.day}`)) {
+            card.classList.add('completed');
+            card.querySelector('.check-text').innerText = 'Dia Concluído!';
+        }
+    }
+
+    function markTodayDone(day) {
+        const card = document.getElementById('today-card');
+        card.classList.toggle('completed');
+        const btnText = card.querySelector('.check-text');
+        if (card.classList.contains('completed')) {
+            btnText.innerText = 'Dia Concluído!';
+        } else {
+            btnText.innerText = 'Marcar como Feito';
+        }
+
+        // Salvar no localStorage (mesmo que o cronograma)
+        let completed = JSON.parse(localStorage.getItem('alerr_cronograma_progress')) || [];
+        const dayId = `day-${day}`;
+        if (card.classList.contains('completed')) {
+            if (!completed.includes(dayId)) completed.push(dayId);
+        } else {
+            completed = completed.filter(id => id !== dayId);
+        }
+        localStorage.setItem('alerr_cronograma_progress', JSON.stringify(completed));
+    }
+
+    function init() {
+        // Set date
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('pt-BR', options);
+
+        // Random Quote
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('quote').innerText = `"${randomQuote.text}"`;
+        document.getElementById('author').innerText = randomQuote.author;
+
+        // Random Study Tip
+        const randomTip = studyTips[Math.floor(Math.random() * studyTips.length)];
+        document.getElementById('study-tip').innerText = `"${randomTip}"`;
+
+        // Start Countdown
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Load progress
+        loadProgress();
+
+        // Load today's study
+        loadTodayStudy();
+    }
+
+    window.onload = init;
+</script>
+
+<!-- Register Service Worker -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('Service Worker registrado com sucesso:', registration);
+      })
+      .catch(error => {
+        console.log('Falha ao registrar Service Worker:', error);
+      });
+  });
+}
+</script>
+
+</body>
+</html>

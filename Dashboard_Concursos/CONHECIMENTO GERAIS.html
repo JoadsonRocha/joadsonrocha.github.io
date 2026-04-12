@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Plano de Estudos: Assistente Legislativo - ALE-RR</title>    <link rel="manifest" href="manifest.json"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #27ae60;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+            --progress-bg: #dfe6e9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Progress Bar */
+        .sticky-progress {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: var(--progress-bg);
+            border-radius: 20px;
+            height: 12px;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Content Sections */
+        .section-category {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-title i {
+            margin-right: 10px;
+        }
+
+        .discipline-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .discipline-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .discipline-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Checklist Items */
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item:hover {
+            background-color: #fafafa;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            color: #95a5a6;
+        }
+
+        .checklist-item .item-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + .item-text {
+            text-decoration: line-through;
+            color: #95a5a6;
+        }
+
+        .extra-checks {
+            display: flex;
+            gap: 15px;
+            margin-left: 15px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            align-items: center;
+        }
+
+        .extra-checks label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .extra-checks input[type="checkbox"] {
+            margin: 0 !important;
+            width: 14px !important;
+            height: 14px !important;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+        }
+
+        .tag-geral { background-color: #e1f5fe; color: #0288d1; }
+        .tag-tecnico { background-color: #f3e5f5; color: #7b1fa2; }
+        .tag-juridico { background-color: #fff3e0; color: #ef6c00; }
+
+        /* Incidence Tags */
+        .incidence {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+            color: white;
+        }
+
+        .incidence-muito-alta { background-color: #d32f2f; } /* Vermelho escuro */
+        .incidence-alta { background-color: #f57c00; } /* Laranja */
+        .incidence-media { background-color: #fbc02d; color: #333; } /* Amarelo */
+        .incidence-baixa { background-color: #388e3c; } /* Verde */
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .category-title { font-size: 1.4rem; }
+            .discipline-card { padding: 15px; }
+        }
+
+        /* Print optimization */
+        @media print {
+            .sticky-progress { display: none; }
+            body { background: white; padding: 0; }
+            .discipline-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+            .checklist-item input[type="checkbox"] { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+<header>
+<div style="position: absolute; top: 20px; left: 20px;">
+    <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+        <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+    </a>
+</div>
+<h1 id="section-1">Checklist de Estudos: Assistente Legislativo</h1>
+<p>Assembleia Legislativa do Estado de Roraima (ALE-RR) - Ciclo Completo: Geral &amp; Técnico</p>
+</header>
+<div class="container">
+<!-- Incidence Legend -->
+<div style="background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+    <h3 style="margin-bottom: 10px; color: var(--primary-color);">Legenda de Incidência nas Provas FCC</h3>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <span class="incidence incidence-muito-alta">Muito Alta</span> - Aparece em quase todas as provas
+        <span class="incidence incidence-alta">Alta</span> - Aparece frequentemente
+        <span class="incidence incidence-media">Média</span> - Aparece às vezes
+        <span class="incidence incidence-baixa">Baixa</span> - Aparece raramente
+    </div>
+</div>
+<!-- Useful Links -->
+<div style="background: var(--card-bg); padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+    <h3 style="margin-bottom: 15px; color: var(--primary-color);">Links Úteis para Estudos</h3>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" style="color: var(--primary); text-decoration: none;">📄 Constituição Federal (Planalto)</a></li>
+        <li style="margin-bottom: 10px;"><a href="https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd" target="_blank" style="color: var(--primary); text-decoration: none;">🔒 Lei Geral de Proteção de Dados (LGPD)</a></li>
+        <li style="margin-bottom: 10px;"><a href="https://www.fcc.org.br/" target="_blank" style="color: var(--primary); text-decoration: none;">📚 Site da FCC (Provas Anteriores)</a></li>
+        <li><a href="https://www.al.rr.leg.br/" target="_blank" style="color: var(--primary); text-decoration: none;">🏛️ Assembleia Legislativa de Roraima</a></li>
+    </ul>
+</div>
+<!-- Progress Tracker -->
+<div class="sticky-progress">
+<div class="progress-text">
+<span>Progresso Geral dos Estudos</span>
+<span id="progress-percent">0%</span>
+</div>
+<div class="progress-container">
+<div class="progress-bar" id="progress-bar"></div>
+</div>
+<p style="font-size: 0.8rem; margin-top: 5px; color: #666;">
+            Tópicos Concluídos: <span id="completed-count">0</span> / <span id="total-count">0</span>
+</p>
+</div>
+<!-- CATEGORIA 1: CONHECIMENTOS GERAIS -->
+<div class="section-category">
+<h2 class="category-title" id="section-1">I. Conhecimentos Gerais</h2>
+<!-- Língua Portuguesa -->
+<div class="discipline-card">
+<h3 id="section-1-1">Língua Portuguesa <span class="tag tag-geral">Básico</span> <span class="incidence incidence-muito-alta">Muito Alta</span></h3>
+<p class="discipline-description">Foco em compreensão textual, gramática normativa e teoria da argumentação aplicada.</p>
+<ul class="checklist">
+<li class="checklist-item"><input id="lp1" type="checkbox"/><label for="lp1" class="item-text">Ortografia e acentuação gráfica</label><div class="extra-checks"><label><input id="lp1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp2" type="checkbox"/><label for="lp2" class="item-text">Emprego do sinal indicativo de crase</label><div class="extra-checks"><label><input id="lp2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp3" type="checkbox"/><label for="lp3" class="item-text">Compreensão e interpretação de textos de gêneros variados</label><div class="extra-checks"><label><input id="lp3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp4" type="checkbox"/><label for="lp4" class="item-text">Relação do texto com seu contexto histórico</label><div class="extra-checks"><label><input id="lp4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp5" type="checkbox"/><label for="lp5" class="item-text">Denotação e conotação</label><div class="extra-checks"><label><input id="lp5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp6" type="checkbox"/><label for="lp6" class="item-text">Discurso direto, discurso indireto e discurso indireto livre</label><div class="extra-checks"><label><input id="lp6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp7" type="checkbox"/><label for="lp7" class="item-text">Intertextualidade e Figuras de linguagem</label><div class="extra-checks"><label><input id="lp7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp8" type="checkbox"/><label for="lp8" class="item-text">Morfossintaxe: classes de palavras e funções sintáticas</label><div class="extra-checks"><label><input id="lp8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp9" type="checkbox"/><label for="lp9" class="item-text">Elementos estruturais e processos de formação de palavras</label><div class="extra-checks"><label><input id="lp9-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp9-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp10" type="checkbox"/><label for="lp10" class="item-text">Sinonímia e antonímia</label><div class="extra-checks"><label><input id="lp10-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp10-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp11" type="checkbox"/><label for="lp11" class="item-text">Pontuação</label><div class="extra-checks"><label><input id="lp11-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp11-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp12" type="checkbox"/><label for="lp12" class="item-text">Pronomes: emprego e colocação</label><div class="extra-checks"><label><input id="lp12-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp12-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp13" type="checkbox"/><label for="lp13" class="item-text">Concordância nominal e concordância verbal</label><div class="extra-checks"><label><input id="lp13-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp13-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp14" type="checkbox"/><label for="lp14" class="item-text">Flexão nominal e flexão verbal</label><div class="extra-checks"><label><input id="lp14-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp14-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp15" type="checkbox"/><label for="lp15" class="item-text">Vozes do verbo e correlação de tempos/modos verbais</label><div class="extra-checks"><label><input id="lp15-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp15-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp16" type="checkbox"/><label for="lp16" class="item-text">Regência nominal e regência verbal</label><div class="extra-checks"><label><input id="lp16-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp16-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp17" type="checkbox"/><label for="lp17" class="item-text">Coordenação e subordinação (Conectivos)</label><div class="extra-checks"><label><input id="lp17-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp17-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp18" type="checkbox"/><label for="lp18" class="item-text">Redação: organização, reorganização e transformação de estruturas</label><div class="extra-checks"><label><input id="lp18-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp18-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp19" type="checkbox"/><label for="lp19" class="item-text">Teoria da argumentação: dedução, indução e raciocínio categórico-dedutivo</label><div class="extra-checks"><label><input id="lp19-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp19-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp20" type="checkbox"/><label for="lp20" class="item-text">Vícios de raciocínio: tautologia, generalização falsa e sofisma</label><div class="extra-checks"><label><input id="lp20-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp20-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="lp21" type="checkbox"/><label for="lp21" class="item-text">Tipos de argumentos: falaciosos, apelativos e comunicação eficiente</label><div class="extra-checks"><label><input id="lp21-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="lp21-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Direito Constitucional -->
+<div class="discipline-card">
+<h3 id="section-1-2">Noções de Direito Constitucional <span class="tag tag-juridico">Jurídico</span> <span class="incidence incidence-muito-alta">Muito Alta</span></h3>
+<p class="discipline-description">Fundamentos da República e a organização dos Poderes na CF/88.</p>
+<ul class="checklist">
+<li class="checklist-item"><input id="dc1" type="checkbox"/><label for="dc1" class="item-text">Aplicabilidade das normas constitucionais (Plena, Contida e Limitada)</label><div class="extra-checks"><label><input id="dc1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc2" type="checkbox"/><label for="dc2" class="item-text">Normas programáticas</label><div class="extra-checks"><label><input id="dc2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc3" type="checkbox"/><label for="dc3" class="item-text">Direitos e garantias fundamentais: individuais, coletivos e sociais</label><div class="extra-checks"><label><input id="dc3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc4" type="checkbox"/><label for="dc4" class="item-text">Nacionalidade, direitos políticos e partidos políticos</label><div class="extra-checks"><label><input id="dc4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc5" type="checkbox"/><label for="dc5" class="item-text">Organização político-administrativa: União, Estados, DF e Municípios</label><div class="extra-checks"><label><input id="dc5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc6" type="checkbox"/><label for="dc6" class="item-text">Poder Executivo: atribuições e responsabilidades do Presidente</label><div class="extra-checks"><label><input id="dc6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc7" type="checkbox"/><label for="dc7" class="item-text">Poder Legislativo: estrutura, funcionamento e processo legislativo</label><div class="extra-checks"><label><input id="dc7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc8" type="checkbox"/><label for="dc8" class="item-text">Fiscalização contábil, financeira e orçamentária</label><div class="extra-checks"><label><input id="dc8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc9" type="checkbox"/><label for="dc9" class="item-text">Comissões Parlamentares de Inquérito (CPI)</label><div class="extra-checks"><label><input id="dc9-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc9-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc10" type="checkbox"/><label for="dc10" class="item-text">Poder Judiciário: órgãos, competências e CNJ</label><div class="extra-checks"><label><input id="dc10-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc10-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="dc11" type="checkbox"/><label for="dc11" class="item-text">Funções essenciais à Justiça: MP, Advocacia e Defensoria Pública</label><div class="extra-checks"><label><input id="dc11-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="dc11-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Direito Administrativo -->
+<div class="discipline-card">
+<h3 id="section-1-3">Noções de Direito Administrativo <span class="tag tag-juridico">Jurídico</span> <span class="incidence incidence-muito-alta">Muito Alta</span></h3>
+<p class="discipline-description">Regime jurídico administrativo, licitações (Nova Lei) e responsabilidade do Estado.</p>
+<ul class="checklist">
+<li class="checklist-item"><input id="da1" type="checkbox"/><label for="da1" class="item-text">Organização administrativa: Centralização e Descentralização</label><div class="extra-checks"><label><input id="da1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da2" type="checkbox"/><label for="da2" class="item-text">Administração Direta e Indireta (Autarquias, Empresas Públicas, etc.)</label><div class="extra-checks"><label><input id="da2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da3" type="checkbox"/><label for="da3" class="item-text">Ato administrativo: conceito, requisitos, atributos e espécies</label><div class="extra-checks"><label><input id="da3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da4" type="checkbox"/><label for="da4" class="item-text">Agentes públicos: cargo, emprego e função pública</label><div class="extra-checks"><label><input id="da4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da5" type="checkbox"/><label for="da5" class="item-text">Lei Complementar Estadual nº 053/2001</label><div class="extra-checks"><label><input id="da5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da6" type="checkbox"/><label for="da6" class="item-text">Poderes administrativos: Hierárquico, Disciplinar, Regulamentar e de Polícia</label><div class="extra-checks"><label><input id="da6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da7" type="checkbox"/><label for="da7" class="item-text">Uso e abuso do poder</label><div class="extra-checks"><label><input id="da7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da8" type="checkbox"/><label for="da8" class="item-text">Licitações e Contratos (Lei nº 14.133/2021): Princípios e Modalidades</label><div class="extra-checks"><label><input id="da8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da9" type="checkbox"/><label for="da9" class="item-text">Contratação direta: dispensa e inexigibilidade</label><div class="extra-checks"><label><input id="da9-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da9-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da10" type="checkbox"/><label for="da10" class="item-text">Gestão e Fiscalização de Contratos: papel do fiscal e do preposto</label><div class="extra-checks"><label><input id="da10-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da10-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da11" type="checkbox"/><label for="da11" class="item-text">Resolução Legislativa nº 001/2024</label><div class="extra-checks"><label><input id="da11-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da11-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da12" type="checkbox"/><label for="da12" class="item-text">Controle da Administração Pública: Judicial, Legislativo e Administrativo</label><div class="extra-checks"><label><input id="da12-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da12-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da13" type="checkbox"/><label for="da13" class="item-text">Responsabilidade Civil do Estado: atos comissivos e omissivos</label><div class="extra-checks"><label><input id="da13-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da13-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="da14" type="checkbox"/><label for="da14" class="item-text">Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)</label><div class="extra-checks"><label><input id="da14-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="da14-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- AFO -->
+<div class="discipline-card">
+<h3 id="section-1-4">Admin. Financeira e Orçamentária <span class="tag tag-geral">Gestão</span> <span class="incidence incidence-alta">Alta</span></h3>
+<p class="discipline-description">O ciclo orçamentário e a gestão de recursos públicos no Estado.</p>
+<ul class="checklist">
+<li class="checklist-item"><input id="af1" type="checkbox"/><label for="af1" class="item-text">Orçamento público: conceito, natureza jurídica e princípios</label><div class="extra-checks"><label><input id="af1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="af2" type="checkbox"/><label for="af2" class="item-text">PPA, LDO e LOA</label><div class="extra-checks"><label><input id="af2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="af3" type="checkbox"/><label for="af3" class="item-text">Tipos de Orçamento: Tradicional, Base Zero, Desempenho e Programa</label><div class="extra-checks"><label><input id="af3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="af4" type="checkbox"/><label for="af4" class="item-text">Classificação da Receita e Despesa Orçamentária brasileira</label><div class="extra-checks"><label><input id="af4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="af5" type="checkbox"/><label for="af5" class="item-text">Ciclo Orçamentário e Parâmetros da Política Fiscal</label><div class="extra-checks"><label><input id="af5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="af6" type="checkbox"/><label for="af6" class="item-text">Estrutura programática e alocação de recursos</label><div class="extra-checks"><label><input id="af6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="af7" type="checkbox"/><label for="af7" class="item-text">Sistema Integrado de Planejamento e Finanças de Roraima</label><div class="extra-checks"><label><input id="af7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="af7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Legislação Institucional -->
+<div class="discipline-card">
+<h3 id="section-1-5">Legislação Institucional <span class="tag tag-juridico">Roraima</span> <span class="incidence incidence-alta">Alta</span></h3>
+<ul class="checklist">
+<li class="checklist-item"><input id="li1" type="checkbox"/><label for="li1" class="item-text">Constituição do Estado de Roraima (Arts. 30 a 67; 111 a 116)</label><div class="extra-checks"><label><input id="li1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="li1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="li2" type="checkbox"/><label for="li2" class="item-text">Regimento Interno da ALE-RR (Resolução nº 08/2023)</label><div class="extra-checks"><label><input id="li2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="li2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="li3" type="checkbox"/><label for="li3" class="item-text">Código de Ética Parlamentar (Resolução nº 29/1995)</label><div class="extra-checks"><label><input id="li3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="li3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="li4" type="checkbox"/><label for="li4" class="item-text">Estrutura Administrativa da ALE-RR (Resolução nº 015/2024)</label><div class="extra-checks"><label><input id="li4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="li4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="li5" type="checkbox"/><label for="li5" class="item-text">Lei Complementar Estadual nº 373/2026</label><div class="extra-checks"><label><input id="li5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="li5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- História e Geografia -->
+<div class="discipline-card">
+<h3 id="section-1-6">História e Geografia de Roraima <span class="tag tag-geral">Roraima</span> <span class="incidence incidence-media">Média</span></h3>
+<ul class="checklist">
+<li class="checklist-item"><input id="hg1" type="checkbox"/><label for="hg1" class="item-text">Ocupação territorial e presença portuguesa</label><div class="extra-checks"><label><input id="hg1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg2" type="checkbox"/><label for="hg2" class="item-text">Roraima nos séculos XIX e XX e delimitação de fronteiras</label><div class="extra-checks"><label><input id="hg2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg3" type="checkbox"/><label for="hg3" class="item-text">Criação do Território Federal e fluxos migratórios</label><div class="extra-checks"><label><input id="hg3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg4" type="checkbox"/><label for="hg4" class="item-text">Criação do Estado, municípios e patrimônios históricos</label><div class="extra-checks"><label><input id="hg4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg5" type="checkbox"/><label for="hg5" class="item-text">Terras e povos indígenas de Roraima</label><div class="extra-checks"><label><input id="hg5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg6" type="checkbox"/><label for="hg6" class="item-text">Governadores do Território e do Estado</label><div class="extra-checks"><label><input id="hg6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg7" type="checkbox"/><label for="hg7" class="item-text">Geografia: clima, solos, relevo e hidrografia</label><div class="extra-checks"><label><input id="hg7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="hg8" type="checkbox"/><label for="hg8" class="item-text">Economia: extrativismo, agropecuária, mineração e indústria</label><div class="extra-checks"><label><input id="hg8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="hg8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+</div>
+<!-- CATEGORIA 2: CONHECIMENTOS ESPECÍFICOS (TI &amp; SEGURANÇA) -->
+<div class="section-category">
+<h2 class="category-title" id="section-2">II. Conhecimentos Específicos</h2>
+<!-- Segurança da Informação -->
+<div class="discipline-card">
+<h3 id="section-2-1">Segurança da Informação e Arquitetura <span class="tag tag-tecnico">TI</span> <span class="incidence incidence-alta">Alta</span></h3>
+<p class="discipline-description">Fundamentos técnicos de proteção, modelos de confiança e arquitetura de redes.</p>
+<ul class="checklist">
+<li class="checklist-item"><input id="ti1" type="checkbox"/><label for="ti1" class="item-text">Fundamentos: Confidencialidade, Integridade, Disponibilidade, Autenticidade e Irretratabilidade</label><div class="extra-checks"><label><input id="ti1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti2" type="checkbox"/><label for="ti2" class="item-text">Ameaças, vulnerabilidades, riscos e impactos</label><div class="extra-checks"><label><input id="ti2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti3" type="checkbox"/><label for="ti3" class="item-text">Defesa em profundidade e Zero Trust</label><div class="extra-checks"><label><input id="ti3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti4" type="checkbox"/><label for="ti4" class="item-text">Segmentação de ambientes e segurança de perímetro</label><div class="extra-checks"><label><input id="ti4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti5" type="checkbox"/><label for="ti5" class="item-text">Segurança de identidades, aplicações, dados e nuvem</label><div class="extra-checks"><label><input id="ti5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti6" type="checkbox"/><label for="ti6" class="item-text">Normas ISO/IEC: 27001:2024, 27002:2022, 27701:2019, 27005:2023</label><div class="extra-checks"><label><input id="ti6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti7" type="checkbox"/><label for="ti7" class="item-text">CIS Controls v8</label><div class="extra-checks"><label><input id="ti7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ti8" type="checkbox"/><label for="ti8" class="item-text">LGPD: Princípios, bases legais, anonimização e pseudonimização</label><div class="extra-checks"><label><input id="ti8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ti8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Gestão Operacional de Segurança -->
+<div class="discipline-card">
+<h3 id="section-2-2">Gestão Operacional de Segurança <span class="tag tag-tecnico">TI</span></h3>
+<ul class="checklist">
+<li class="checklist-item"><input id="go1" type="checkbox"/><label for="go1" class="item-text">Gestão de Ativos: inventário, classificação e ciclo de vida</label><div class="extra-checks"><label><input id="go1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="go2" type="checkbox"/><label for="go2" class="item-text">Gestão de Riscos: identificação, análise e monitoramento</label><div class="extra-checks"><label><input id="go2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="go3" type="checkbox"/><label for="go3" class="item-text">Gestão de Vulnerabilidades: identificação, priorização e correção</label><div class="extra-checks"><label><input id="go3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="go4" type="checkbox"/><label for="go4" class="item-text">Hardening e gestão de patches</label><div class="extra-checks"><label><input id="go4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="go5" type="checkbox"/><label for="go5" class="item-text">Gestão de Incidentes: contenção, erradicação e lições aprendidas</label><div class="extra-checks"><label><input id="go5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="go6" type="checkbox"/><label for="go6" class="item-text">Monitoramento e SIEM: coleta e análise de logs</label><div class="extra-checks"><label><input id="go6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="go7" type="checkbox"/><label for="go7" class="item-text">Indicadores de comprometimento e resposta a alertas</label><div class="extra-checks"><label><input id="go7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="go7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Redes e Infraestrutura -->
+<div class="discipline-card">
+<h3 id="section-2-3">Redes, Infraestrutura e Criptografia <span class="tag tag-tecnico">TI</span></h3>
+<ul class="checklist">
+<li class="checklist-item"><input id="ri1" type="checkbox"/><label for="ri1" class="item-text">Segurança de redes: LAN, WAN, WLAN, DMZ, VPN e NAC</label><div class="extra-checks"><label><input id="ri1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ri2" type="checkbox"/><label for="ri2" class="item-text">Firewalls, IDS/IPS, UTM, WAF e Proxies</label><div class="extra-checks"><label><input id="ri2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ri3" type="checkbox"/><label for="ri3" class="item-text">Protocolos: DNS, DHCP, HTTP/S, SMTP, IMAP, POP3, FTP/SFTP, RADIUS, LDAP, IPsec, SSL/TLS</label><div class="extra-checks"><label><input id="ri3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ri4" type="checkbox"/><label for="ri4" class="item-text">Autenticação e Acesso: IAM, RBAC, MFA, SSO, OAuth 2.0 e OpenID Connect</label><div class="extra-checks"><label><input id="ri4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ri5" type="checkbox"/><label for="ri5" class="item-text">Criptografia simétrica e assimétrica, Hashes e Certificados Digitais (PKI)</label><div class="extra-checks"><label><input id="ri5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ri6" type="checkbox"/><label for="ri6" class="item-text">Hardening de Windows Server e Linux; Segurança de Active Directory</label><div class="extra-checks"><label><input id="ri6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ri7" type="checkbox"/><label for="ri7" class="item-text">Segurança de Endpoints: Antivírus, EDR/XDR</label><div class="extra-checks"><label><input id="ri7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ri7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Aplicações e Nuvem -->
+<div class="discipline-card">
+<h3 id="section-2-4">Aplicações, Nuvem e Continuidade <span class="tag tag-tecnico">TI</span></h3>
+<ul class="checklist">
+<li class="checklist-item"><input id="an1" type="checkbox"/><label for="an1" class="item-text">OWASP Top 10 e Segurança de APIs REST</label><div class="extra-checks"><label><input id="an1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="an1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="an2" type="checkbox"/><label for="an2" class="item-text">Segurança de correio eletrônico: AntiSpam, SPF, DKIM e DMARC</label><div class="extra-checks"><label><input id="an2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="an2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="an3" type="checkbox"/><label for="an3" class="item-text">Nuvem: Segurança em AWS, Azure e Google Cloud</label><div class="extra-checks"><label><input id="an3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="an3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="an4" type="checkbox"/><label for="an4" class="item-text">Backup e Recuperação: RPO, RTO e proteção contra Ransomware</label><div class="extra-checks"><label><input id="an4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="an4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="an5" type="checkbox"/><label for="an5" class="item-text">Segurança em Banco de Dados: SGBDs, mascaramento e auditoria</label><div class="extra-checks"><label><input id="an5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="an5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="an6" type="checkbox"/><label for="an6" class="item-text">Noções de Forense Computacional: cadeia de custódia e preservação de evidências</label><div class="extra-checks"><label><input id="an6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="an6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+<!-- Governança e Contratações -->
+<div class="discipline-card">
+<h3 id="section-2-5">Governança de TI e Contratações <span class="tag tag-tecnico">Gestão TI</span></h3>
+<p class="discipline-description">Alinhamento estratégico e processos de aquisição de soluções tecnológicas.</p>
+<ul class="checklist">
+<li class="checklist-item"><input id="ct1" type="checkbox"/><label for="ct1" class="item-text">Frameworks: ITIL v4 e PMBOK 7ª edição</label><div class="extra-checks"><label><input id="ct1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct2" type="checkbox"/><label for="ct2" class="item-text">Instrumentos: PDTIC e PETIC</label><div class="extra-checks"><label><input id="ct2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct3" type="checkbox"/><label for="ct3" class="item-text">Etapas da Contratação: Estudo Técnico Preliminar (ETP) e Termo de Referência (TR)</label><div class="extra-checks"><label><input id="ct3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct4" type="checkbox"/><label for="ct4" class="item-text">Pesquisa de preços e Matriz de responsabilidades (RACI)</label><div class="extra-checks"><label><input id="ct4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct5" type="checkbox"/><label for="ct5" class="item-text">Modelos: SaaS, IaaS, PaaS, Fábrica de Software e Outsourcing</label><div class="extra-checks"><label><input id="ct5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct6" type="checkbox"/><label for="ct6" class="item-text">Fiscalização de Contratos de TI: Gestor, Fiscal Técnico e Administrativo</label><div class="extra-checks"><label><input id="ct6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct7" type="checkbox"/><label for="ct7" class="item-text">SLAs (Acordos de Nível de Serviço) e penalidades</label><div class="extra-checks"><label><input id="ct7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+<li class="checklist-item"><input id="ct8" type="checkbox"/><label for="ct8" class="item-text">Inglês Técnico e Pacote Office (últimas versões)</label><div class="extra-checks"><label><input id="ct8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="ct8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></li>
+</ul>
+</div>
+</div>
+</div>
+<footer>
+<p>© 2024 - Guia de Estudos Interativo ALE-RR</p>
+<p>Organizado para Assistente Legislativo conforme conteúdo programático oficial.</p>
+</footer>
+<script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercent = document.getElementById('progress-percent');
+    const completedCountText = document.getElementById('completed-count');
+    const totalCountText = document.getElementById('total-count');
+
+    function updateProgress() {
+        const total = document.querySelectorAll('input[type="checkbox"]:not(.rev-cb):not(.ques-cb)').length;
+        const checked = document.querySelectorAll('input[type="checkbox"]:not(.rev-cb):not(.ques-cb):checked').length;
+        const percentage = Math.round((checked / total) * 100);
+
+        progressBar.style.width = percentage + '%';
+        progressPercent.textContent = percentage + '%';
+        completedCountText.textContent = checked;
+        totalCountText.textContent = total;
+
+        // Salvar progresso no LocalStorage
+        const checkedIds = Array.from(checkboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.id);
+        localStorage.setItem('alerr_study_progress', JSON.stringify(checkedIds));
+    }
+
+    function loadProgress() {
+        const saved = JSON.parse(localStorage.getItem('alerr_study_progress'));
+        if (saved) {
+            saved.forEach(id => {
+                const cb = document.getElementById(id);
+                if (cb) cb.checked = true;
+            });
+        }
+        updateProgress();
+    }
+
+    document.addEventListener('change', (e) => {
+        if (e.target.type === 'checkbox') {
+            updateProgress();
+        }
+    });
+
+    // Inicializar
+    loadProgress();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+</script>
+
+</body></html>

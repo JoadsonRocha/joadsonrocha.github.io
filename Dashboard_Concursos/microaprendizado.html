@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Microaprendizado - ALE-RR</title>
+    <link rel="manifest" href="manifest.json"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .back-btn {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Session Timer */
+        .session-timer {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .timer-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .timer-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn { background: var(--success); color: white; }
+        .pause-btn { background: var(--warning); color: white; }
+        .reset-btn { background: var(--error); color: white; }
+
+        /* Study Modes */
+        .study-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .mode-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .mode-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .mode-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .mode-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Flashcard */
+        .flashcard-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .flashcard {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            backface-visibility: hidden;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-question {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .flashcard-answer {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .flashcard-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .nav-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+        }
+
+        /* Quiz */
+        .quiz-container {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .option.incorrect {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* Progress */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        /* Results */
+        .results {
+            display: none;
+            text-align: center;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .retry-btn {
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .study-modes {
+                grid-template-columns: 1fr;
+            }
+
+            .flashcard-nav, .quiz-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .timer-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+            </a>
+            <h1>Microaprendizado</h1>
+        </header>
+
+        <!-- Session Timer -->
+        <div class="session-timer">
+            <div class="timer-display" id="timer">05:00</div>
+            <p>Sessão de estudo atual</p>
+            <div class="timer-controls">
+                <button class="timer-btn start-btn" id="start-timer">Iniciar</button>
+                <button class="timer-btn pause-btn" id="pause-timer" style="display: none;">Pausar</button>
+                <button class="timer-btn reset-btn" id="reset-timer">Reiniciar</button>
+            </div>
+        </div>
+
+        <!-- Study Modes -->
+        <div class="study-modes">
+            <div class="mode-card" data-mode="flashcards">
+                <div class="mode-icon"><i class="fas fa-exchange-alt"></i></div>
+                <div class="mode-title">Flashcards</div>
+                <div class="mode-desc">Revise conceitos-chave com cartões de memória interativos</div>
+            </div>
+            <div class="mode-card" data-mode="quiz">
+                <div class="mode-icon"><i class="fas fa-brain"></i></div>
+                <div class="mode-title">Quiz Rápido</div>
+                <div class="mode-desc">Teste seus conhecimentos com perguntas de múltipla escolha</div>
+            </div>
+            <div class="mode-card" data-mode="mixed">
+                <div class="mode-icon"><i class="fas fa-random"></i></div>
+                <div class="mode-title">Modo Misto</div>
+                <div class="mode-desc">Alterna entre flashcards e quiz para máxima retenção</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+
+        <!-- Flashcard Container -->
+        <div class="flashcard-container" id="flashcard-container">
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-front">
+                    <div class="flashcard-question" id="flashcard-question">Pergunta</div>
+                    <div style="color: var(--text-muted); margin-top: 20px;">Clique para ver a resposta</div>
+                </div>
+                <div class="flashcard-back">
+                    <div class="flashcard-answer" id="flashcard-answer">Resposta</div>
+                </div>
+            </div>
+            <div class="flashcard-nav">
+                <button class="nav-btn" id="prev-card" disabled>Anterior</button>
+                <button class="nav-btn" id="next-card">Próximo</button>
+            </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quiz-container">
+            <div class="quiz-question">
+                <div class="question-text" id="quiz-question">Pergunta do quiz</div>
+                <div class="options" id="quiz-options"></div>
+            </div>
+            <div class="quiz-nav">
+                <button class="nav-btn" id="prev-quiz" disabled>Anterior</button>
+                <button class="nav-btn" id="next-quiz">Próximo</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results" id="results">
+            <div class="score" id="final-score">0/0</div>
+            <div class="result-message" id="result-message">Mensagem de resultado</div>
+            <button class="retry-btn" id="retry-btn">Tentar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        // Timer functionality
+        let timerInterval;
+        let timeLeft = 300; // 5 minutes in seconds
+        let isRunning = false;
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft === 0) {
+                clearInterval(timerInterval);
+                alert('Sessão de estudo concluída! 🎉');
+                resetTimer();
+            } else {
+                timeLeft--;
+            }
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timerInterval = setInterval(updateTimer, 1000);
+                document.getElementById('start-timer').style.display = 'none';
+                document.getElementById('pause-timer').style.display = 'inline-block';
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            document.getElementById('start-timer').style.display = 'inline-block';
+            document.getElementById('pause-timer').style.display = 'none';
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 300;
+            isRunning = false;
+            updateTimer();
+            document.getElementById('start-timer').style.display = 'inline-block';
+            document.getElementById('pause-timer').style.display = 'none';
+        }
+
+        document.getElementById('start-timer').addEventListener('click', startTimer);
+        document.getElementById('pause-timer').addEventListener('click', pauseTimer);
+        document.getElementById('reset-timer').addEventListener('click', resetTimer);
+
+        // Study content data
+        const flashcards = [
+            {
+                question: "O que é a Constituição Federal?",
+                answer: "Lei fundamental do Estado brasileiro, que estabelece a organização dos poderes e direitos fundamentais dos cidadãos."
+            },
+            {
+                question: "Quais são os três poderes da República?",
+                answer: "Executivo, Legislativo e Judiciário."
+            },
+            {
+                question: "O que é LGPD?",
+                answer: "Lei Geral de Proteção de Dados - lei que regula o tratamento de dados pessoais no Brasil."
+            },
+            {
+                question: "O que é um ato administrativo?",
+                answer: "Manifestação unilateral da Administração Pública que produz efeitos jurídicos, com requisitos específicos de validade."
+            },
+            {
+                question: "Quais são os princípios da Administração Pública?",
+                answer: "Legalidade, impessoalidade, moralidade, publicidade e eficiência."
+            },
+            {
+                question: "O que é Confidencialidade em Segurança da Informação?",
+                answer: "Garantia de que a informação só seja acessível às pessoas autorizadas."
+            },
+            {
+                question: "O que significa CIA triad?",
+                answer: "Confidencialidade, Integridade e Disponibilidade - pilares fundamentais da segurança da informação."
+            },
+            {
+                question: "O que é Zero Trust?",
+                answer: "Modelo de segurança que não confia em nenhuma entidade por padrão, verificando tudo continuamente."
+            }
+        ];
+
+        const quizQuestions = [
+            {
+                question: "Qual é o prazo máximo para resposta à solicitação de dados pessoais na LGPD?",
+                options: ["15 dias", "30 dias", "45 dias", "60 dias"],
+                correct: 1
+            },
+            {
+                question: "Qual dos seguintes NÃO é um princípio da Administração Pública?",
+                options: ["Legalidade", "Impessoalidade", "Rentabilidade", "Publicidade"],
+                correct: 2
+            },
+            {
+                question: "O que significa a sigla PPA?",
+                options: ["Plano Plurianual", "Plano de Previdência Administrativa", "Programa de Ação Parlamentar", "Plano de Administração Pública"],
+                correct: 0
+            },
+            {
+                question: "Qual é a principal diferença entre Direito Administrativo e Direito Constitucional?",
+                options: ["Um regula a Administração, outro os direitos fundamentais", "Um é federal, outro estadual", "Um é público, outro privado", "Não há diferença"],
+                correct: 0
+            },
+            {
+                question: "O que é um Firewall?",
+                options: ["Antivírus", "Sistema de detecção de intrusões", "Barreira de proteção de rede", "Backup de dados"],
+                correct: 2
+            }
+        ];
+
+        // Study mode variables
+        let currentMode = '';
+        let currentIndex = 0;
+        let score = 0;
+        let selectedAnswer = null;
+
+        // Mode selection
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.addEventListener('click', () => {
+                currentMode = card.dataset.mode;
+                startStudyMode(currentMode);
+            });
+        });
+
+        function startStudyMode(mode) {
+            document.querySelectorAll('.mode-card').forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            if (mode === 'flashcards' || mode === 'mixed') {
+                document.getElementById('flashcard-container').style.display = 'block';
+                showFlashcard(0);
+            }
+            
+            if (mode === 'quiz' || mode === 'mixed') {
+                document.getElementById('quiz-container').style.display = 'block';
+                showQuiz(0);
+            }
+        }
+
+        // Flashcard functionality
+        function showFlashcard(index) {
+            if (index < 0 || index >= flashcards.length) return;
+            
+            currentIndex = index;
+            const card = flashcards[index];
+            document.getElementById('flashcard-question').textContent = card.question;
+            document.getElementById('flashcard-answer').textContent = card.answer;
+            
+            document.getElementById('flashcard').classList.remove('flipped');
+            document.getElementById('prev-card').disabled = index === 0;
+            document.getElementById('next-card').disabled = index === flashcards.length - 1;
+            
+            updateProgress();
+        }
+
+        document.getElementById('flashcard').addEventListener('click', () => {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        });
+
+        document.getElementById('prev-card').addEventListener('click', () => {
+            showFlashcard(currentIndex - 1);
+        });
+
+        document.getElementById('next-card').addEventListener('click', () => {
+            showFlashcard(currentIndex + 1);
+        });
+
+        // Quiz functionality
+        function showQuiz(index) {
+            if (index < 0 || index >= quizQuestions.length) return;
+            
+            currentIndex = index;
+            selectedAnswer = null;
+            const question = quizQuestions[index];
+            document.getElementById('quiz-question').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, i) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.addEventListener('click', () => selectOption(i, optionDiv));
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            document.getElementById('prev-quiz').disabled = index === 0;
+            document.getElementById('next-quiz').disabled = index === quizQuestions.length - 1;
+            
+            updateProgress();
+        }
+
+        function selectOption(index, element) {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        document.getElementById('next-quiz').addEventListener('click', () => {
+            if (selectedAnswer !== null) {
+                const question = quizQuestions[currentIndex];
+                if (selectedAnswer === question.correct) {
+                    score++;
+                }
+            }
+            
+            if (currentIndex === quizQuestions.length - 1) {
+                showResults();
+            } else {
+                showQuiz(currentIndex + 1);
+            }
+        });
+
+        document.getElementById('prev-quiz').addEventListener('click', () => {
+            showQuiz(currentIndex - 1);
+        });
+
+        function showResults() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('final-score').textContent = `${score}/${quizQuestions.length}`;
+            
+            const percentage = (score / quizQuestions.length) * 100;
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excelente! Você dominou o conteúdo! 🏆';
+            } else if (percentage >= 60) {
+                message = 'Bom trabalho! Continue estudando! 📚';
+            } else {
+                message = 'Precisa revisar mais. Vamos tentar novamente! 💪';
+            }
+            
+            document.getElementById('result-message').textContent = message;
+        }
+
+        document.getElementById('retry-btn').addEventListener('click', () => {
+            document.getElementById('results').style.display = 'none';
+            score = 0;
+            currentIndex = 0;
+            startStudyMode(currentMode);
+        });
+
+        function updateProgress() {
+            const total = currentMode === 'mixed' ? flashcards.length + quizQuestions.length : 
+                         currentMode === 'flashcards' ? flashcards.length : quizQuestions.length;
+            const progress = ((currentIndex + 1) / total) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+        }
+
+        // Initialize timer display
+        updateTimer();
+    </script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
+    </script>
+</body>
+</html>

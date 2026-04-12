@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Plano de Estudos: Tecnologia e Segurança da Informação - Legislativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #22c55e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-color: #dbeafe;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .progress-container {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-bar-bg {
+            background: var(--border-color);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-fill {
+            background: var(--success-color);
+            width: 0%;
+            height: 100%;
+            transition: width 0.4s ease;
+        }
+
+        .section-intro {
+            background: var(--accent-color);
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .category-header {
+            background: #f1f5f9;
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-header h2 {
+            font-size: 1.25rem;
+            color: #1e3a8a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-content {
+            padding: 20px 25px;
+        }
+
+        .briefing {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item:hover {
+            background: #fafafa;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+            cursor: pointer;
+            accent-color: var(--success-color);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checklist-item.completed .item-text {
+            text-decoration: line-through;
+            color: var(--secondary-color);
+        }
+
+        .checklist-item .item-text {
+            flex: 1;
+        }
+
+        .extra-checks {
+            display: flex;
+            gap: 12px;
+            margin-left: 10px;
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            align-items: center;
+        }
+
+        .extra-checks label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .extra-checks input[type="checkbox"] {
+            margin: 0 !important;
+            width: 14px !important;
+            height: 14px !important;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 10px;
+            background: #e2e8f0;
+        }
+
+        /* Incidence Tags */
+        .incidence {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 10px;
+            color: white;
+        }
+
+        .incidence-muito-alta { background-color: #d32f2f; } /* Vermelho escuro */
+        .incidence-alta { background-color: #f57c00; } /* Laranja */
+        .incidence-media { background-color: #fbc02d; color: #333; } /* Amarelo */
+        .incidence-baixa { background-color: #388e3c; } /* Verde */
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 10px; }
+        }
+
+        @media print {
+            .progress-container { display: none; }
+            .category-card { break-inside: avoid; }
+            body { background: white; }
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="container">
+<header>
+<div style="position: absolute; top: 20px; left: 20px;">
+    <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+        <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+    </a>
+</div>
+<h1 id="section-1">Guia de Estudos Estruturado</h1>
+<p>Assistente Legislativo: Tecnologia e Segurança da Informação</p>
+</header>
+<!-- Incidence Legend -->
+<div style="background: var(--card-bg); padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+    <h3 style="margin-bottom: 10px; color: #1e3a8a;">Legenda de Incidência nas Provas FCC</h3>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <span class="incidence incidence-muito-alta">Muito Alta</span> - Aparece em quase todas as provas
+        <span class="incidence incidence-alta">Alta</span> - Aparece frequentemente
+        <span class="incidence incidence-media">Média</span> - Aparece às vezes
+        <span class="incidence incidence-baixa">Baixa</span> - Aparece raramente
+    </div>
+</div>
+<!-- Useful Links -->
+<div style="background: var(--card-bg); padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+    <h3 style="margin-bottom: 15px; color: #1e3a8a;">Links Úteis para Estudos</h3>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;"><a href="https://www.abntcatalogo.com.br/norma.aspx?ID=3057" target="_blank" style="color: #1e3a8a; text-decoration: none;">📋 ABNT NBR ISO/IEC 27001:2024</a></li>
+        <li style="margin-bottom: 10px;"><a href="https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd" target="_blank" style="color: #1e3a8a; text-decoration: none;">🔒 Lei Geral de Proteção de Dados (LGPD)</a></li>
+        <li style="margin-bottom: 10px;"><a href="https://www.fcc.org.br/" target="_blank" style="color: #1e3a8a; text-decoration: none;">📚 Site da FCC (Provas Anteriores)</a></li>
+        <li><a href="https://www.cisa.gov/" target="_blank" style="color: #1e3a8a; text-decoration: none;">🛡️ Cybersecurity & Infrastructure Security Agency (CISA)</a></li>
+    </ul>
+</div>
+<div class="progress-container">
+<div style="display: flex; justify-content: space-between; font-weight: 600;">
+<span>Progresso Geral do Edital</span>
+<span id="progress-text">0%</span>
+</div>
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" id="progress-bar"></div>
+</div>
+</div>
+<div class="section-intro">
+<p><strong>Instruções:</strong> Este checklist foi desenvolvido para organizar o vasto conteúdo programático exigido. Utilize as caixas de seleção para marcar os tópicos concluídos. O sistema salvará seu progresso automaticamente no navegador.</p>
+</div>
+<!-- CATEGORIA 1: FUNDAMENTOS E ARQUITETURA -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-1">01. Fundamentos e Arquitetura de SI <span class="incidence incidence-alta">Alta</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Análise dos pilares da segurança (Tríade CIA) e modelos modernos de proteção baseados em desconfiança contínua. Foco em como a infraestrutura se organiza para mitigar ameaças desde o perímetro até o dado.
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-1" type="checkbox"/><label for="sp-1" class="item-text">Confidencialidade, Integridade e Disponibilidade</label><div class="extra-checks"><label><input id="sp-1-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-1-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-2" type="checkbox"/><label for="sp-2" class="item-text">Autenticidade e Irretratabilidade</label><div class="extra-checks"><label><input id="sp-2-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-2-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-3" type="checkbox"/><label for="sp-3" class="item-text">Ameaças, Vulnerabilidades, Riscos e Impactos</label><div class="extra-checks"><label><input id="sp-3-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-3-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-4" type="checkbox"/><label for="sp-4" class="item-text">Defesa em Profundidade (Defense in Depth)</label><div class="extra-checks"><label><input id="sp-4-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-4-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-5" type="checkbox"/><label for="sp-5" class="item-text">Conceitos de Zero Trust (Confiança Zero)</label><div class="extra-checks"><label><input id="sp-5-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-5-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-6" type="checkbox"/><label for="sp-6" class="item-text">Modelos e Camadas de Proteção</label><div class="extra-checks"><label><input id="sp-6-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-6-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-7" type="checkbox"/><label for="sp-7" class="item-text">Segmentação de Ambientes e Segurança de Perímetro</label><div class="extra-checks"><label><input id="sp-7-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-7-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-8" type="checkbox"/><label for="sp-8" class="item-text">Segurança de Identidades, Aplicações, Dados e Nuvem</label><div class="extra-checks"><label><input id="sp-8-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-8-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-9" type="checkbox"/><label for="sp-9" class="item-text">Integração de Controles de Segurança</label><div class="extra-checks"><label><input id="sp-9-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-9-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+<!-- CATEGORIA 2: GOVERNANÇA E LGPD -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-2">02. Governança, Normas e LGPD <span class="incidence incidence-muito-alta">Muito Alta</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Estudo do arcabouço normativo nacional e internacional. A LGPD é central aqui, exigindo compreensão dos princípios de tratamento de dados e das normas ISO para gestão de sistemas de informação.
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-10" type="checkbox"/><label for="sp-10" class="item-text">Políticas, Normas, Procedimentos e Controles</label><div class="extra-checks"><label><input id="sp-10-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-10-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-11" type="checkbox"/><label for="sp-11" class="item-text">Estrutura Organizacional de Segurança</label><div class="extra-checks"><label><input id="sp-11-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-11-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-12" type="checkbox"/><label for="sp-12" class="item-text">Indicadores, Métricas e Melhoria Contínua</label><div class="extra-checks"><label><input id="sp-12-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-12-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-13" type="checkbox"/><label for="sp-13" class="item-text">ABNT NBR ISO/IEC 27001:2024 (Gestão de SI)</label><div class="extra-checks"><label><input id="sp-13-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-13-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-14" type="checkbox"/><label for="sp-14" class="item-text">ABNT NBR ISO/IEC 27002:2022 (Controles de SI)</label><div class="extra-checks"><label><input id="sp-14-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-14-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-15" type="checkbox"/><label for="sp-15" class="item-text">ABNT NBR ISO/IEC 27701:2019 (Privacidade)</label><div class="extra-checks"><label><input id="sp-15-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-15-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-16" type="checkbox"/><label for="sp-16" class="item-text">CIS Controls v8</label><div class="extra-checks"><label><input id="sp-16-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-16-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-17" type="checkbox"/><label for="sp-17" class="item-text">LGPD: Princípios, Bases Legais e Direitos do Titular</label><div class="extra-checks"><label><input id="sp-17-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-17-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-18" type="checkbox"/><label for="sp-18" class="item-text">Minimização, Anonimização e Pseudonimização</label><div class="extra-checks"><label><input id="sp-18-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-18-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+<!-- CATEGORIA 3: GESTÃO OPERACIONAL DE SEGURANÇA -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-3">03. Gestão de Riscos, Vulnerabilidades e Incidentes <span class="incidence incidence-media">Média</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Foco na operação de segurança: identificação proativa de falhas, monitoramento de eventos (SIEM) e resposta rápida a incidentes para garantir a continuidade do negócio legislativo.
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-19" type="checkbox"/><label for="sp-19" class="item-text">ISO/IEC 27005:2023 (Gestão de Riscos)</label><div class="extra-checks"><label><input id="sp-19-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-19-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-20" type="checkbox"/><label for="sp-20" class="item-text">Inventário, Classificação e Ciclo de Vida de Ativos</label><div class="extra-checks"><label><input id="sp-20-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-20-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-21" type="checkbox"/><label for="sp-21" class="item-text">Hardening e Gestão de Patches (Correções)</label><div class="extra-checks"><label><input id="sp-21-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-21-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-22" type="checkbox"/><label for="sp-22" class="item-text">ISO/IEC 27035-1:2023 (Gestão de Incidentes)</label><div class="extra-checks"><label><input id="sp-22-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-22-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-23" type="checkbox"/><label for="sp-23" class="item-text">Contenção, Erradicação e Recuperação de Incidentes</label><div class="extra-checks"><label><input id="sp-23-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-23-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-24" type="checkbox"/><label for="sp-24" class="item-text">Monitoramento e SIEM (Correlação de Logs)</label><div class="extra-checks"><label><input id="sp-24-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-24-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-25" type="checkbox"/><label for="sp-25" class="item-text">Indicadores de Comprometimento (IoC)</label><div class="extra-checks"><label><input id="sp-25-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-25-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-26" type="checkbox"/><label for="sp-26" class="item-text">Forense Computacional: Cadeia de Custódia</label><div class="extra-checks"><label><input id="sp-26-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-26-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+<!-- CATEGORIA 4: SEGURANÇA DE REDES E INFRAESTRUTURA -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-4">04. Segurança de Redes, Infraestrutura e Nuvem <span class="incidence incidence-alta">Alta</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Conhecimentos técnicos sobre protocolos de comunicação e dispositivos de proteção. Inclui a segurança em ambientes de nuvem (AWS, Azure, GCP) e proteção de serviços web críticos.
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-27" type="checkbox"/><label for="sp-27" class="item-text">Arquiteturas LAN, WAN, WLAN e Segmentação (DMZ)</label><div class="extra-checks"><label><input id="sp-27-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-27-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-28" type="checkbox"/><label for="sp-28" class="item-text">VPN, NAC, Firewalls, IDS/IPS e WAF</label><div class="extra-checks"><label><input id="sp-28-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-28-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-29" type="checkbox"/><label for="sp-29" class="item-text">Protocolos: DNS, DHCP, HTTP/HTTPS, SMTP, IPsec, SSL/TLS</label><div class="extra-checks"><label><input id="sp-29-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-29-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-30" type="checkbox"/><label for="sp-30" class="item-text">Segurança em Nuvem: Modelos IaaS, PaaS, SaaS</label><div class="extra-checks"><label><input id="sp-30-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-30-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-31" type="checkbox"/><label for="sp-31" class="item-text">Segurança de Endpoints: EDR/XDR e Antimalware</label><div class="extra-checks"><label><input id="sp-31-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-31-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-32" type="checkbox"/><label for="sp-32" class="item-text">Segurança de Aplicações: OWASP Top 10</label><div class="extra-checks"><label><input id="sp-32-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-32-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-33" type="checkbox"/><label for="sp-33" class="item-text">Segurança de E-mail: SPF, DKIM e DMARC</label><div class="extra-checks"><label><input id="sp-33-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-33-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-34" type="checkbox"/><label for="sp-34" class="item-text">Proteção contra Ransomware e Estratégias de Backup (RPO/RTO)</label><div class="extra-checks"><label><input id="sp-34-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-34-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+<!-- CATEGORIA 5: ACESSO, CRIPTOGRAFIA E IDENTIDADE -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-5">05. Controle de Acesso e Criptografia <span class="incidence incidence-alta">Alta</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Mecanismos de controle para garantir que apenas pessoas autorizadas acessem recursos. Estudo de algoritmos criptográficos e infraestrutura de chaves públicas.
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-35" type="checkbox"/><label for="sp-35" class="item-text">IAM, RBAC (Acesso Baseado em Papéis) e MFA</label><div class="extra-checks"><label><input id="sp-35-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-35-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-36" type="checkbox"/><label for="sp-36" class="item-text">SSO (Single Sign-On) e Federação de Identidades</label><div class="extra-checks"><label><input id="sp-36-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-36-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-37" type="checkbox"/><label for="sp-37" class="item-text">OAuth 2.0 e OpenID Connect</label><div class="extra-checks"><label><input id="sp-37-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-37-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-38" type="checkbox"/><label for="sp-38" class="item-text">Princípio do Privilégio Mínimo e Segregação de Funções</label><div class="extra-checks"><label><input id="sp-38-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-38-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-39" type="checkbox"/><label for="sp-39" class="item-text">Criptografia Simétrica e Assimétrica</label><div class="extra-checks"><label><input id="sp-39-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-39-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-40" type="checkbox"/><label for="sp-40" class="item-text">Hashes, Assinaturas Digitais e Certificados Digitais</label><div class="extra-checks"><label><input id="sp-40-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-40-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-41" type="checkbox"/><label for="sp-41" class="item-text">PKI (ICP-Brasil) e Gestão de Chaves</label><div class="extra-checks"><label><input id="sp-41-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-41-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+<!-- CATEGORIA 6: CONTRATAÇÕES E GESTÃO DE TI -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-6">06. Contratações, Governança e Gestão de TI <span class="incidence incidence-alta">Alta</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Aplicação da Lei 14.133/2021 no contexto de TI. Planejamento de contratações, elaboração de termos de referência e gestão de contratos com foco em níveis de serviço (SLA).
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-42" type="checkbox"/><label for="sp-42" class="item-text">Lei nº 14.133/2021 aplicada à TI</label><div class="extra-checks"><label><input id="sp-42-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-42-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-43" type="checkbox"/><label for="sp-43" class="item-text">Estudo Técnico Preliminar (ETP) e Termo de Referência (TR)</label><div class="extra-checks"><label><input id="sp-43-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-43-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-44" type="checkbox"/><label for="sp-44" class="item-text">Matriz de Responsabilidades (RACI) e Pesquisa de Preços</label><div class="extra-checks"><label><input id="sp-44-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-44-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-45" type="checkbox"/><label for="sp-45" class="item-text">Gestão e Fiscalização: Papéis do Gestor e Fiscal Técnico</label><div class="extra-checks"><label><input id="sp-45-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-45-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-46" type="checkbox"/><label for="sp-46" class="item-text">Indicadores de Nível de Serviço (SLAs) e Penalidades</label><div class="extra-checks"><label><input id="sp-46-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-46-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-47" type="checkbox"/><label for="sp-47" class="item-text">Frameworks: ITIL v4 e PMBOK 7ª Edição</label><div class="extra-checks"><label><input id="sp-47-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-47-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-48" type="checkbox"/><label for="sp-48" class="item-text">PDTIC e PETIC: Alinhamento Estratégico</label><div class="extra-checks"><label><input id="sp-48-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-48-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-49" type="checkbox"/><label for="sp-49" class="item-text">Sustentabilidade e Acessibilidade em Contratos de TI</label><div class="extra-checks"><label><input id="sp-49-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-49-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+<!-- CATEGORIA 7: CONHECIMENTOS INSTITUCIONAIS -->
+<section class="category-card">
+<div class="category-header">
+<h2 id="section-7">07. Legislação Institucional e Roraima <span class="incidence incidence-alta">Alta</span></h2>
+</div>
+<div class="category-content">
+<div class="briefing">
+                Contexto jurídico e histórico específico da Assembleia Legislativa de Roraima. Essencial para a atuação administrativa e conformidade com o regimento interno.
+            </div>
+<div class="checklist-group">
+<div class="checklist-item"><input id="sp-50" type="checkbox"/><label for="sp-50" class="item-text">Constituição do Estado de Roraima (Art. 30 a 67 e 111 a 116)</label><div class="extra-checks"><label><input id="sp-50-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-50-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-51" type="checkbox"/><label for="sp-51" class="item-text">Regimento Interno da ALE-RR (Resolução nº 08/2023)</label><div class="extra-checks"><label><input id="sp-51-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-51-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-52" type="checkbox"/><label for="sp-52" class="item-text">Código de Ética Parlamentar</label><div class="extra-checks"><label><input id="sp-52-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-52-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-53" type="checkbox"/><label for="sp-53" class="item-text">Estrutura Administrativa (Resolução nº 015/2024)</label><div class="extra-checks"><label><input id="sp-53-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-53-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-54" type="checkbox"/><label for="sp-54" class="item-text">Lei Complementar Estadual nº 053/2001 e nº 373/2026</label><div class="extra-checks"><label><input id="sp-54-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-54-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-55" type="checkbox"/><label for="sp-55" class="item-text">Geografia e História de Roraima: Ocupação e Fronteiras</label><div class="extra-checks"><label><input id="sp-55-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-55-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+<div class="checklist-item"><input id="sp-56" type="checkbox"/><label for="sp-56" class="item-text">Povos Indígenas e Economia de Roraima</label><div class="extra-checks"><label><input id="sp-56-rev" type="checkbox" class="rev-cb"> Rev.</label><label><input id="sp-56-ques" type="checkbox" class="ques-cb"> Ques.</label></div></div>
+</div>
+</div>
+</section>
+</div>
+<script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    // Carregar progresso salvo
+    function loadProgress() {
+        const savedData = JSON.parse(localStorage.getItem('studyProgress')) || [];
+        savedData.forEach(id => {
+            const cb = document.getElementById(id);
+            if (cb) {
+                cb.checked = true;
+                if (!cb.classList.contains('rev-cb') && !cb.classList.contains('ques-cb')) {
+                    cb.closest('.checklist-item').classList.add('completed');
+                }
+            }
+        });
+        updateProgress();
+    }
+
+    // Salvar progresso
+    function saveProgress() {
+        const checkedIds = [];
+        document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+            checkedIds.push(cb.id);
+        });
+
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            const mainCb = item.querySelector('input[type="checkbox"]:not(.rev-cb):not(.ques-cb)');
+            if (mainCb && mainCb.checked) {
+                item.classList.add('completed');
+            } else {
+                item.classList.remove('completed');
+            }
+        });
+
+        localStorage.setItem('studyProgress', JSON.stringify(checkedIds));
+        updateProgress();
+    }
+
+    // Atualizar barra de progresso
+    function updateProgress() {
+        const mainCbs = document.querySelectorAll('input[type="checkbox"]:not(.rev-cb):not(.ques-cb)');
+        const total = mainCbs.length;
+        const checked = Array.from(mainCbs).filter(cb => cb.checked).length;
+        const percentage = Math.round((checked / total) * 100);
+        
+        progressBar.style.width = percentage + '%';
+        progressText.innerText = percentage + '%';
+    }
+
+    document.addEventListener('change', (e) => {
+        if (e.target.type === 'checkbox') {
+            saveProgress();
+        }
+    });
+
+    // Permitir clique na linha inteira (apenas para o item principal)
+    document.querySelectorAll('.checklist-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
+                const cb = item.querySelector('input[type="checkbox"]:not(.rev-cb):not(.ques-cb)');
+                if (cb) {
+                    cb.checked = !cb.checked;
+                    saveProgress();
+                }
+            }
+        });
+    });
+
+    window.onload = loadProgress;
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+</script>
+
+</body></html>
