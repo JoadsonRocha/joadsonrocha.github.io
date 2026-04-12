@@ -150,13 +150,13 @@
             .tips-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
 </head>
 <body>
 
 <div class="container">
     <header>
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar ao Dashboard</a>
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar ao Dashboard</a>
         <h1>Dicas de Estudos</h1>
         <p>Estratégias comprovadas para maximizar seu aprendizado</p>
     </header>
@@ -390,7 +390,7 @@
 <script>
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js')
+        navigator.serviceWorker.register('../sw.js')
             .then(function(registration) {
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
             }, function(err) {

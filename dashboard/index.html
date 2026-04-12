@@ -454,15 +454,94 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 30px;
+            margin-bottom: 40px;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .navbar-inner::-webkit-scrollbar { display: none; }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-link i {
+            font-size: 1rem;
+        }
+
         @media (max-width: 768px) {
             .timer { gap: 15px; }
             .timer-unit span:first-child { font-size: 2rem; }
             .welcome h1 { font-size: 2rem; }
             .grid { grid-template-columns: 1fr; }
+            .navbar { padding: 0 10px; }
+            .nav-link { padding: 12px 12px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="index.html" class="nav-link active">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </a>
+        <a href="pages/gerais.html" class="nav-link">
+            <i class="fa-solid fa-book"></i> Conhecimentos Gerais
+        </a>
+        <a href="pages/especificos.html" class="nav-link">
+            <i class="fa-solid fa-shield-halved"></i> Conhecimentos Específicos
+        </a>
+        <a href="pages/cronograma.html" class="nav-link">
+            <i class="fa-solid fa-calendar-days"></i> Cronograma
+        </a>
+        <a href="pages/microaprendizado.html" class="nav-link">
+            <i class="fa-solid fa-brain"></i> Microaprendizado
+        </a>
+        <a href="pages/dicas.html" class="nav-link">
+            <i class="fa-solid fa-lightbulb"></i> Dicas
+        </a>
+    </div>
+</nav>
 
 <div class="container">
     <header>
@@ -487,7 +566,7 @@
     <!-- Main Navigation Grid -->
     <div class="grid">
         <!-- Gerais Card -->
-        <a href="CONHECIMENTO%20GERAIS.html" class="card">
+        <a href="pages/gerais.html" class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fa-solid fa-book"></i></div>
                 <div class="badge" style="color: var(--accent); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Geral</div>
@@ -513,7 +592,7 @@
         </a>
 
         <!-- Específicos Card -->
-        <a href="ESPECIFICOS.html" class="card spec-bg">
+        <a href="pages/especificos.html" class="card spec-bg">
             <div class="card-header">
                 <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <div class="badge" style="color: var(--secondary); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Técnico</div>
@@ -539,7 +618,7 @@
         </a>
 
         <!-- Microaprendizado Card -->
-        <a href="microaprendizado.html" class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1)); border: 1px solid var(--primary);">
+        <a href="pages/microaprendizado.html" class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1)); border: 1px solid var(--primary);">
             <div class="card-header">
                 <div class="card-icon" style="color: var(--warning);"><i class="fa-solid fa-brain"></i></div>
                 <div class="badge" style="color: var(--warning); font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Micro</div>
@@ -595,13 +674,13 @@
 
     <!-- Extra Tools -->
     <div class="extra-tools">
-        <a href="cronograma.html" class="tool-btn" style="border-color: var(--primary); background: rgba(99, 102, 241, 0.1);">
+        <a href="pages/cronograma.html" class="tool-btn" style="border-color: var(--primary); background: rgba(99, 102, 241, 0.1);">
             <i class="fa-solid fa-calendar-days"></i> Meu Cronograma
         </a>
-        <a href="dicas.html" class="tool-btn" style="border-color: var(--success); background: rgba(16, 185, 129, 0.1);">
+        <a href="pages/dicas.html" class="tool-btn" style="border-color: var(--success); background: rgba(16, 185, 129, 0.1);">
             <i class="fa-solid fa-lightbulb"></i> Dicas de Estudos
         </a>
-        <a href="PLANO%20DE%20ESTUDO%20ALERR.xlsx" class="tool-btn">
+        <a href="assets/docs/PLANO DE ESTUDO ALERR.xlsx" class="tool-btn">
             <i class="fa-solid fa-file-excel"></i> Plano Excel
         </a>
         <div class="tool-btn" style="cursor: default; opacity: 0.7;">

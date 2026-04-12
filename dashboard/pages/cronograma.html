@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cronograma de Estudos - ALE-RR</title>
-    <link rel="manifest" href="manifest.json"/>
+    <link rel="manifest" href="../manifest.json"/>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
@@ -135,17 +135,67 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .navbar-inner::-webkit-scrollbar { display: none; }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+            color: #94a3b8;
+        }
+        .nav-link:hover { color: #f8fafc; border-bottom-color: var(--primary); }
+        .nav-link.active { color: var(--primary); border-bottom-color: var(--primary); }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
-            .back-btn { position: static; transform: none; margin-bottom: 20px; display: inline-flex; }
+            .navbar { padding: 0 10px; }
+            .nav-link { padding: 12px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a href="../index.html" class="nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+        <a href="gerais.html" class="nav-link"><i class="fa-solid fa-book"></i> Conhecimentos Gerais</a>
+        <a href="especificos.html" class="nav-link"><i class="fa-solid fa-shield-halved"></i> Conhecimentos Específicos</a>
+        <a href="cronograma.html" class="nav-link active"><i class="fa-solid fa-calendar-days"></i> Cronograma</a>
+        <a href="microaprendizado.html" class="nav-link"><i class="fa-solid fa-brain"></i> Microaprendizado</a>
+        <a href="dicas.html" class="nav-link"><i class="fa-solid fa-lightbulb"></i> Dicas</a>
+    </div>
+</nav>
+
 <div class="container">
     <header>
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Dashboard</a>
         <h1>Cronograma de Estudos</h1>
         <p>Acompanhe sua jornada dia a dia até a aprovação.</p>
         <div style="margin-top: 20px;">
@@ -343,7 +393,7 @@
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('../sw.js')
       .then(registration => {
         console.log('Service Worker registrado com sucesso:', registration);
       })
