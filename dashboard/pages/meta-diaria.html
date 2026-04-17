@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultra Dashboard PRO | Smart Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<style>
+  /* VARIÁVEIS DE TEMA (DARK POR PADRÃO) */
+  :root {
+    --bg: #020617; 
+    --card-bg: #0f172a; 
+    --border: #1e293b;
+    --primary: #6366f1; 
+    --success: #22c55e; 
+    --accent: #facc15;
+    --text-main: #f8fafc; 
+    --text-muted: #94a3b8; 
+    --danger: #ef4444;
+    --input-bg: #020617;
+    /* Heatmap Levels */
+    --level0: #1e293b; --level1: #064e3b; --level2: #065f46; --level3: #059669; --level4: #10b981;
+  }
+
+  /* AJUSTES MODO LIGHT */
+  body.light-mode {
+    --bg: #f1f5f9; 
+    --card-bg: #ffffff; 
+    --border: #e2e8f0;
+    --text-main: #0f172a; 
+    --text-muted: #64748b; 
+    --input-bg: #f8fafc;
+    --level0: #e2e8f0; --level1: #bbf7d0; --level2: #86efac; --level3: #4ade80; --level4: #22c55e;
+  }
+
+  body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: var(--bg); 
+    color: var(--text-main); 
+    margin: 0; padding: 24px; 
+    display: flex; justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  body.zen-mode { background-color: #000 !important; }
+  body.zen-mode aside, body.zen-mode .card:not(.timer-card) { opacity: 0; pointer-events: none; }
+
+  .dashboard-grid { 
+    display: grid; grid-template-columns: 280px 1fr 300px; gap: 24px; 
+    max-width: 1400px; width: 100%; 
+  }
+
+  .card { 
+    background: var(--card-bg); 
+    border: 1px solid var(--border); 
+    border-radius: 16px; padding: 24px; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  h3 { 
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; 
+    letter-spacing: 0.1em; color: var(--text-muted); margin: 0 0 20px 0; 
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .badge { background: var(--accent); color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.6rem; font-weight: 900; }
+
+  /* Controles Superiores */
+  .top-controls { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 100; }
+  .icon-btn { 
+    background: var(--card-bg); border: 1px solid var(--border); 
+    padding: 8px; border-radius: 50%; cursor: pointer; color: var(--text-main);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.2s;
+  }
+
+  /* Progress Section */
+  .progress-section {
+    background: rgba(100, 116, 139, 0.05); padding: 16px;
+    border-radius: 12px; margin-bottom: 12px; border: 1px solid var(--border);
+  }
+  .stat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1rem; }
+  
+  .mini-input {
+    width: 60px; background: var(--input-bg); border: 1px solid var(--border); color: var(--text-main);
+    border-radius: 6px; padding: 4px; font-size: 0.8rem; text-align: center;
+  }
+
+  .bar-container {
+    height: 18px; background: var(--input-bg); border-radius: 6px; overflow: hidden;
+    position: relative; display: flex; align-items: center; border: 1px solid var(--border);
+  }
+  .bar-fill { height: 100%; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+  .perc-text { position: absolute; right: 8px; font-size: 0.65rem; font-weight: 800; }
+
+  /* Timer */
+  .timer-display { font-size: 4rem; font-weight: 700; text-align: center; margin: 15px 0; font-family: 'JetBrains Mono'; }
+
+  /* Checklist */
+  .check-item {
+    display: flex; align-items: center; background: rgba(100, 116, 139, 0.05); padding: 12px;
+    border-radius: 10px; cursor: pointer; border: 1px solid transparent; margin-bottom: 8px; font-size: 0.85rem;
+  }
+  .check-item:hover { border-color: var(--primary); }
+
+  /* Heatmap */
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal-day { aspect-ratio: 1; border-radius: 4px; font-size: 0.6rem; display: flex; align-items: center; justify-content: center; opacity: 0.4; }
+
+  button { border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; width: 100%; }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-ghost { background: rgba(100, 116, 139, 0.1); color: var(--text-main); }
+
+  @media (max-width: 1100px) { .dashboard-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="top-controls">
+  <button class="icon-btn" onclick="toggleTheme()" title="Mudar Tema">🌗</button>
+  <button class="icon-btn" onclick="toggleZen()" title="Modo Zen">👁️</button>
+</div>
+
+<div class="dashboard-grid">
+  <aside>
+    <div class="card">
+      <h3>🎯 Metas Base</h3>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <label style="font-size: 0.65rem; color: var(--text-muted);">HORAS</label>
+        <input type="number" id="metaH" onchange="updateMeta()" class="mini-input" style="width:100%">
+        <label style="font-size: 0.65rem; color: var(--text-muted); margin-top:5px;">QUESTÕES</label>
+        <input type="number" id="metaQ" onchange="updateMeta()" class="mini-input" style="width:100%">
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <h3>✅ Checklist <span id="rankBadge" class="badge">PRO</span></h3>
+      <label class="check-item"><input type="checkbox" id="teo" onchange="saveData()"><span>Teoria Estudada</span></label>
+      <label class="check-item"><input type="checkbox" id="rev" onchange="saveData()"><span>Revisão Diária</span></label>
+      <label class="check-item"><input type="checkbox" id="quesCheck" onchange="saveData()"><span>Questões</span></label>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <h3>🎵 Foco Audio</h3>
+      <button class="btn-ghost" onclick="toggleAudio()" id="audioBtn" style="font-size:0.7rem">🔈 RUÍDO BRANCO: OFF</button>
+      <audio id="bgNoise" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    </div>
+  </aside>
+
+  <main>
+    <div class="card timer-card">
+      <h3>⏱️ Focus Timer</h3>
+      <div class="timer-display" id="timer">25:00</div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-primary" onclick="startTimer()" style="flex:2">Começar Sessão</button>
+        <button class="btn-ghost" onclick="pauseTimer()" style="flex:1">Pausar</button>
+        <button class="btn-ghost" onclick="resetTimer()" style="flex:1; background:transparent; border:1px solid var(--border)">Reset</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 24px;">
+      <h3>📊 Performance Diária</h3>
+      
+      <div class="progress-section">
+        <div class="stat-header">
+          <div style="display:flex; align-items:center; gap:8px">
+            <span style="font-size:0.8rem; font-weight:700">Horas</span>
+            <input type="number" id="inH" step="0.5" class="mini-input" onchange="saveData()">
+          </div>
+          <div class="stat-value"><span id="curH">0</span><span style="color:var(--text-muted); font-size:0.7rem"> / <span id="adjH">0</span>h</span></div>
+        </div>
+        <div class="bar-container">
+          <div class="bar-fill" id="fillH" style="background: var(--primary)"></div>
+          <span class="perc-text" id="perH">0%</span>
+        </div>
+        <span id="warnH" style="color:var(--danger); font-size:0.6rem; font-weight:700; margin-top:5px; display:block"></span>
+      </div>
+
+      <div class="progress-section">
+        <div class="stat-header">
+          <div style="display:flex; align-items:center; gap:8px">
+            <span style="font-size:0.8rem; font-weight:700">Questões</span>
+            <input type="number" id="inQ" class="mini-input" onchange="saveData()">
+          </div>
+          <div class="stat-value"><span id="curQ">0</span><span style="color:var(--text-muted); font-size:0.7rem"> / <span id="adjQ">0</span></span></div>
+        </div>
+        <div class="bar-container">
+          <div class="bar-fill" id="fillQ" style="background: var(--success)"></div>
+          <span class="perc-text" id="perQ">0%</span>
+        </div>
+        <span id="warnQ" style="color:var(--danger); font-size:0.6rem; font-weight:700; margin-top:5px; display:block"></span>
+      </div>
+    </div>
+  </main>
+
+  <aside>
+    <div class="card">
+      <h3>🔥 Streak Atual</h3>
+      <div style="display: flex; gap: 8px; margin-bottom: 12px;" id="streakDots"></div>
+      <div id="streakLabel" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">0 Dias</div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <h3>📅 Heatmap de Estudos</h3>
+      <div class="cal-grid" id="heatmap"></div>
+    </div>
+  </aside>
+</div>
+
+<script>
+let db = JSON.parse(localStorage.getItem("ultra_dash_v3")) || { 
+  base: { h: 4, q: 50 }, 
+  dias: {}, 
+  totalDebtH: 0, 
+  totalDebtQ: 0,
+  theme: 'dark'
+};
+
+const getToday = () => new Date().toISOString().split('T')[0];
+function save() { localStorage.setItem("ultra_dash_v3", JSON.stringify(db)); }
+
+// TEMA
+if(db.theme === 'light') document.body.classList.add('light-mode');
+
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  db.theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+  save();
+}
+
+// LOGICA DE DEBITO
+function getAdjusted() {
+  const today = getToday();
+  let dh = 0, dq = 0;
+  Object.keys(db.dias).forEach(date => {
+    if(date < today && !db.dias[date].processed) {
+      dh += (db.base.h - db.dias[date].h);
+      dq += (db.base.q - db.dias[date].q);
+      db.dias[date].processed = true;
+    }
+  });
+  db.totalDebtH = Math.max(0, db.totalDebtH + dh);
+  db.totalDebtQ = Math.max(0, db.totalDebtQ + dq);
+  
+  // Diluição: não deixa a meta diária ser impossível
+  const factorH = db.totalDebtH > (db.base.h * 2) ? db.totalDebtH / 3 : db.totalDebtH;
+  const factorQ = db.totalDebtQ > (db.base.q * 2) ? db.totalDebtQ / 3 : db.totalDebtQ;
+  return { h: db.base.h + factorH, q: db.base.q + factorQ };
+}
+
+function updateMeta() {
+  db.base.h = parseFloat(document.getElementById("metaH").value) || 4;
+  db.base.q = parseInt(document.getElementById("metaQ").value) || 50;
+  save(); refreshUI();
+}
+
+function saveData() {
+  const t = getToday();
+  if(!db.dias[t]) db.dias[t] = { h:0, q:0, teo:false, rev:false, processed:false };
+  
+  const oldH = db.dias[t].h;
+  db.dias[t].h = parseFloat(document.getElementById("inH").value) || 0;
+  db.dias[t].q = parseInt(document.getElementById("inQ").value) || 0;
+  db.dias[t].teo = document.getElementById("teo").checked;
+  db.dias[t].rev = document.getElementById("rev").checked;
+  db.dias[t].que = document.getElementById("quesCheck").checked;
+
+  const adj = getAdjusted();
+  if(db.dias[t].h >= adj.h && oldH < adj.h) {
+    confetti({ particleCount: 150, spread: 60, origin: { y: 0.7 } });
+  }
+  save(); refreshUI();
+}
+
+function refreshUI() {
+  const t = getToday();
+  const d = db.dias[t] || { h:0, q:0, teo:false, rev:false, que:false };
+  const adj = getAdjusted();
+
+  document.getElementById("curH").innerText = d.h;
+  document.getElementById("curQ").innerText = d.q;
+  document.getElementById("adjH").innerText = adj.h.toFixed(1);
+  document.getElementById("adjQ").innerText = Math.round(adj.q);
+  document.getElementById("metaH").value = db.base.h;
+  document.getElementById("metaQ").value = db.base.q;
+  document.getElementById("inH").value = d.h;
+  document.getElementById("inQ").value = d.q;
+
+  const ph = Math.round((d.h / adj.h) * 100) || 0;
+  const pq = Math.round((d.q / adj.q) * 100) || 0;
+  document.getElementById("fillH").style.width = Math.min(ph, 100) + "%";
+  document.getElementById("perH").innerText = ph + "%";
+  document.getElementById("fillQ").style.width = Math.min(pq, 100) + "%";
+  document.getElementById("perQ").innerText = pq + "%";
+
+  document.getElementById("warnH").innerText = db.totalDebtH > 0 ? `Dívida: +${db.totalDebtH.toFixed(1)}h` : "";
+  document.getElementById("warnQ").innerText = db.totalDebtQ > 0 ? `Dívida: +${Math.round(db.totalDebtQ)}q` : "";
+
+  renderAnalytics();
+}
+
+function renderAnalytics() {
+  const heatmap = document.getElementById("heatmap"), streakDots = document.getElementById("streakDots");
+  heatmap.innerHTML = ""; streakDots.innerHTML = "";
+  let streak = 0, hoje = new Date();
+
+  for(let i=27; i>=0; i--) {
+    let dt = new Date(); dt.setDate(hoje.getDate()-i);
+    let k = dt.toISOString().split('T')[0];
+    let data = db.dias[k] || { h:0 };
+    
+    let color = "var(--level0)";
+    if(data.h > 0) {
+      let p = data.h / db.base.h;
+      if(p < 0.5) color = "var(--level1)";
+      else if(p < 0.8) color = "var(--level2)";
+      else if(p < 1.1) color = "var(--level3)";
+      else color = "var(--level4)";
+    }
+
+    let day = document.createElement("div");
+    day.className = "cal-day";
+    day.style.background = color;
+    day.innerText = dt.getDate();
+    heatmap.appendChild(day);
+
+    if(i < 7) {
+      let dot = document.createElement("div");
+      dot.style.width="8px"; dot.style.height="8px"; dot.style.borderRadius="50%";
+      dot.style.background = data.h > 0 ? "var(--primary)" : "var(--border)";
+      streakDots.appendChild(dot);
+      if(data.h > 0) streak++;
+    }
+  }
+  document.getElementById("streakLabel").innerText = streak + " Dias Ativos";
+}
+
+// TIMER & AUDIO
+let timer, tLeft = 25*60;
+function toggleZen() { document.body.classList.toggle("zen-mode"); }
+function toggleAudio() {
+  const a = document.getElementById("bgNoise"), b = document.getElementById("audioBtn");
+  if(a.paused) { a.play(); b.innerText = "🔊 RUÍDO: ON"; }
+  else { a.pause(); b.innerText = "🔈 RUÍDO: OFF"; }
+}
+function startTimer() { if(!timer) timer = setInterval(()=>{ tLeft--; updateT(); if(tLeft<=0){ clearInterval(timer); resetTimer(); alert("Foco Concluído!"); }}, 1000); }
+function pauseTimer() { clearInterval(timer); timer = null; }
+function resetTimer() { pauseTimer(); tLeft = 25*60; updateT(); }
+function updateT() {
+  const m = Math.floor(tLeft/60), s = tLeft%60;
+  document.getElementById("timer").innerText = `${m}:${s.toString().padStart(2,'0')}`;
+}
+
+refreshUI();
+</script>
+</body>
+</html>
