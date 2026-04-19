@@ -441,6 +441,17 @@
   }
   .week-tab.active { background: var(--primary-glow); border-color: var(--primary); color: var(--primary-light); }
 
+  /* ====== NOTES ====== */
+  .nota-input {
+    width: 100%; min-height: 80px; resize: vertical;
+    background: var(--input-bg); border: 1px solid var(--border2);
+    border-radius: 12px; padding: 12px; color: var(--text-main);
+    font-size: 0.8rem; font-family: 'Inter', sans-serif;
+    transition: all 0.2s; outline: none; margin-top: 8px;
+  }
+  .nota-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
+  .nota-input::placeholder { color: var(--text-muted); }
+
   @media (max-width: 1100px) { .dashboard-grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { body { padding: 12px; } .timer-display { font-size: 3.5rem; } .cat-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>
@@ -810,6 +821,17 @@
           </div>
         </div>
       </div>
+
+      <!-- Notas Rápidas -->
+      <div class="card" style="margin-top: 20px;">
+        <h3 class="section-title">
+          <span class="title-icon" style="background: rgba(6,182,212,0.15);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </span>
+          <span>Notas do Dia</span>
+        </h3>
+        <textarea id="notaDia" class="nota-input" placeholder="O que eu aprendi ou percebi hoje..." oninput="saveNota()"></textarea>
+      </div>
     </aside>
 
   </div>
@@ -963,7 +985,20 @@ function refreshUI() {
   document.getElementById("s-quest").innerText = d.q || 0;
   document.getElementById("s-tasks").innerText = tasks + '/3';
 
+  // Notes
+  const notaEl = document.getElementById('notaDia');
+  if(notaEl && d.nota !== undefined && notaEl.value !== d.nota) {
+    notaEl.value = d.nota;
+  }
+
   renderAnalytics();
+}
+
+function saveNota() {
+  const t = getToday();
+  if(!db.dias[t]) db.dias[t] = { h:0, q:0, teo:false, rev:false, processed:false, nota:'' };
+  db.dias[t].nota = document.getElementById('notaDia').value;
+  save();
 }
 
 function renderAnalytics() {
@@ -1141,10 +1176,52 @@ function startTimer() {
         addCatTime(selectedCat, hrs);
         sessionStart = null;
         resetTimer();
-        confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 } });
-        setTimeout(() => alert("🎯 Sessão de Foco Concluída!"), 500);
+        
+        playCompletionSound();
+        showNotification("Sessão Concluída!", `Você focou por ${min} minutos em ${CATS.find(c=>c.id===selectedCat)?.label || 'Estudos'}. Hora de uma pausa!`);
+        
+        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
       }
     }, 1000);
+  }
+}
+
+/* ====== ALARM SOUND ====== */
+function playCompletionSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gainNode = ctx.createGain();
+  
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(880, ctx.currentTime); // A5
+  osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 1.5);
+  
+  gainNode.gain.setValueAtTime(0, ctx.currentTime);
+  gainNode.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.1);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+  
+  osc.connect(gainNode);
+  gainNode.connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 1.5);
+}
+
+/* ====== NOTIFICATIONS ====== */
+let notificationPermission = false;
+if ("Notification" in window) {
+  Notification.requestPermission().then(function (permission) {
+    if (permission === "granted") notificationPermission = true;
+  });
+}
+
+function showNotification(title, body) {
+  if (notificationPermission) {
+    new Notification(title, {
+      body: body,
+      icon: "https://joadsonrocha.github.io/alerr.png" // placeholder genérico
+    });
+  } else {
+    alert(`🎯 ${title}\n${body}`);
   }
 }
 
