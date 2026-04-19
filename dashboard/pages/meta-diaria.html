@@ -380,8 +380,69 @@
   .back-btn:hover { color: var(--primary); border-color: var(--primary); }
   .back-btn svg { width: 14px; height: 14px; }
 
+  /* ====== CATEGORY SELECTOR ====== */
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 8px; margin-bottom: 16px;
+  }
+  .cat-chip {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; padding: 10px 6px; border-radius: 12px;
+    border: 1.5px solid var(--border2); background: var(--card-bg2);
+    cursor: pointer; transition: all 0.2s;
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--text-muted);
+    user-select: none;
+  }
+  .cat-chip:hover { border-color: var(--primary); color: var(--text-main); }
+  .cat-chip.selected {
+    border-color: var(--cat-color, var(--primary));
+    background: color-mix(in srgb, var(--cat-color, var(--primary)) 15%, transparent);
+    color: var(--cat-color, var(--primary-light));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cat-color, var(--primary)) 20%, transparent);
+  }
+  .cat-chip .cat-emoji { font-size: 1.3rem; line-height: 1; }
+
+  /* ====== DISTRIBUTION CARD ====== */
+  .dist-card-inner { display: flex; gap: 16px; align-items: flex-start; }
+  .donut-wrap {
+    flex-shrink: 0; position: relative;
+    width: 110px; height: 110px;
+  }
+  .donut-wrap canvas { width: 110px; height: 110px; }
+  .donut-center {
+    position: absolute; inset: 0; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .donut-total { font-family: 'JetBrains Mono'; font-size: 1.3rem; font-weight: 700; line-height: 1; }
+  .donut-label { font-size: 0.5rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+  .cat-bars { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .cat-bar-row { display: flex; flex-direction: column; gap: 3px; }
+  .cat-bar-header { display: flex; justify-content: space-between; align-items: center; }
+  .cat-bar-name { font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+  .cat-bar-val { font-family: 'JetBrains Mono'; font-size: 0.65rem; font-weight: 700; color: var(--text-muted); }
+  .cat-bar-track { height: 6px; background: var(--input-bg); border-radius: 99px; overflow: hidden; }
+  .cat-bar-fill { height: 100%; border-radius: 99px; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+
+  .neglect-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 6px; padding: 3px 8px;
+    font-size: 0.6rem; font-weight: 700; color: var(--accent);
+    margin-top: 4px;
+  }
+  .week-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .week-tab {
+    flex: 1; padding: 6px; font-size: 0.6rem; font-weight: 700;
+    border-radius: 8px; border: 1px solid var(--border2);
+    background: transparent; cursor: pointer; color: var(--text-muted);
+    transition: all 0.2s; text-transform: uppercase;
+  }
+  .week-tab.active { background: var(--primary-glow); border-color: var(--primary); color: var(--primary-light); }
+
   @media (max-width: 1100px) { .dashboard-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 600px) { body { padding: 12px; } .timer-display { font-size: 3.5rem; } }
+  @media (max-width: 600px) { body { padding: 12px; } .timer-display { font-size: 3.5rem; } .cat-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>
 </head>
 <body>
@@ -544,12 +605,17 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </span>
           <span>Focus Timer</span>
+          <span id="wakeBadge" style="display:none; align-items:center; gap:4px; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.4); border-radius:20px; padding:2px 8px; font-size:0.55rem; font-weight:800; color:var(--success); letter-spacing:0.05em;">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="var(--success)"><circle cx="12" cy="12" r="10"/></svg>
+            TELA ATIVA
+          </span>
         </h3>
         <div class="timer-type">
-          <button id="bt-pomodoro" class="active" onclick="setMode(25,'bt-pomodoro')">Pomodoro 25</button>
-          <button id="bt-short" onclick="setMode(10,'bt-short')">Curto 10</button>
-          <button id="bt-long" onclick="setMode(50,'bt-long')">Longo 50</button>
+          <button id="bt-pomodoro" class="active" data-min="25" onclick="setMode(25,'bt-pomodoro')">Pomodoro 25</button>
+          <button id="bt-short" data-min="10" onclick="setMode(10,'bt-short')">Curto 10</button>
+          <button id="bt-long" data-min="50" onclick="setMode(50,'bt-long')">Longo 50</button>
         </div>
+        <div class="cat-grid" id="catChips"></div>
         <div class="timer-display" id="timer">25:00</div>
         <div class="btn-row">
           <button class="btn btn-primary" onclick="startTimer()" style="flex:2">
@@ -638,6 +704,32 @@
             <span class="perc-label" id="perQ" style="color:var(--success)">0%</span>
           </div>
           <div id="warnQ"></div>
+        </div>
+      </div>
+
+      <!-- Distribuição por Categoria -->
+      <div class="card" style="margin-top: 24px;">
+        <h3 class="section-title">
+          <span class="title-icon" style="background: rgba(245,158,11,0.15);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          </span>
+          <span>Distribuição de Estudos</span>
+        </h3>
+        <div class="week-tabs">
+          <button class="week-tab active" id="tab-hoje" onclick="switchCatTab('hoje',this)">Hoje</button>
+          <button class="week-tab" id="tab-semana" onclick="switchCatTab('semana',this)">Semana</button>
+          <button class="week-tab" id="tab-mes" onclick="switchCatTab('mes',this)">Mês</button>
+        </div>
+        <div id="neglectAlerts" style="margin-bottom:12px;"></div>
+        <div class="dist-card-inner">
+          <div class="donut-wrap">
+            <canvas id="donutChart" width="220" height="220"></canvas>
+            <div class="donut-center">
+              <div class="donut-total" id="donutTotal">0h</div>
+              <div class="donut-label">total</div>
+            </div>
+          </div>
+          <div class="cat-bars" id="catBars"></div>
         </div>
       </div>
     </main>
@@ -732,9 +824,38 @@ let db = JSON.parse(localStorage.getItem("ultra_dash_v3")) || {
   totalDebtQ: 0,
   theme: 'dark'
 };
+// Garante estrutura de categorias
+if(!db.categorias) db.categorias = {};
+
+/* ====== CATEGORIAS ====== */
+const CATS = [
+  { id:'biblia',    label:'Bíblia',     emoji:'📖', color:'#f59e0b' },
+  { id:'licao',     label:'Lição',      emoji:'📝', color:'#6366f1' },
+  { id:'concurso',  label:'Concurso',   emoji:'🏛️', color:'#22c55e' },
+  { id:'pessoal',   label:'Pessoal',    emoji:'🌱', color:'#06b6d4' },
+  { id:'tecnico',   label:'Técnico',    emoji:'💻', color:'#8b5cf6' },
+  { id:'idiomas',   label:'Idiomas',    emoji:'🌍', color:'#ec4899' },
+];
+let selectedCat = CATS[0].id;
+let catTabMode = 'hoje';
 
 const getToday = () => new Date().toISOString().split('T')[0];
 function save() { localStorage.setItem("ultra_dash_v3", JSON.stringify(db)); }
+
+/* ====== RENDER CHIPS ====== */
+function renderCatChips() {
+  const grid = document.getElementById('catChips');
+  if(!grid) return;
+  grid.innerHTML = '';
+  CATS.forEach(c => {
+    const chip = document.createElement('div');
+    chip.className = 'cat-chip' + (c.id === selectedCat ? ' selected' : '');
+    chip.style.setProperty('--cat-color', c.color);
+    chip.innerHTML = `<span class="cat-emoji">${c.emoji}</span><span>${c.label}</span>`;
+    chip.onclick = () => { selectedCat = c.id; renderCatChips(); };
+    grid.appendChild(chip);
+  });
+}
 
 /* TEMA */
 if(db.theme === 'light') document.body.classList.add('light-mode');
@@ -891,8 +1012,8 @@ function renderAnalytics() {
   streakNum.innerText = streak;
 }
 
-/* ====== TIMER ====== */
-let timer, tLeft = 25*60, timerRunning = false;
+/* ====== TIMER: integração com categorias ====== */
+let timer, tLeft = 25*60, timerRunning = false, sessionStart = null;
 
 function setMode(min, btnId) {
   if(timerRunning) { pauseTimer(); }
@@ -975,14 +1096,50 @@ function toggleAudio() {
   }
 }
 
+/* ====== WAKE LOCK (impede tela apagar) ====== */
+let wakeLock = null;
+
+async function acquireWakeLock() {
+  if(!('wakeLock' in navigator)) return;
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    wakeLock.addEventListener('release', () => { updateWakeBadge(false); });
+    updateWakeBadge(true);
+  } catch(e) { console.warn('Wake Lock não concedida:', e); }
+}
+
+function releaseWakeLock() {
+  if(wakeLock) { wakeLock.release(); wakeLock = null; }
+  updateWakeBadge(false);
+}
+
+function updateWakeBadge(active) {
+  const b = document.getElementById('wakeBadge');
+  if(!b) return;
+  b.style.display = active ? 'inline-flex' : 'none';
+}
+
+// Reativa o wake lock se o usuário volta para a aba enquanto timer roda
+document.addEventListener('visibilitychange', async () => {
+  if(timerRunning && document.visibilityState === 'visible') await acquireWakeLock();
+});
+
 function startTimer() {
   if(!timer) {
     timerRunning = true;
+    sessionStart = Date.now();
+    acquireWakeLock();
     timer = setInterval(() => {
       tLeft--;
       updateT();
       if(tLeft <= 0) {
         clearInterval(timer); timer = null; timerRunning = false;
+        releaseWakeLock();
+        // Registra tempo da sessão na categoria
+        const mins = Math.round((Date.now() - sessionStart) / 60000);
+        const hrs = parseFloat((mins / 60).toFixed(2));
+        addCatTime(selectedCat, hrs);
+        sessionStart = null;
         resetTimer();
         confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 } });
         setTimeout(() => alert("🎯 Sessão de Foco Concluída!"), 500);
@@ -991,12 +1148,12 @@ function startTimer() {
   }
 }
 
-function pauseTimer() { clearInterval(timer); timer = null; timerRunning = false; }
+function pauseTimer() { clearInterval(timer); timer = null; timerRunning = false; releaseWakeLock(); }
 
 function resetTimer() {
   pauseTimer();
   const active = document.querySelector('.timer-type button.active');
-  const min = active ? parseInt(active.innerText) : 25;
+  const min = active ? parseInt(active.dataset.min) : 25;
   tLeft = min * 60; updateT();
 }
 
@@ -1042,8 +1199,138 @@ function saveMetaDrawer() {
   closeMetaDrawer();
 }
 
+/* ====== CATEGORIAS: DATA & RENDER ====== */
+function addCatTime(catId, hrs) {
+  const t = getToday();
+  if(!db.categorias[t]) db.categorias[t] = {};
+  db.categorias[t][catId] = (db.categorias[t][catId] || 0) + hrs;
+  save(); renderCategories();
+}
+
+function getCatData(mode) {
+  const today = new Date();
+  const todayKey = getToday();
+  const totals = {};
+  CATS.forEach(c => totals[c.id] = 0);
+
+  const keys = Object.keys(db.categorias);
+  keys.forEach(k => {
+    const d = new Date(k + 'T12:00:00');
+    let include = false;
+    if(mode === 'hoje') include = (k === todayKey);
+    else if(mode === 'semana') {
+      const diff = (today - d) / 86400000;
+      include = diff >= 0 && diff < 7;
+    } else if(mode === 'mes') {
+      include = d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear();
+    }
+    if(include) {
+      Object.keys(db.categorias[k]).forEach(id => {
+        if(totals[id] !== undefined) totals[id] += db.categorias[k][id];
+      });
+    }
+  });
+  return totals;
+}
+
+function switchCatTab(mode, btn) {
+  catTabMode = mode;
+  document.querySelectorAll('.week-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCategories();
+}
+
+function renderCategories() {
+  const totals = getCatData(catTabMode);
+  const grandTotal = Object.values(totals).reduce((a,b)=>a+b,0);
+
+  // Donut total
+  const donutEl = document.getElementById('donutTotal');
+  if(donutEl) donutEl.innerText = grandTotal > 0 ? grandTotal.toFixed(1)+'h' : '0h';
+
+  // Canvas donut
+  const canvas = document.getElementById('donutChart');
+  if(canvas) {
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0,0,W,H);
+    const cx = W/2, cy = H/2, r = W/2 - 14, ri = r * 0.62;
+    if(grandTotal === 0) {
+      ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border2').trim() || '#1e293b';
+      ctx.lineWidth = r - ri; ctx.stroke();
+    } else {
+      let start = -Math.PI/2;
+      CATS.forEach(c => {
+        const v = totals[c.id];
+        if(v <= 0) return;
+        const angle = (v/grandTotal)*Math.PI*2;
+        ctx.beginPath();
+        ctx.arc(cx,cy,r,start,start+angle);
+        ctx.arc(cx,cy,ri,start+angle,start,true);
+        ctx.closePath();
+        ctx.fillStyle = c.color;
+        ctx.fill();
+        start += angle + 0.015;
+      });
+    }
+  }
+
+  // Bars
+  const barsEl = document.getElementById('catBars');
+  if(barsEl) {
+    barsEl.innerHTML = '';
+    const today = getToday();
+    CATS.forEach(c => {
+      const v = totals[c.id] || 0;
+      const pct = grandTotal > 0 ? Math.round((v/grandTotal)*100) : 0;
+      const row = document.createElement('div');
+      row.className = 'cat-bar-row';
+      row.innerHTML = `
+        <div class="cat-bar-header">
+          <div class="cat-bar-name">
+            <span>${c.emoji}</span>
+            <span style="color:${c.color}">${c.label}</span>
+          </div>
+          <div class="cat-bar-val">${v > 0 ? v.toFixed(1)+'h' : '—'} <span style="color:var(--text-muted);font-size:0.55rem">${pct}%</span></div>
+        </div>
+        <div class="cat-bar-track">
+          <div class="cat-bar-fill" style="width:${pct}%; background:${c.color};"></div>
+        </div>`;
+      barsEl.appendChild(row);
+    });
+  }
+
+  // Neglect alerts (só no modo hoje)
+  const alerts = document.getElementById('neglectAlerts');
+  if(alerts) {
+    alerts.innerHTML = '';
+    if(catTabMode === 'hoje') {
+      const today = getToday();
+      CATS.forEach(c => {
+        // Verifica se não estudou essa cat hoje mas nos últimos 7 dias há registro
+        const todayVal = (db.categorias[today] || {})[c.id] || 0;
+        let lastSeen = null;
+        for(let i=1;i<7;i++) {
+          const d = new Date(); d.setDate(d.getDate()-i);
+          const k = d.toISOString().split('T')[0];
+          if((db.categorias[k]||{})[c.id] > 0) { lastSeen = i; break; }
+        }
+        if(lastSeen && lastSeen >= 3 && todayVal === 0) {
+          const tag = document.createElement('div');
+          tag.className = 'neglect-tag';
+          tag.innerHTML = `${c.emoji} <b>${c.label}</b> há ${lastSeen} dias sem estudo`;
+          alerts.appendChild(tag);
+        }
+      });
+    }
+  }
+}
+
 /* ====== INIT ====== */
+renderCatChips();
 refreshUI();
+renderCategories();
 </script>
 </body>
 </html>
