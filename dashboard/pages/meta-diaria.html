@@ -532,7 +532,6 @@
           <svg id="audioIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
           <span id="audioBtnText">SOM NATUREZA: OFF</span>
         </button>
-        <audio id="bgNoise" loop src="https://cdn.pixabay.com/audio/2022/03/10/audio_60c7a4d838.mp3"></audio>
       </div>
     </aside>
 
@@ -904,20 +903,74 @@ function setMode(min, btnId) {
 
 function toggleZen() { document.body.classList.toggle("zen-mode"); }
 
+/* ====== NATURE SOUND via Web Audio API (pink noise + low-pass = rain) ====== */
+let audioCtx = null, noiseSource = null, gainNode = null, filterNode = null;
+let audioPlaying = false;
+
+function createPinkNoise(ctx) {
+  // Gera buffer de ruído rosa (algoritmo Voss-McCartney)
+  const bufSize = ctx.sampleRate * 4; // 4 segundos de buffer
+  const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+  const data = buf.getChannelData(0);
+  let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+  for(let i = 0; i < bufSize; i++) {
+    const white = Math.random() * 2 - 1;
+    b0 = 0.99886*b0 + white*0.0555179;
+    b1 = 0.99332*b1 + white*0.0750759;
+    b2 = 0.96900*b2 + white*0.1538520;
+    b3 = 0.86650*b3 + white*0.3104856;
+    b4 = 0.55000*b4 + white*0.5329522;
+    b5 = -0.7616*b5 - white*0.0168980;
+    data[i] = (b0+b1+b2+b3+b4+b5+b6 + white*0.5362) * 0.11;
+    b6 = white * 0.115926;
+  }
+  return buf;
+}
+
+function startNature() {
+  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  // Filtro low-pass: suaviza o ruído → soa como chuva leve
+  filterNode = audioCtx.createBiquadFilter();
+  filterNode.type = 'lowpass';
+  filterNode.frequency.setValueAtTime(600, audioCtx.currentTime);
+  filterNode.Q.setValueAtTime(0.5, audioCtx.currentTime);
+  // Ganho com fade-in
+  gainNode = audioCtx.createGain();
+  gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+  gainNode.gain.linearRampToValueAtTime(0.55, audioCtx.currentTime + 1.5);
+  // Fonte: buffer em loop
+  noiseSource = audioCtx.createBufferSource();
+  noiseSource.buffer = createPinkNoise(audioCtx);
+  noiseSource.loop = true;
+  noiseSource.connect(filterNode);
+  filterNode.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+  noiseSource.start(0);
+  audioPlaying = true;
+}
+
+function stopNature() {
+  if(gainNode && audioCtx) {
+    gainNode.gain.setValueAtTime(gainNode.gain.value, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1);
+    setTimeout(() => { try { noiseSource.stop(); } catch(e){} noiseSource = null; }, 1100);
+  }
+  audioPlaying = false;
+}
+
 function toggleAudio() {
-  const a = document.getElementById("bgNoise");
   const btn = document.getElementById("audioBtn");
   const icon = document.getElementById("audioIcon");
   const txt = document.getElementById("audioBtnText");
-  if(a.paused) {
-    a.play();
+  if(!audioPlaying) {
+    startNature();
     btn.classList.add('active');
-    txt.innerText = 'SOM NATUREZA: ON';
+    txt.innerText = 'CHUVA ZEN: ON';
     icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>';
   } else {
-    a.pause();
+    stopNature();
     btn.classList.remove('active');
-    txt.innerText = 'SOM NATUREZA: OFF';
+    txt.innerText = 'CHUVA ZEN: OFF';
     icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
   }
 }
