@@ -7,14 +7,14 @@
   <title>Sobre • Joadson Rocha</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <!-- Font Awesome para ícone do hambúrguer -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Ícone da página -->
   <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
 
   <!-- CSS EXTERNO -->
-  <link rel="stylesheet" href="style.css?v=1.0.3" />
+  <link rel="stylesheet" href="style.css?v=1.0.4" />
 
   <!-- 🤖 JSON-LD para SEO -->
   <script type="application/ld+json">
@@ -46,6 +46,12 @@
 </head>
 
 <body>
+  <!-- Background Glows -->
+  <div class="bg-glows">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+  </div>
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress-container">
@@ -55,6 +61,11 @@
   <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema">
     <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="langToggle" aria-label="Alternar Idioma">
+    <span>PT</span>
   </button>
 
   <!-- Botão Hambúrguer -->
@@ -91,25 +102,73 @@
     <div class="content">
       <h2>Sobre Mim</h2>
       <p>
-        Sou formado em <span class="highlight">Gestão em Tecnologia da Informação</span> pela <strong>UNIP (Universidade
-          Paulista)</strong> e atuo como <span class="highlight">desenvolvedor web</span> com foco em soluções modernas,
-        escaláveis e de código aberto.
+        Com uma formação multidisciplinar única, sou graduado em <span class="highlight">Gestão em Tecnologia da Informação</span>, <span class="highlight">Pedagogia</span>, <span class="highlight">História</span> e <span class="highlight">Física</span>. Essa base diversificada me permite enxergar problemas complexos sob diferentes perspectivas, unindo o rigor analítico da ciência com a visão humana e organizacional.
       </p>
       <p>
-        Apaixonado por <span class="highlight">tecnologias open source</span>, acredito no poder do software
-        colaborativo para transformar ideias em realidade. Meu trabalho combina <strong>criatividade</strong>,
-        <strong>boas práticas</strong> e <strong>atenção aos detalhes</strong>.
+        Como <span class="highlight">Especialista em Projetos Ágeis</span>, foco na entrega de valor contínua e na eficiência operacional. Minha trajetória como desenvolvedor é marcada pela criação de ferramentas de <span class="highlight">Código Aberto (Open Source)</span>, como o <strong>MultDownload</strong> e o <strong>YouFinder</strong>, focadas em resolver necessidades reais de milhares de usuários.
+      </p>
+      <p>
+        Acredito que a tecnologia deve ser acessível e educativa. Por isso, projeto interfaces intuitivas e sistemas robustos que combinam <strong>criatividade</strong>, <strong>boas práticas de engenharia</strong> e uma <strong>visão pedagógica</strong> sobre a experiência do usuário.
       </p>
 
-      <div class="tech-stack">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">Electron</span>
-        <span class="tech-tag">Node.js</span>
-        <span class="tech-tag">Git</span>
-        <span class="tech-tag">GitHub</span>
+      <div class="tech-tags-container">
+        <div class="tags-track">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Electron</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Python</span>
+          <span class="tag">FFmpeg</span>
+          <span class="tag">yt-dlp</span>
+          <span class="tag">Kivy</span>
+          <span class="tag">PWA</span>
+          <span class="tag">Capacitor</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Linux</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Design System</span>
+          <span class="tag">API Integrations</span>
+          <span class="tag">Agile (Scrum)</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Automação</span>
+          <!-- Duplicate for seamless scroll -->
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Electron</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Python</span>
+          <span class="tag">FFmpeg</span>
+          <span class="tag">yt-dlp</span>
+          <span class="tag">Kivy</span>
+          <span class="tag">PWA</span>
+          <span class="tag">Capacitor</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Linux</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Design System</span>
+          <span class="tag">API Integrations</span>
+          <span class="tag">Agile (Scrum)</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Automação</span>
+        </div>
       </div>
 
       <p>

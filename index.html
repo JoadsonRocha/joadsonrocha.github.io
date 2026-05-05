@@ -31,11 +31,11 @@
   <!-- Fonts e Ícones -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- CSS EXTERNO -->
-  <link rel="stylesheet" href="style.css?v=1.0.3" />
+  <link rel="stylesheet" href="style.css?v=1.0.4" />
 
   <!-- 🤖 JSON-LD para SEO -->
   <script type="application/ld+json">
@@ -48,7 +48,7 @@
       "sameAs": [
         "https://github.com/joadsonrocha",
         "https://www.linkedin.com/in/joadson-rocha",
-        "https://instagram.com/joadsonrocha_29",
+        "https://instagram.com/joadsonrocha_30",
         "https://leving.com.br"
       ],
       "jobTitle": "Desenvolvedor Web",
@@ -67,6 +67,13 @@
 </head>
 
 <body>
+  <!-- Background Glows -->
+  <div class="bg-glows">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+  </div>
+
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress-container">
     <div class="scroll-progress-bar" id="scrollProgress"></div>
@@ -75,6 +82,11 @@
   <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema">
     <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="langToggle" aria-label="Alternar Idioma">
+    <span>PT</span>
   </button>
 
   <!-- Botão Hambúrguer -->
@@ -86,12 +98,12 @@
   <!-- Menu lateral -->
   <nav class="menu-side" id="menuSide">
     <ul>
-      <li><a href="index.html" class="active">Inicio</a></li>
-      <li><a href="sobre.html">Sobre Mim</a></li>
-      <li><a href="/artigo.html">Blog</a></li>
-      <li><a href="contato.html">Contato</a></li>
-      <li><a href="my%20study/index.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>Dashboard</a></li>
-      <li><a href="my%20study/pages/meta-diaria.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>Meta Diária</a></li>
+      <li><a href="index.html" class="active" data-i18n="nav-home">Inicio</a></li>
+      <li><a href="sobre.html" data-i18n="nav-about">Sobre Mim</a></li>
+      <li><a href="/artigo.html" data-i18n="nav-blog">Blog</a></li>
+      <li><a href="contato.html" data-i18n="nav-contact">Contato</a></li>
+      <li><a href="my%20study/index.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i><span data-i18n="nav-dashboard">Dashboard</span></a></li>
+      <li><a href="my%20study/pages/meta-diaria.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i><span data-i18n="nav-goals">Meta Diária</span></a></li>
       <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>RiseMindr</a></li>
     </ul>
   </nav>
@@ -105,18 +117,66 @@
       </div>
 
       <h1>Joadson Rocha</h1>
-      <p class="subtitle">Desenvolvedor Web • Formado em Gestão em TI • Apaixonado por open source</p>
+      <p class="subtitle" data-i18n="header-subtitle">Gestor em TI & Desenvolvedor Full Stack • Especialista em Projetos Ágeis • Formado em Pedagogia, História e Física • Apaixonado por Open Source</p>
 
-      <div>
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">Electron</span>
-        <span class="tag">React</span>
-        <span class="tag">React Native</span>
-        <span class="tag">vite</span>
-        <span class="tag">Python</span>
+      <div class="tech-tags-container">
+        <div class="tags-track">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Electron</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Python</span>
+          <span class="tag">FFmpeg</span>
+          <span class="tag">yt-dlp</span>
+          <span class="tag">Kivy</span>
+          <span class="tag">PWA</span>
+          <span class="tag">Capacitor</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Linux</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Design System</span>
+          <span class="tag">API Integrations</span>
+          <span class="tag">Agile (Scrum)</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Automação</span>
+          <!-- Duplicate for seamless scroll -->
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Electron</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">Python</span>
+          <span class="tag">FFmpeg</span>
+          <span class="tag">yt-dlp</span>
+          <span class="tag">Kivy</span>
+          <span class="tag">PWA</span>
+          <span class="tag">Capacitor</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Linux</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Design System</span>
+          <span class="tag">API Integrations</span>
+          <span class="tag">Agile (Scrum)</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Automação</span>
+        </div>
       </div>
 
       <div class="contact-links">
@@ -126,7 +186,7 @@
         <a href="https://www.linkedin.com/in/joadson-rocha" target="_blank" class="contact-link">
           <i class="fab fa-linkedin"></i> LinkedIn
         </a>
-        <a href="https://instagram.com/joadsonrocha_29" target="_blank" class="contact-link">
+        <a href="https://instagram.com/joadsonrocha_30" target="_blank" class="contact-link">
           <i class="fab fa-instagram"></i> Instagram
         </a>
         <a href="https://www.risemindr.com/" target="_blank" class="contact-link">
@@ -137,111 +197,127 @@
 
     <!-- Projetos -->
     <section>
-      <h2 class="section-title">Meus Projetos</h2>
+      <h2 class="section-title" data-i18n="section-projects-title">Meus Projetos</h2>
 
       <div class="projects-grid">
          <div class="project-card">
           <h3>MultDownload 4.0</h3>
-          <p>Ferramenta para Baixar vídeos e áudios do YouTube em alta qualidade com interface performática.</p>
+          <p data-i18n="project-multdownload-desc">Ferramenta para Baixar vídeos e áudios do YouTube em alta qualidade com interface performática.</p>
           <div class="tech">
             <span>Electron</span>
             <span>FFmpeg</span>
             <span>JavaScript</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/MultDownload_Oficial" class="btn" target="_blank">Ver no GitHub</a>
-          <a href="https://github.com/JoadsonRocha/MultDownload_Oficial/releases/tag/4.0" class="btn" target="_blank">Executavel</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/MultDownload_Oficial" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
+            <a href="https://github.com/JoadsonRocha/MultDownload_Oficial/releases/tag/4.0" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+          </div>
         </div>
 
         <div class="project-card">
           <h3>MediaFinder</h3>
-          <p>Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.</p>
+          <p data-i18n="project-mediafinder-desc">Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.</p>
           <div class="tech">
             <span>Electron</span>
             <span>FFmpeg</span>
             <span>JavaScript</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/mediaFinder" class="btn" target="_blank">Ver no GitHub</a>
-          <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank">Executavel</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/mediaFinder" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
+            <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+          </div>
         </div>
         <!-- project-card -->
         <!-- INICIO-->
         <div class="project-card">
           <h3>YouFinder</h3>
-          <p>O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a
+          <p data-i18n="project-youfinder-desc">O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a
             forma de assistir conteúdos online com controle de telas.</p>
           <div class="tech">
             <span>Electron</span>
             <span>yt-dlp</span>
             <span>React</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/YouFinder" class="btn" target="_blank">Ver no GitHub</a>
-          <a href="https://github.com/JoadsonRocha/YouFinder/releases/tag/3.1.0" class="btn" target="_blank">Executavel</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/YouFinder" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
+            <a href="https://github.com/JoadsonRocha/YouFinder/releases/tag/3.1.0" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+          </div>
         </div>
         <!-- FIM-->
         <div class="project-card">
           <h3>MultDownloader</h3>
-          <p>Aplicativo em Python/Tk Desktop para baixar vídeos e reels com FFMPEG integrado.</p>
+          <p data-i18n="project-multdownloader-desc">Aplicativo em Python/Tk Desktop para baixar vídeos e reels com FFMPEG integrado.</p>
           <div class="tech">
             <span>Python</span>
             <span>Tkinter</span>
             <span>FFmpeg</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn" target="_blank">Ver no GitHub</a>
-          <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank">Executavel</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
+            <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+          </div>
         </div>
 
         <div class="project-card">
           <h3>HIASD</h3>
-          <p>Sistema desenvolvido em HTML/CSS/JS com funcionalidades de interface moderna e lógica em JavaScript.</p>
+          <p data-i18n="project-hiasd-desc">Sistema desenvolvido em HTML/CSS/JS com funcionalidades de interface moderna e lógica em JavaScript.</p>
           <div class="tech">
             <span>Electronjs</span>
             <span>HTML</span>
             <span>CSS</span>
             <span>JavaScript</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/HIASD" class="btn" target="_blank">Ver no GitHub</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/HIASD" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
+          </div>
         </div>
 
         <div class="project-card">
           <h3>HIASD-py</h3>
-          <p>Versão Python do sistema HIASD, trazendo automações, lógica avançada e execução local.</p>
+          <p data-i18n="project-hiasdpy-desc">Versão Python do sistema HIASD, trazendo automações, lógica avançada e execução local.</p>
           <div class="tech">
             <span>Python</span>
             <span>CLI</span>
             <span>Automação</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/HIASD-py" class="btn" target="">Ver no GitHub</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/HIASD-py" class="btn" target="" data-i18n="btn-github">Ver no GitHub</a>
+          </div>
         </div>
 
         <div class="project-card">
           <h3>MultDownloader Kivy</h3>
-          <p>Versão Android do MultDownloader desenvolvida com Kivy, interface mobile e FFMPEG integrado.</p>
+          <p data-i18n="project-kivy-desc">Versão Android do MultDownloader desenvolvida com Kivy, interface mobile e FFMPEG integrado.</p>
           <div class="tech">
             <span>Kivy</span>
             <span>Python</span>
             <span>Android</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank">Ver no
-            GitHub</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank" data-i18n="btn-github">Ver no
+              GitHub</a>
+          </div>
         </div>
         <div class="project-card">
           <h3>CalculadoraFlex</h3>
-          <p>Aplicativo web simples para cálculo entre gasolina e etanol.</p>
+          <p data-i18n="project-flex-desc">Aplicativo web simples para cálculo entre gasolina e etanol.</p>
           <div class="tech">
             <span>HTML</span>
             <span>CSS</span>
             <span>JavaScript</span>
           </div>
-          <a href="https://github.com/JoadsonRocha/CalculadoraFlex" class="btn" target="_blank">Ver no GitHub</a>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/CalculadoraFlex" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="dashboard">
-      <h2 class="section-title">Painel de Estudos</h2>
+      <h2 class="section-title" data-i18n="section-dashboard-title">Painel de Estudos</h2>
       <div class="dashboard-box">
-        <p>Confira aqui o painel de estudos em uma área dedicada. Clique para abrir o painel completo e continuar seus estudos.</p>
-        <a href="my%20study/index.html" class="btn">Abrir Painel</a>
+        <p data-i18n="dashboard-desc">Confira aqui o painel de estudos em uma área dedicada. Clique para abrir o painel completo e continuar seus estudos.</p>
+        <a href="my%20study/index.html" class="btn" data-i18n="dashboard-btn">Abrir Painel</a>
       </div>
     </section>
 
@@ -256,7 +332,7 @@
   </button>
 
   <footer>
-    <p>© 2025 Joadson Rocha — Desenvolvedor Web • Boa Vista - RR</p>
+    <p data-i18n="footer-text">© 2025 Joadson Rocha — Desenvolvedor Web • Boa Vista - RR</p>
   </footer>
 
   <script src="script.js"></script>
