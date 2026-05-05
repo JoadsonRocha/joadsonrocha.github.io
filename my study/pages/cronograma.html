@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cronograma de Estudos - ALE-RR</title>
+    <title>Cronograma de Estudos</title>
     <link rel="manifest" href="../manifest.json"/>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -358,11 +358,11 @@
         document.querySelectorAll('.day-card.completed').forEach(c => {
             completed.push(c.id);
         });
-        localStorage.setItem('alerr_cronograma_progress', JSON.stringify(completed));
+        localStorage.setItem('mystudy_cronograma_progress', JSON.stringify(completed));
     }
 
     function loadProgress() {
-        const completed = JSON.parse(localStorage.getItem('alerr_cronograma_progress')) || [];
+        const completed = JSON.parse(localStorage.getItem('mystudy_cronograma_progress')) || [];
         completed.forEach(id => {
             const card = document.getElementById(id);
             if (card) {
@@ -373,7 +373,7 @@
     }
 
     function exportSchedule() {
-        let scheduleText = "Cronograma de Estudos ALE-RR\n\n";
+        let scheduleText = "Cronograma de Estudos\n\n";
         const allData = [...dataWeek1, ...dataWeek2, ...dataWeek3, ...dataWeek4];
         allData.forEach(day => {
             scheduleText += `Dia ${day.day}: ${day.espec.theme} (${day.espec.sub})\n`;

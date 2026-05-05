@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Plano de Estudos: Assistente Legislativo - ALE-RR</title>    <link rel="manifest" href="../manifest.json"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<title>Plano de Estudos: Assistente Legislativo</title>    <link rel="manifest" href="../manifest.json"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <style>
         :root {
@@ -494,7 +494,7 @@
 </div>
 </div>
 <footer>
-<p>© 2024 - Guia de Estudos Interativo ALE-RR</p>
+<p>© 2024 - Guia de Estudos Interativo</p>
 <p>Organizado para Assistente Legislativo conforme conteúdo programático oficial.</p>
 </footer>
 <script>
@@ -518,11 +518,11 @@
         const checkedIds = Array.from(checkboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.id);
-        localStorage.setItem('alerr_study_progress', JSON.stringify(checkedIds));
+        localStorage.setItem('mystudy_general_progress', JSON.stringify(checkedIds));
     }
 
     function loadProgress() {
-        const saved = JSON.parse(localStorage.getItem('alerr_study_progress'));
+        const saved = JSON.parse(localStorage.getItem('mystudy_general_progress'));
         if (saved) {
             saved.forEach(id => {
                 const cb = document.getElementById(id);

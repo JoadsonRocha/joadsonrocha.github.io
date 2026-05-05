@@ -1218,7 +1218,7 @@ function showNotification(title, body) {
   if (notificationPermission) {
     new Notification(title, {
       body: body,
-      icon: "https://joadsonrocha.github.io/alerr.png" // placeholder genérico
+      icon: "../icons/icon-192x192.png" // Ícone do PWA
     });
   } else {
     alert(`🎯 ${title}\n${body}`);

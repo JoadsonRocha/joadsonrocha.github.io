@@ -1,9 +1,9 @@
 {
-  "name": "ALE-RR Study Dashboard",
-  "short_name": "ALE-RR",
-  "description": "Painel de estudos para concurso ALE-RR com cronograma, checklists e dicas",
-  "start_url": "/dashboard/index.html",
-  "scope": "/dashboard/",
+  "name": "My Study Dashboard",
+  "short_name": "My Study",
+  "description": "Painel de estudos com cronograma, checklists e dicas",
+  "start_url": "/my%20study/index.html",
+  "scope": "/my%20study/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#6366f1",
@@ -36,21 +36,21 @@
       "name": "Cronograma",
       "short_name": "Cronograma",
       "description": "Ver cronograma de estudos",
-      "url": "/dashboard/pages/cronograma.html",
+      "url": "/my%20study/pages/cronograma.html",
       "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>📅</text></svg>", "sizes": "96x96" }]
     },
     {
       "name": "Gerais",
       "short_name": "Gerais",
       "description": "Conhecimentos Gerais",
-      "url": "/dashboard/pages/gerais.html",
+      "url": "/my%20study/pages/gerais.html",
       "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>📖</text></svg>", "sizes": "96x96" }]
     },
     {
       "name": "Específicos",
       "short_name": "TI/Seg",
       "description": "Conhecimentos Específicos de TI",
-      "url": "/dashboard/pages/especificos.html",
+      "url": "/my%20study/pages/especificos.html",
       "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='20'>🛡️</text></svg>", "sizes": "96x96" }]
     }
   ]

@@ -659,7 +659,7 @@
 
     <!-- Countdown Section -->
     <div class="countdown-container">
-        <div class="countdown-title">Faltam apenas para a prova ALE-RR</div>
+        <div class="countdown-title">Faltam apenas para a prova</div>
         <div class="timer" id="countdown-timer">
             <div class="timer-unit"><span id="days">00</span><span>Dias</span></div>
             <div class="timer-unit"><span id="hours">00</span><span>Horas</span></div>
@@ -912,7 +912,7 @@
         if (d < 30) {
             countdownContainer.style.borderColor = '#ef4444';
             countdownContainer.style.boxShadow = '0 10px 30px rgba(239, 68, 68, 0.3)';
-            countdownContainer.querySelector('.countdown-title').innerText = 'ALERTA: Menos de 30 dias para a prova ALE-RR!';
+            countdownContainer.querySelector('.countdown-title').innerText = 'ALERTA: Menos de 30 dias para a prova!';
             countdownContainer.querySelector('.countdown-title').style.color = '#ef4444';
         } else if (d < 60) {
             countdownContainer.style.borderColor = '#f59e0b';
@@ -922,7 +922,7 @@
 
     function loadProgress() {
         // Gerais Progress
-        const savedGerais = JSON.parse(localStorage.getItem('alerr_study_progress')) || [];
+        const savedGerais = JSON.parse(localStorage.getItem('mystudy_general_progress')) || [];
         const checkedGeraisMain = savedGerais.filter(id => !id.includes('-rev') && !id.includes('-ques')).length;
         const checkedGeraisRev = savedGerais.filter(id => id.includes('-rev')).length;
         
@@ -1003,7 +1003,7 @@
         `;
 
         // Verificar se já foi marcado como feito
-        const completed = JSON.parse(localStorage.getItem('alerr_cronograma_progress')) || [];
+        const completed = JSON.parse(localStorage.getItem('mystudy_cronograma_progress')) || [];
         if (completed.includes(`day-${todayData.day}`)) {
             card.classList.add('completed');
             card.querySelector('.check-text').innerText = 'Dia Concluído!';
@@ -1021,14 +1021,14 @@
         }
 
         // Salvar no localStorage (mesmo que o cronograma)
-        let completed = JSON.parse(localStorage.getItem('alerr_cronograma_progress')) || [];
+        let completed = JSON.parse(localStorage.getItem('mystudy_cronograma_progress')) || [];
         const dayId = `day-${day}`;
         if (card.classList.contains('completed')) {
             if (!completed.includes(dayId)) completed.push(dayId);
         } else {
             completed = completed.filter(id => id !== dayId);
         }
-        localStorage.setItem('alerr_cronograma_progress', JSON.stringify(completed));
+        localStorage.setItem('mystudy_cronograma_progress', JSON.stringify(completed));
     }
 
     function init() {

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoie o Desenvolvimento · Joadson Rocha</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: rgba(17, 24, 39, 0.7);
+            --surface-hover: rgba(31, 41, 55, 0.8);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.2);
+            --secondary: #a855f7;
+            --accent: #10b981;
+            
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --text-dim: #6b7280;
+            
+            --glass: blur(12px) saturate(180%);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 20s infinite alternate;
+        }
+
+        .blob-1 { top: -10%; left: -10%; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); }
+        .blob-2 { bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%); }
+        .blob-3 { top: 40%; left: 60%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%); }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.1); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 120px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+        }
+
+        /* Impact Cards */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 120px;
+        }
+
+        .impact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 24px;
+            backdrop-filter: var(--glass);
+            transition: var(--transition);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glow);
+            background: var(--surface-hover);
+        }
+
+        .impact-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-glow);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .impact-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .impact-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Support Tiers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 120px;
+        }
+
+        .tier-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 48px 40px;
+            border-radius: 32px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-card:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .tier-card.featured {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, var(--surface) 100%);
+            border: 2px solid var(--primary);
+        }
+
+        .tier-card.featured::before {
+            content: 'RECOMENDADO';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 99px;
+            letter-spacing: 1px;
+        }
+
+        .tier-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .tier-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .tier-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .tier-price span {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .tier-features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .tier-features li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tier-features li i {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        .support-btn {
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .tier-card.featured .support-btn {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px var(--primary-glow);
+        }
+
+        .tier-card.featured .support-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px var(--primary-glow);
+        }
+
+        /* Payment Methods */
+        .payments {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 60px;
+            margin-bottom: 120px;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .payment-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .payment-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .payment-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .payment-head i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .payment-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .payment-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            word-break: break-all;
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-glow);
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo span { color: var(--primary); }
+
+        .footer-text {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover { color: var(--primary); }
+
+        /* Toast Message */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--accent);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .payments { padding: 40px 24px; }
+            .impact-grid { grid-template-columns: 1fr; }
+            .tiers-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <nav>
+            <a href="../index.html" class="logo">JOADSON<span>ROCHA</span></a>
+            <div class="nav-links">
+                <a href="../index.html">Início</a>
+                <a href="../sobre.html">Sobre</a>
+                <a href="/artigo.html">Blog</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="badge">Apoie o Desenvolvimento Indie</div>
+            <h1>Software com <span>Paixão</span> e Código Aberto.</h1>
+            <p>Desenvolvo ferramentas desktop focadas em performance e simplicidade. Seu apoio ajuda a manter esses projetos gratuitos e em constante evolução.</p>
+        </section>
+
+        <div class="impact-grid reveal">
+            <div class="impact-card">
+                <div class="impact-icon"><i class="fas fa-server"></i></div>
+                <h3>Custos de Infra</h3>
+                <p>Ajuda a cobrir custos de hospedagem, servidores de distribuição e domínios para os projetos.</p>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Hardware de Testes</h3>
+                <p>Permite a aquisição de dispositivos e hardware para testar compatibilidade em diferentes sistemas.</p>
+            </div>
+            <div class="impact-card">
+                <div class="impact-icon"><i class="fas fa-hourglass-half"></i></div>
+                <h3>Tempo Dedicado</h3>
+                <p>Cada contribuição me permite dedicar mais horas semanais para corrigir bugs e lançar novas features.</p>
+            </div>
+        </div>
+
+        <section class="section-header reveal">
+            <h2>Escolha como apoiar</h2>
+            <p>Seja parte da jornada e ajude a construir o futuro dessas ferramentas.</p>
+        </section>
+
+        <div class="tiers-grid reveal">
+            <!-- Tier 1 -->
+            <div class="tier-card">
+                <div class="tier-icon">☕</div>
+                <div class="tier-name">Cafezinho</div>
+                <div class="tier-price">R$5 <span>/ uma vez</span></div>
+                <ul class="tier-features">
+                    <li><i class="fas fa-check"></i> Gratidão eterna</li>
+                    <li><i class="fas fa-check"></i> Badge de apoiador</li>
+                    <li><i class="fas fa-check"></i> Combustível para o código</li>
+                </ul>
+                <button class="support-btn" onclick="scrollToPayments()">Apoiar agora</button>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="tier-card featured">
+                <div class="tier-icon">🍕</div>
+                <div class="tier-name">Apoiador Ativo</div>
+                <div class="tier-price">R$15 <span>/ uma vez</span></div>
+                <ul class="tier-features">
+                    <li><i class="fas fa-check"></i> Tudo do Cafezinho</li>
+                    <li><i class="fas fa-check"></i> Acesso antecipado a betas</li>
+                    <li><i class="fas fa-check"></i> Prioridade em sugestões</li>
+                </ul>
+                <button class="support-btn" onclick="scrollToPayments()">Apoiar agora</button>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="tier-card">
+                <div class="tier-icon">🚀</div>
+                <div class="tier-name">Patrono Open Source</div>
+                <div class="tier-price">R$50 <span>/ uma vez</span></div>
+                <ul class="tier-features">
+                    <li><i class="fas fa-check"></i> Todos os benefícios</li>
+                    <li><i class="fas fa-check"></i> Seu nome no README</li>
+                    <li><i class="fas fa-check"></i> Impacto direto no roadmap</li>
+                </ul>
+                <button class="support-btn" onclick="scrollToPayments()">Apoiar agora</button>
+            </div>
+        </div>
+
+        <section id="payment-methods" class="payments reveal">
+            <div class="section-header" style="margin-bottom: 40px; text-align: left;">
+                <h2>Formas de Contribuição</h2>
+                <p>Escolha o método mais conveniente para você.</p>
+            </div>
+
+            <div class="payment-grid">
+                <!-- PIX -->
+                <div class="payment-item">
+                    <div class="payment-head">
+                        <i class="fas fa-qrcode"></i>
+                        <span class="payment-title">Pix (Brasil)</span>
+                    </div>
+                    <div class="payment-key" id="pix-key">joadsonrocha@exemplo.com.br</div>
+                    <button class="copy-btn" onclick="copyText('pix-key')">
+                        <i class="fas fa-copy"></i> Copiar Chave
+                    </button>
+                </div>
+
+                <!-- Ko-fi -->
+                <a href="https://ko-fi.com/joadsonrocha" target="_blank" class="payment-item">
+                    <div class="payment-head">
+                        <i class="fas fa-mug-hot"></i>
+                        <span class="payment-title">Ko-fi</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Apoio internacional rápido e seguro.</p>
+                    <div class="copy-btn">Visitar Perfil <i class="fas fa-external-link-alt"></i></div>
+                </a>
+
+                <!-- GitHub Sponsors -->
+                <a href="https://github.com/sponsors/joadsonrocha" target="_blank" class="payment-item">
+                    <div class="payment-head">
+                        <i class="fab fa-github"></i>
+                        <span class="payment-title">GitHub Sponsors</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Apoie diretamente via GitHub.</p>
+                    <div class="copy-btn">Ver no GitHub <i class="fas fa-external-link-alt"></i></div>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-logo">JOADSON<span>ROCHA</span></div>
+            <p class="footer-text">Desenvolvendo soluções que simplificam o digital.</p>
+            <div class="social-links">
+                <a href="https://github.com/joadsonrocha" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/joadson-rocha" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://instagram.com/joadsonrocha_29" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p style="margin-top: 32px; font-size: 0.8rem; color: var(--text-dim);">© 2024 Joadson Rocha. Feito com ♥ em Roraima.</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast">Chave PIX copiada com sucesso!</div>
+
+    <script>
+        // Scroll Reveal
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Initial check
+        reveal();
+
+        // Copy Text Functionality
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
+        function scrollToPayments() {
+            document.getElementById('payment-methods').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,13 +1,13 @@
-const CACHE_NAME = 'alerr-dashboard-v2';
+const CACHE_NAME = 'my-study-dashboard-v2';
 
 const STATIC_ASSETS = [
-  '/dashboard/index.html',
-  '/dashboard/pages/gerais.html',
-  '/dashboard/pages/especificos.html',
-  '/dashboard/pages/cronograma.html',
-  '/dashboard/pages/microaprendizado.html',
-  '/dashboard/pages/dicas.html',
-  '/dashboard/manifest.json',
+  '/my%20study/index.html',
+  '/my%20study/pages/gerais.html',
+  '/my%20study/pages/especificos.html',
+  '/my%20study/pages/cronograma.html',
+  '/my%20study/pages/microaprendizado.html',
+  '/my%20study/pages/dicas.html',
+  '/my%20study/manifest.json',
 ];
 
 const EXTERNAL_ASSETS = [
