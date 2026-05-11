@@ -325,6 +325,14 @@
             color: white;
         }
 
+        .error-section { margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 12px; }
+        .error-toggle { background: none; border: 1px dashed var(--border); color: var(--text-muted); padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; width: 100%; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .error-toggle:hover { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.05); }
+        .error-input-wrap { display: none; margin-top: 10px; }
+        .error-input-wrap.open { display: block; animation: fadeIn 0.3s ease-out; }
+        .error-input { width: 100%; min-height: 70px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 8px; color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 0.8rem; resize: vertical; outline: none; }
+        .error-input:focus { border-color: #ef4444; }
+
         /* Advanced Stats */
         .stats-section {
             margin: 50px 0;
@@ -958,8 +966,10 @@
 
     function loadTodayStudy() {
         const now = new Date();
-        const startDate = new Date('2026-04-12');
-        const diffTime = now - startDate;
+        const brNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+        const brToday = new Date(brNow.getFullYear(), brNow.getMonth(), brNow.getDate());
+        const startDate = new Date(2026, 3, 12);
+        const diffTime = brToday - startDate;
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
         const allData = [...dataWeek1, ...dataWeek2, ...dataWeek3, ...dataWeek4];
@@ -999,10 +1009,25 @@
                 <div class="meta-item"><i class="fas fa-pen-nib"></i> ${todayData.q}</div>
                 <div class="meta-item"><i class="fas fa-sync"></i> ${todayData.rev}</div>
             </div>
+            <div class="error-section">
+                <button class="error-toggle" onclick="toggleErrorInput(${todayData.day})" type="button">
+                    <i class="fas fa-book" style="color: #ef4444;"></i> Caderno de Erros
+                </button>
+                <div class="error-input-wrap" id="error-wrap-${todayData.day}">
+                    <textarea class="error-input" id="error-input-${todayData.day}" placeholder="Anote aqui o erro, dúvida ou observação sobre o conteúdo deste dia..." oninput="saveErrorNote(${todayData.day})"></textarea>
+                </div>
+            </div>
             <button class="check-day" onclick="markTodayDone(${todayData.day})">
                 <i class="fas fa-check"></i> <span class="check-text">Marcar como Feito</span>
             </button>
         `;
+
+        // Carregar anotação salva
+        const savedNotes = JSON.parse(localStorage.getItem('mystudy_error_notes')) || {};
+        const errorInput = document.getElementById(`error-input-${todayData.day}`);
+        if (errorInput && savedNotes[`day-${todayData.day}`]) {
+            errorInput.value = savedNotes[`day-${todayData.day}`];
+        }
 
         // Verificar se já foi marcado como feito
         const completed = JSON.parse(localStorage.getItem('mystudy_cronograma_progress')) || [];
@@ -1022,7 +1047,6 @@
             btnText.innerText = 'Marcar como Feito';
         }
 
-        // Salvar no localStorage (mesmo que o cronograma)
         let completed = JSON.parse(localStorage.getItem('mystudy_cronograma_progress')) || [];
         const dayId = `day-${day}`;
         if (card.classList.contains('completed')) {
@@ -1031,6 +1055,22 @@
             completed = completed.filter(id => id !== dayId);
         }
         localStorage.setItem('mystudy_cronograma_progress', JSON.stringify(completed));
+    }
+
+    function toggleErrorInput(day) {
+        const wrap = document.getElementById(`error-wrap-${day}`);
+        wrap.classList.toggle('open');
+        if (wrap.classList.contains('open')) {
+            const input = document.getElementById(`error-input-${day}`);
+            if (input) setTimeout(() => input.focus(), 100);
+        }
+    }
+
+    function saveErrorNote(day) {
+        const input = document.getElementById(`error-input-${day}`);
+        const notes = JSON.parse(localStorage.getItem('mystudy_error_notes')) || {};
+        notes[`day-${day}`] = input.value;
+        localStorage.setItem('mystudy_error_notes', JSON.stringify(notes));
     }
 
     function init() {

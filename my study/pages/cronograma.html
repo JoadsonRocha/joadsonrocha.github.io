@@ -133,6 +133,14 @@
         .check-day:hover { background: var(--success); color: white; }
         .completed .check-day { background: var(--success); color: white; }
 
+        .error-section { margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 12px; }
+        .error-toggle { background: none; border: 1px dashed var(--border); color: var(--text-muted); padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; width: 100%; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .error-toggle:hover { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.05); }
+        .error-input-wrap { display: none; margin-top: 10px; }
+        .error-input-wrap.open { display: block; animation: fadeIn 0.3s ease-out; }
+        .error-input { width: 100%; min-height: 70px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 8px; color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 0.8rem; resize: vertical; outline: none; }
+        .error-input:focus { border-color: #ef4444; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Navbar */
@@ -307,6 +315,14 @@
                 <div class="meta-item"><i class="fas fa-pen-nib"></i> ${dayData.q}</div>
                 <div class="meta-item"><i class="fas fa-sync"></i> ${dayData.rev}</div>
             </div>
+            <div class="error-section">
+                <button class="error-toggle" onclick="toggleErrorInput(${dayData.day})" type="button">
+                    <i class="fas fa-book" style="color: #ef4444;"></i> Caderno de Erros
+                </button>
+                <div class="error-input-wrap" id="error-wrap-${dayData.day}">
+                    <textarea class="error-input" id="error-input-${dayData.day}" placeholder="Anote aqui o erro, dúvida ou observação sobre o conteúdo deste dia..." oninput="saveErrorNote(${dayData.day})"></textarea>
+                </div>
+            </div>
             <button class="check-day" onclick="toggleDay(${dayData.day})">
                 <i class="fas fa-check"></i> <span class="check-text">Marcar como Feito</span>
             </button>
@@ -399,8 +415,33 @@
         }
     }
 
+    function toggleErrorInput(day) {
+        const wrap = document.getElementById(`error-wrap-${day}`);
+        wrap.classList.toggle('open');
+        if (wrap.classList.contains('open')) {
+            const input = document.getElementById(`error-input-${day}`);
+            if (input) setTimeout(() => input.focus(), 100);
+        }
+    }
+
+    function saveErrorNote(day) {
+        const input = document.getElementById(`error-input-${day}`);
+        const notes = JSON.parse(localStorage.getItem('mystudy_error_notes')) || {};
+        notes[`day-${day}`] = input.value;
+        localStorage.setItem('mystudy_error_notes', JSON.stringify(notes));
+    }
+
+    function loadErrorNotes() {
+        const notes = JSON.parse(localStorage.getItem('mystudy_error_notes')) || {};
+        Object.keys(notes).forEach(key => {
+            const input = document.getElementById(`error-input-${key}`);
+            if (input) input.value = notes[key];
+        });
+    }
+
     renderGrids();
     loadProgress();
+    loadErrorNotes();
 </script>
 
 <!-- Register Service Worker -->
