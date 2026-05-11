@@ -958,16 +958,18 @@
 
     function loadTodayStudy() {
         const now = new Date();
-        const startDate = new Date('2026-04-12'); // Dia 1 do cronograma
+        const startDate = new Date('2026-04-12');
         const diffTime = now - startDate;
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 porque dia 1 é o primeiro
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-        let todayData = null;
         const allData = [...dataWeek1, ...dataWeek2, ...dataWeek3, ...dataWeek4];
-        todayData = allData.find(d => d.day === diffDays);
+        const totalDays = allData.length;
+
+        // Cronograma cíclico: após o dia 28, volta ao dia 1 automaticamente
+        const cycleDay = ((diffDays - 1) % totalDays) + 1;
+        let todayData = allData.find(d => d.day === cycleDay);
 
         if (!todayData) {
-            // Se não encontrou (antes do início ou depois), mostra mensagem
             document.getElementById('today-card').innerHTML = `
                 <div style="text-align: center; color: var(--text-muted);">
                     <i class="fas fa-calendar-day" style="font-size: 3rem; margin-bottom: 20px; color: var(--primary);"></i>
