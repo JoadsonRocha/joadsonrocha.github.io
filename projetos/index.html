@@ -3,129 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projetos • Joadson Rocha</title>
+    <title>Projetos Desktop • Joadson Rocha</title>
     
+    <!-- Ícone da página -->
+    <link rel="icon" type="image/x-icon" href="../JoadsonRocha.ico">
+
+    <!-- Fonts e Ícones -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <style>
-        :root {
-            --bg: #0f172a;
-            --card: rgba(30, 41, 59, 0.7);
-            --primary: #6366f1;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Outfit', sans-serif;
-            margin: 0;
-            padding: 4rem 5%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .project-card {
-            background: var(--card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            background: rgba(30, 41, 59, 0.9);
-        }
-
-        .project-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-        }
-
-        .project-card h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            margin: 0;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .back-link {
-            margin-top: 4rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.3s;
-        }
-
-        .back-link:hover {
-            color: var(--primary);
-        }
-    </style>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-
-    <h1>Nossos Projetos</h1>
-
-    <div class="projects-grid">
-        <a href="lumina/index.html" class="project-card">
-            <div class="project-icon"><i class="fas fa-play-circle"></i></div>
-            <h2>Lumina Presentation</h2>
-            <p>Visualizador e apresentador de imagens de alta performance com modo projeção e design premium.</p>
-        </a>
-
-        <a href="multdownload/index.html" class="project-card">
-            <div class="project-icon"><i class="fas fa-download"></i></div>
-            <h2>MultDownload 4.0</h2>
-            <p>Baixe vídeos e áudios do YouTube em alta qualidade com simplicidade e performance.</p>
-        </a>
-
-        <!-- Placeholder for future projects -->
-        <div class="project-card" style="opacity: 0.5; cursor: default;">
-            <div class="project-icon"><i class="fas fa-plus"></i></div>
-            <h2>Em breve</h2>
-            <p>Mais ferramentas desktop de alta performance estão sendo preparadas.</p>
-        </div>
+    
+    <!-- Background Glows -->
+    <div class="bg-glows">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
     </div>
 
-    <a href="../index.html" class="back-link">
-        <i class="fas fa-arrow-left"></i> Voltar ao Portfólio
-    </a>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Language Toggle -->
+    <button class="lang-toggle" id="langToggle" aria-label="Alternar Idioma">
+        <span>PT</span>
+    </button>
+
+    <!-- Botão Hambúrguer -->
+    <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Abrir menu" tabindex="0" onkeypress="if(event.key === 'Enter') toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Menu lateral -->
+    <nav class="menu-side" id="menuSide">
+        <ul>
+            <li><a href="../index.html" data-i18n="nav-home">Inicio</a></li>
+            <li><a href="../sobre.html" data-i18n="nav-about">Sobre Mim</a></li>
+            <li><a href="../artigo.html" data-i18n="nav-blog">Blog</a></li>
+            <li><a href="../contato.html" data-i18n="nav-contact">Contato</a></li>
+            <li><a href="index.html" class="active"><i class="fas fa-desktop" style="margin-right:6px"></i><span data-i18n="nav-projects">Projetos Desktop</span></a></li>
+            <li><a href="../my%20study/index.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i><span data-i18n="nav-dashboard">Meu Dashboard</span></a></li>
+            <li><a href="../my%20study/pages/meta-diaria.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i><span data-i18n="nav-goals">Meta Diária</span></a></li>
+            <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>RiseMindr</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 60px;">
+        
+        <header style="padding-bottom: 20px;">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">Projetos em Destaque</h1>
+            <p class="subtitle">Descubra ferramentas desktop de alta performance construídas com tecnologias web modernas.</p>
+        </header>
+
+        <section style="padding-top: 20px;">
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"><i class="fas fa-play-circle"></i></div>
+                    <h3>Lumina Presentation</h3>
+                    <p>Visualizador e apresentador de imagens de alta performance com design Glassmorphism e modo projeção.</p>
+                    <div class="tech">
+                        <span>Electron</span>
+                        <span>JavaScript</span>
+                        <span>Glassmorphism</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="lumina/index.html" class="btn"><i class="fas fa-external-link-alt"></i> Ver Detalhes</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"><i class="fas fa-download"></i></div>
+                    <h3>MultDownload 4.0</h3>
+                    <p>Ferramenta para baixar vídeos e áudios do YouTube em alta qualidade com interface performática.</p>
+                    <div class="tech">
+                        <span>Electron</span>
+                        <span>FFmpeg</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="multdownload/index.html" class="btn"><i class="fas fa-external-link-alt"></i> Ver Detalhes</a>
+                    </div>
+                </div>
+
+                <div class="project-card" style="opacity: 0.6; pointer-events: none; border-style: dashed;">
+                    <div style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 15px;"><i class="fas fa-plus"></i></div>
+                    <h3>Em Breve</h3>
+                    <p>Mais ferramentas desktop de alta performance estão sendo preparadas. Fique atento para as próximas novidades.</p>
+                    <div class="tech">
+                        <span>Em Desenvolvimento</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="../index.html" class="btn" style="background: transparent; border: 1px solid var(--border); color: var(--text);"><i class="fas fa-arrow-left"></i> Voltar ao Portfólio</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Joadson Rocha — Desenvolvedor Web • Boa Vista - RR</p>
+    </footer>
+
+    <!-- Global JS -->
+    <script src="../script.js"></script>
 
 </body>
 </html>
