@@ -71,20 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Project Cards Animation - Smoother & staggered
-  const projectCards = document.querySelectorAll('.project-card');
-  if (projectCards.length > 0) {
-    projectCards.forEach((card, i) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
-      setTimeout(() => {
-        card.style.transition = 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, 200 + i * 100);
-    });
-  }
-
   // Cursor Glow Effect (Interactive)
   document.addEventListener('mousemove', (e) => {
     const x = e.clientX;
@@ -95,22 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.setProperty('--cursor-y', `${y}px`);
   });
 
-  // Trigger timeline check on load
-  showTimelineOnScroll();
-});
+  // Intersection Observer for Fade-Up Animations on Scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
 
-// Timeline Animation Function
-function showTimelineOnScroll() {
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  if (timelineItems.length > 0) {
-    timelineItems.forEach(item => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        item.classList.add('visible');
+  const fadeUpObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
       }
     });
-  }
-}
+  }, observerOptions);
+
+  // Apply to project cards and sections
+  const animatedElements = document.querySelectorAll('.project-card, .dashboard-box, .timeline-item');
+  animatedElements.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(40px)';
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+    
+    // Add staggered delay based on child index if it's a grid item
+    if (el.classList.contains('project-card')) {
+       el.style.transitionDelay = `${(i % 3) * 100}ms`;
+    }
+    
+    fadeUpObserver.observe(el);
+  });
+});
 
 // Language Toggle Logic
 const langToggle = document.getElementById('langToggle');
@@ -183,9 +184,13 @@ function updateLanguage(lang) {
         if (span) {
            span.innerText = translations[lang][key];
         } else {
-           // If no span, just replace text node
+           // If no span, replace text node or create one
            const textNode = Array.from(el.childNodes).find(node => node.nodeType === 3 && node.textContent.trim().length > 0);
-           if (textNode) textNode.textContent = ' ' + translations[lang][key];
+           if (textNode) {
+             textNode.textContent = ' ' + translations[lang][key];
+           } else {
+             el.appendChild(document.createTextNode(' ' + translations[lang][key]));
+           }
         }
       } else {
         el.innerText = translations[lang][key];
