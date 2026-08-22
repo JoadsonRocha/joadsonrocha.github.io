@@ -1,9 +1,10 @@
 <div align="center">
   <img src="minha-foto.png" alt="Joadson Rocha" width="150" style="border-radius: 50%;">
   
-  # 🚀 Joadson Rocha | Gestor em TI & Desenvolvedor Full Stack
+  # 🚀 Joadson Rocha
+  ### FULL STACK DEVELOPER | GESTOR DE TI • GERENTE DE PROJETOS & EDTECH | PROFESSOR
   
-  **Gestor em TI & Desenvolvedor Full Stack especializado em produtos SaaS (StratisPlanner, RiseMindr, Mestrio), aplicações desktop de alta performance (Electron/Python), automações e metodologias ágeis.**
+  **Profissional de Tecnologia e Educação com graduação em Gestão em TI, MBA em Gestão Ágil de Projetos e sólida formação em Scrum/Design Thinking, Gestão da Qualidade (ISO 9000) e Cibersegurança. Criador de produtos SaaS (StratisPlanner, RiseMindr, Mestrio), soluções EdTech e aplicações desktop de alta escala.**
 
   [![Website](https://img.shields.io/badge/Website-Portfólio-blue?style=for-the-badge&logo=google-chrome)](https://joadsonrocha.github.io)
   [![Currículo](https://img.shields.io/badge/Currículo-Ver%20CV-violet?style=for-the-badge&logo=googledocs)](https://joadsonrocha.github.io/curriculo.html)
@@ -17,9 +18,9 @@
 ## 🌐 Visão Geral
 
 Bem-vindo ao repositório central do meu **Portfólio Pessoal**. Este repositório (`joadsonrocha.github.io`) atua como o *core* da minha presença profissional na web, reunindo:
-- **Produtos SaaS em Produção**: Aplicações completas e ativas no ar com foco em usabilidade, escala e produtividade.
-- **Currículo Profissional Integrado**: Formação acadêmica multidisciplinar (*Gestão em TI, Especialização em Projetos Ágeis, Pedagogia, História e Física*), histórico profissional e competências.
-- **Ecossistema Open Source**: Projetos Desktop (Electron, FFmpeg, Python) e ferramentas web com milhares de usuários.
+- **Produtos SaaS em Produção**: Aplicações completas e ativas no ar com foco em usabilidade, escala e produtividade (**StratisPlanner**, **RiseMindr**, **Mestrio**).
+- **Currículo Profissional Integrado**: Formação acadêmica multidisciplinar (*Gestão em TI, MBA em Gestão Ágil de Projetos, Pedagogia, História e Física*), histórico profissional e competências.
+- **Soluções EdTech & Ecossistema Open Source**: Projetos educacionais, aplicações desktop (Electron, FFmpeg, Python) e ferramentas web com milhares de usuários.
 
 > **Acesse o portfólio ao vivo:** [joadsonrocha.github.io](https://joadsonrocha.github.io) | **Ver Currículo:** [joadsonrocha.github.io/curriculo.html](https://joadsonrocha.github.io/curriculo.html)
 
