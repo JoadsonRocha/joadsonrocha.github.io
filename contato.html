@@ -7,14 +7,14 @@
   <title>Contato • Joadson Rocha</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome para ícone do hambúrguer -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Ícone da página -->
   <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
 
   <!-- CSS EXTERNO -->
-  <link rel="stylesheet" href="style.css?v=1.0.3" />
+  <link rel="stylesheet" href="style.css?v=1.0.5" />
 
   <!-- 🤖 JSON-LD para SEO -->
   <script type="application/ld+json">
@@ -27,13 +27,14 @@
       "sameAs": [
         "https://github.com/joadsonrocha",
         "https://www.linkedin.com/in/joadson-rocha",
-        "https://instagram.com/joadsonrocha_29",
-        "https://leving.com.br"
+        "https://instagram.com/joadsonrocha_30",
+        "https://stratisplanner.com.br",
+        "https://www.risemindr.com/"
       ],
-      "jobTitle": "Desenvolvedor Web",
+      "jobTitle": "Gestor em TI & Desenvolvedor Full Stack",
       "worksFor": {
         "@type": "Organization",
-        "name": "Freelancer"
+        "name": "Freelancer / OnRocha"
       },
       "address": {
         "@type": "PostalAddress",
@@ -46,6 +47,12 @@
 </head>
 
 <body>
+  <!-- Background Glows -->
+  <div class="bg-glows">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+  </div>
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress-container">
@@ -57,6 +64,11 @@
     <i class="fas fa-moon"></i>
   </button>
 
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="langToggle" aria-label="Alternar Idioma">
+    <span>PT</span>
+  </button>
+
   <!-- Botão Hambúrguer -->
   <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Abrir menu" tabindex="0"
     onkeypress="if(event.key === 'Enter') toggleMenu()">
@@ -66,25 +78,26 @@
   <!-- Menu lateral -->
   <nav class="menu-side" id="menuSide">
     <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="sobre.html">Sobre Mim</a></li>
-      <li><a href="/artigo.html">Blog</a></li>
-      <li><a href="contato.html" class="active">Contato</a></li>
-      <li><a href="my%20study/index.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>Dashboard</a></li>
-      <li><a href="my%20study/pages/meta-diaria.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>Meta Diária</a></li>
-      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>RiseMindr</a></li>
+      <li><a href="index.html" data-i18n="nav-home">Inicio</a></li>
+      <li><a href="sobre.html" data-i18n="nav-about">Sobre Mim</a></li>
+      <li><a href="curriculo.html" data-i18n="nav-cv"><i class="fas fa-file-contract" style="margin-right:6px"></i>Currículo</a></li>
+      <li><a href="artigo.html" data-i18n="nav-blog">Blog</a></li>
+      <li><a href="contato.html" class="active" data-i18n="nav-contact">Contato</a></li>
+      <li><a href="https://stratisplanner.com.br" target="_blank"><i class="fas fa-tasks" style="margin-right:6px; color:#3b82f6;"></i>StratisPlanner</a></li>
+      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-bolt" style="margin-right:6px; color:#10b981;"></i>RiseMindr</a></li>
+      <li><a href="https://mestrio-production.up.railway.app/" target="_blank"><i class="fas fa-cubes" style="margin-right:6px; color:#8b5cf6;"></i>Mestrio</a></li>
     </ul>
   </nav>
 
   <div class="container">
     <header>
       <h1>Entre em Contato</h1>
-      <p>Estou sempre aberto a novos projetos, colaborações e conversas sobre tecnologia. Envie sua mensagem!</p>
+      <p class="subtitle">Estou sempre aberto a novos projetos, parcerias SaaS, consultorias e oportunidades. Envie sua mensagem!</p>
     </header>
 
     <div class="contact-grid">
       <div class="info-section">
-        <h2>Informações</h2>
+        <h2>Informações de Contato</h2>
         <div class="contact-methods">
           <div class="contact-item">
             <div class="contact-icon">📍</div>
@@ -109,6 +122,14 @@
               <p><a href="https://www.linkedin.com/in/joadson-rocha" target="_blank">in/joadson-rocha</a></p>
             </div>
           </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📄</div>
+            <div class="contact-text">
+              <h3>Currículo</h3>
+              <p><a href="curriculo.html">Ver Currículo Completo & PDF</a></p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -117,7 +138,7 @@
         <form id="contactForm">
           <div class="form-group">
             <label for="name">Nome</label>
-            <input type="text" id="name" class="form-control" placeholder="Seu nome" required />
+            <input type="text" id="name" class="form-control" placeholder="Seu nome completo" required />
           </div>
           <div class="form-group">
             <label for="email">E-mail</label>
@@ -125,9 +146,9 @@
           </div>
           <div class="form-group">
             <label for="message">Mensagem</label>
-            <textarea id="message" class="form-control" placeholder="Como posso ajudar?" required></textarea>
+            <textarea id="message" class="form-control" placeholder="Como posso ajudar no seu projeto ou empresa?" required></textarea>
           </div>
-          <button type="submit" class="btn">Enviar Mensagem</button>
+          <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Enviar Mensagem</button>
         </form>
       </div>
     </div>
@@ -139,10 +160,10 @@
   </button>
 
   <footer>
-    <p>© 2025 Joadson Rocha — Desenvolvedor Web em Boa Vista, RR</p>
+    <p>© 2025 Joadson Rocha — Gestor em TI & Desenvolvedor Full Stack • Boa Vista, RR</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
