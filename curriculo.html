@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currículo Profissional • Joadson Rocha</title>
+
+  <!-- Ícone da página -->
+  <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
+
+  <!-- 🔍 SEO Básico -->
+  <meta name="description"
+    content="Currículo de Joadson Rocha — Gestor em TI, Desenvolvedor Full Stack e Especialista em Projetos Ágeis. Formação multidisciplinar em Pedagogia, História e Física.">
+  <meta name="keywords"
+    content="Currículo, Joadson Rocha, Gestor em TI, Desenvolvedor Full Stack, Projetos Ágeis, Scrum, React, Node.js, Electron, Python, StratisPlanner, RiseMindr, Mestrio">
+  <meta name="author" content="Joadson Rocha">
+  <link rel="canonical" href="https://joadsonrocha.github.io/curriculo.html">
+
+  <!-- Fonts e Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="style.css?v=1.0.5" />
+</head>
+
+<body>
+  <!-- Background Glows -->
+  <div class="bg-glows">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="langToggle" aria-label="Alternar Idioma">
+    <span>PT</span>
+  </button>
+
+  <!-- Botão Hambúrguer -->
+  <div class="hamburger" onclick="toggleMenu()" role="button" aria-label="Abrir menu" tabindex="0"
+    onkeypress="if(event.key === 'Enter') toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Menu lateral -->
+  <nav class="menu-side" id="menuSide">
+    <ul>
+      <li><a href="index.html" data-i18n="nav-home">Inicio</a></li>
+      <li><a href="sobre.html" data-i18n="nav-about">Sobre Mim</a></li>
+      <li><a href="curriculo.html" class="active" data-i18n="nav-cv">Currículo</a></li>
+      <li><a href="artigo.html" data-i18n="nav-blog">Blog</a></li>
+      <li><a href="contato.html" data-i18n="nav-contact">Contato</a></li>
+      <li><a href="https://stratisplanner.com.br" target="_blank"><i class="fas fa-tasks" style="margin-right:6px; color:#3b82f6;"></i>StratisPlanner</a></li>
+      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-bolt" style="margin-right:6px; color:#10b981;"></i>RiseMindr</a></li>
+      <li><a href="https://mestrio-production.up.railway.app/" target="_blank"><i class="fas fa-cubes" style="margin-right:6px; color:#8b5cf6;"></i>Mestrio</a></li>
+    </ul>
+  </nav>
+
+  <div class="container cv-page">
+
+    <!-- CV Header Action Bar -->
+    <div class="cv-action-bar no-print">
+      <a href="index.html" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> <span data-i18n="cv-back">Voltar ao Portfólio</span>
+      </a>
+      <button onclick="window.print()" class="btn btn-primary">
+        <i class="fas fa-print"></i> <span data-i18n="cv-print">Imprimir / Salvar PDF</span>
+      </button>
+    </div>
+
+    <!-- CV Container Paper Style -->
+    <div class="cv-paper">
+      
+      <!-- Top CV Header -->
+      <header class="cv-header">
+        <div class="cv-header-left">
+          <div class="cv-avatar">
+            <img src="minha-foto.png" alt="Foto de Joadson Rocha" />
+          </div>
+          <div class="cv-title-box">
+            <h1>Joadson Rocha</h1>
+            <h2 class="cv-subtitle" data-i18n="cv-role">Gestor em TI & Desenvolvedor Full Stack • Especialista em Projetos Ágeis</h2>
+            <div class="cv-contact-pills">
+              <span><i class="fas fa-map-marker-alt"></i> Boa Vista, RR - Brasil</span>
+              <a href="mailto:joadsonrocha2022@gmail.com"><i class="fas fa-envelope"></i> joadsonrocha2022@gmail.com</a>
+              <a href="https://www.linkedin.com/in/joadson-rocha" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/joadson-rocha</a>
+              <a href="https://github.com/joadsonrocha" target="_blank"><i class="fab fa-github"></i> github.com/joadsonrocha</a>
+              <a href="https://joadsonrocha.github.io" target="_blank"><i class="fas fa-globe"></i> joadsonrocha.github.io</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Resumo Executivo -->
+      <section class="cv-section">
+        <h3 class="cv-section-title"><i class="fas fa-user-tie"></i> <span data-i18n="cv-summary-title">Resumo Executivo</span></h3>
+        <p class="cv-text" data-i18n="cv-summary-text">
+          Profissional multidisciplinar com sólida formação em <strong>Gestão em Tecnologia da Informação</strong> aliada a licenciaturas em <strong>Pedagogia</strong>, <strong>História</strong> e <strong>Física</strong>. Criador e mantenedor de produtos SaaS e soluções open-source de alta performance com milhares de acessos, incluindo <strong>StratisPlanner</strong>, <strong>RiseMindr</strong>, <strong>Mestrio</strong>, <strong>Lumina</strong> e <strong>MultDownload</strong>. Especialista em metodologias ágeis (Scrum, Kanban, Jira), com ampla vivência em arquitetura de software, desenvolvimento Full Stack (JavaScript, TypeScript, React, Node.js, Python, Electron) e liderança focada em entrega de valor e experiência do usuário.
+        </p>
+      </section>
+
+      <!-- Destaque de Produtos SaaS Criados -->
+      <section class="cv-section">
+        <h3 class="cv-section-title"><i class="fas fa-rocket"></i> <span data-i18n="cv-saas-title">Produtos em Produção & SaaS Criados</span></h3>
+        <div class="cv-saas-grid">
+
+          <div class="cv-card">
+            <div class="cv-card-header">
+              <div>
+                <h4 class="cv-item-title">StratisPlanner <span class="badge-live"><i class="fas fa-circle"></i> Online</span></h4>
+                <div class="cv-item-subtitle">Plataforma de Gestão Estratégica & Planejamento Ágil</div>
+              </div>
+              <a href="https://stratisplanner.com.br" target="_blank" class="cv-link no-print">stratisplanner.com.br <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <p class="cv-item-desc" data-i18n="cv-stratis-desc">
+              SaaS focado em governança ágil, acompanhamento de OKRs, metas estratégicas, gestão de prazos e visão executiva de projetos corporativos.
+            </p>
+            <div class="cv-tags">
+              <span>React</span> <span>TypeScript</span> <span>Node.js</span> <span>APIs REST</span> <span>Cloud</span>
+            </div>
+          </div>
+
+          <div class="cv-card">
+            <div class="cv-card-header">
+              <div>
+                <h4 class="cv-item-title">RiseMindr <span class="badge-live"><i class="fas fa-circle"></i> Online</span></h4>
+                <div class="cv-item-subtitle">Plataforma de Produtividade, Hábitos & Performance</div>
+              </div>
+              <a href="https://www.risemindr.com/" target="_blank" class="cv-link no-print">risemindr.com <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <p class="cv-item-desc" data-i18n="cv-risemindr-desc">
+              Ecossistema para gerenciamento de foco, rotinas inteligentes e metas de alto rendimento, integrando analytics comportamental e visual moderno.
+            </p>
+            <div class="cv-tags">
+              <span>Full Stack</span> <span>JavaScript</span> <span>UI/UX Glassmorphism</span> <span>Cloud DB</span>
+            </div>
+          </div>
+
+          <div class="cv-card">
+            <div class="cv-card-header">
+              <div>
+                <h4 class="cv-item-title">Mestrio <span class="badge-live"><i class="fas fa-circle"></i> Online</span></h4>
+                <div class="cv-item-subtitle">Plataforma em Nuvem de Gestão & Operações</div>
+              </div>
+              <a href="https://mestrio-production.up.railway.app/" target="_blank" class="cv-link no-print">mestrio.up.railway.app <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <p class="cv-item-desc" data-i18n="cv-mestrio-desc">
+              Aplicação distribuída com foco em otimização de fluxos operacionais, dashboards dinâmicos e controle modular de recursos.
+            </p>
+            <div class="cv-tags">
+              <span>Node.js</span> <span>React</span> <span>PostgreSQL/Railway</span> <span>CI/CD</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Experiência Profissional -->
+      <section class="cv-section">
+        <h3 class="cv-section-title"><i class="fas fa-briefcase"></i> <span data-i18n="cv-exp-title">Experiência Profissional</span></h3>
+        <div class="cv-timeline">
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-dot"></div>
+            <div class="cv-timeline-content">
+              <div class="cv-timeline-header">
+                <div>
+                  <h4 class="cv-item-title" data-i18n="cv-exp1-title">Gestor em TI, Desenvolvedor Full Stack & Fundador</h4>
+                  <div class="cv-item-company">Ecossistema OnRocha / Projetos SaaS & Open Source</div>
+                </div>
+                <span class="cv-date">2022 — Presente</span>
+              </div>
+              <ul class="cv-bullet-list">
+                <li>Arquitetura e desenvolvimento de ponta a ponta de soluções web e desktop (StratisPlanner, RiseMindr, Mestrio, Lumina Presentation, MultDownload).</li>
+                <li>Implementação de boas práticas de Engenharia de Software, metodologias ágeis (Scrum/Kanban) e CI/CD para deploy contínuo.</li>
+                <li>Design de interfaces centradas no usuário com Glassmorphism, animações responsivas e acessibilidade.</li>
+                <li>Integração de APIs complexas, processamento de mídia em tempo real com FFmpeg e microsserviços.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-timeline-item">
+            <div class="cv-timeline-dot"></div>
+            <div class="cv-timeline-content">
+              <div class="cv-timeline-header">
+                <div>
+                  <h4 class="cv-item-title" data-i18n="cv-exp2-title">Consultor em Tecnologia da Informação & Desenvolvedor</h4>
+                  <div class="cv-item-company">Atuação Autônoma / Freelancer</div>
+                </div>
+                <span class="cv-date">2020 — 2023</span>
+              </div>
+              <ul class="cv-bullet-list">
+                <li>Desenvolvimento de landing pages de alta conversão, portais web e sistemas desktop customizados para empresas e clientes locais.</li>
+                <li>Automação de rotinas com scripts em Python e criação de executáveis multiplataforma.</li>
+                <li>Treinamento de equipes em ferramentas de produtividade e organização ágil (Jira, Trello, Git).</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Formação Acadêmica Multidisciplinar -->
+      <section class="cv-section">
+        <h3 class="cv-section-title"><i class="fas fa-graduation-cap"></i> <span data-i18n="cv-edu-title">Formação Acadêmica Multidisciplinar</span></h3>
+        <div class="cv-edu-grid">
+          
+          <div class="cv-edu-card highlight-degree">
+            <div class="cv-edu-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="cv-edu-info">
+              <h4>Gestão em Tecnologia da Informação</h4>
+              <p class="cv-edu-level">Graduação Tecnológica</p>
+              <p class="cv-edu-desc">Gestão de infraestrutura, governança de TI, arquitetura de sistemas, segurança da informação e liderança técnica.</p>
+            </div>
+          </div>
+
+          <div class="cv-edu-card highlight-degree">
+            <div class="cv-edu-icon"><i class="fas fa-tasks"></i></div>
+            <div class="cv-edu-info">
+              <h4>Especialização em Projetos Ágeis</h4>
+              <p class="cv-edu-level">Pós-Graduação / Especialização</p>
+              <p class="cv-edu-desc">Frameworks ágeis (Scrum, Kanban, Lean IT), gestão de produto, métricas ágeis e liderança de times multidisciplinares.</p>
+            </div>
+          </div>
+
+          <div class="cv-edu-card">
+            <div class="cv-edu-icon"><i class="fas fa-book-reader"></i></div>
+            <div class="cv-edu-info">
+              <h4>Pedagogia</h4>
+              <p class="cv-edu-level">Licenciatura Plena</p>
+              <p class="cv-edu-desc">Comunicação pedagógica, didática para treinamento técnico e experiência do usuário fundamentada em cognição.</p>
+            </div>
+          </div>
+
+          <div class="cv-edu-card">
+            <div class="cv-edu-icon"><i class="fas fa-landmark"></i></div>
+            <div class="cv-edu-info">
+              <h4>História</h4>
+              <p class="cv-edu-level">Licenciatura Plena</p>
+              <p class="cv-edu-desc">Pensamento crítico, contextualização sociocultural, análise documental e visão sistêmica de processos.</p>
+            </div>
+          </div>
+
+          <div class="cv-edu-card">
+            <div class="cv-edu-icon"><i class="fas fa-atom"></i></div>
+            <div class="cv-edu-info">
+              <h4>Física</h4>
+              <p class="cv-edu-level">Licenciatura Plena</p>
+              <p class="cv-edu-desc">Rigor analítico, modelagem matemática, resolução lógica de problemas complexos e fundamentação científica.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Competências & Stack Tecnológica -->
+      <section class="cv-section">
+        <h3 class="cv-section-title"><i class="fas fa-tools"></i> <span data-i18n="cv-skills-title">Competências Técnicas & Gestão</span></h3>
+        <div class="cv-skills-grid">
+
+          <div class="cv-skill-group">
+            <h4><i class="fas fa-code"></i> Frontend & UI</h4>
+            <div class="cv-tags">
+              <span>JavaScript (ES6+)</span> <span>TypeScript</span> <span>React.js</span>
+              <span>HTML5 Semântico</span> <span>CSS3 / Vanilla</span> <span>Tailwind CSS</span>
+              <span>Vite</span> <span>Design Systems</span> <span>Glassmorphism UX</span>
+            </div>
+          </div>
+
+          <div class="cv-skill-group">
+            <h4><i class="fas fa-server"></i> Backend & Banco de Dados</h4>
+            <div class="cv-tags">
+              <span>Node.js</span> <span>Express.js</span> <span>Python</span>
+              <span>RESTful APIs</span> <span>Supabase</span> <span>PostgreSQL</span>
+              <span>MySQL</span> <span>Automações</span>
+            </div>
+          </div>
+
+          <div class="cv-skill-group">
+            <h4><i class="fas fa-desktop"></i> Desktop & Mobile</h4>
+            <div class="cv-tags">
+              <span>Electron.js</span> <span>FFmpeg</span> <span>yt-dlp</span>
+              <span>Python Desktop (Tkinter)</span> <span>Kivy (Android)</span> <span>Capacitor</span> <span>PWA</span>
+            </div>
+          </div>
+
+          <div class="cv-skill-group">
+            <h4><i class="fas fa-chart-line"></i> Gestão Ágil & Metodologias</h4>
+            <div class="cv-tags">
+              <span>Scrum Master Practices</span> <span>Kanban</span> <span>Jira Software</span>
+              <span>Trello</span> <span>Git & GitHub Flow</span> <span>Gestão de OKRs</span>
+              <span>CI/CD Pipelines</span> <span>Liderança de Produto</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Idiomas & Soft Skills -->
+      <section class="cv-section">
+        <div class="cv-two-col">
+          <div>
+            <h3 class="cv-section-title"><i class="fas fa-language"></i> <span data-i18n="cv-lang-title">Idiomas</span></h3>
+            <ul class="cv-simple-list">
+              <li><strong>Português:</strong> Nativo</li>
+              <li><strong>Inglês:</strong> Leitura e escrita técnica</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="cv-section-title"><i class="fas fa-heart"></i> <span data-i18n="cv-soft-title">Diferenciais & Soft Skills</span></h3>
+            <ul class="cv-simple-list">
+              <li>Visão holística interdisciplinar (TI + Pedagogia + Física)</li>
+              <li>Excelente capacidade de comunicação didática e mentoria</li>
+              <li>Foco obstinado em entrega de valor e usabilidade de alto padrão</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Print / Contact CTA -->
+    <div class="cv-footer-actions no-print">
+      <a href="contato.html" class="btn"><i class="fas fa-paper-plane"></i> <span data-i18n="cv-contact-btn">Entrar em Contato</span></a>
+      <button onclick="window.print()" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> <span data-i18n="cv-print">Salvar como PDF</span></button>
+    </div>
+
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top no-print" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <footer class="no-print">
+    <p data-i18n="footer-text">© 2025 Joadson Rocha — Gestor em TI & Desenvolvedor Full Stack • Boa Vista - RR</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>

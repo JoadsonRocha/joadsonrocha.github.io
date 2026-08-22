@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joadson Rocha • Desenvolvedor Web</title>
+  <title>Joadson Rocha • Desenvolvedor Full Stack & Gestor em TI</title>
 
   <!-- Ícone da página -->
   <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
 
   <!-- 🔍 SEO Básico -->
   <meta name="description"
-    content="Portfólio de Joadson Rocha — Desenvolvedor Web especializado em aplicações desktop, automação, React, Electron e Python. Confira meus projetos e minha jornada profissional.">
+    content="Portfólio de Joadson Rocha — Gestor em TI e Desenvolvedor Full Stack especializado em SaaS (StratisPlanner, RiseMindr, Mestrio), aplicações desktop Electron e automação.">
   <meta name="keywords"
-    content="Desenvolvedor Web, Electron, React, Python, Node.js, Automação, Portfólio, Arquitetura de Software, Kivy, JavaScript, Joadson Rocha, Boa Vista, Projetos">
+    content="Desenvolvedor Full Stack, Gestor em TI, StratisPlanner, RiseMindr, Mestrio, Electron, React, Python, Node.js, Automação, Portfólio, Projetos Ágeis, Scrum, Joadson Rocha">
   <meta name="author" content="Joadson Rocha">
   <link rel="canonical" href="https://joadsonrocha.github.io">
 
   <!-- 📣 SEO para Compartilhamento (WhatsApp, LinkedIn, Facebook) -->
-  <meta property="og:title" content="Portfólio — Joadson Rocha">
+  <meta property="og:title" content="Portfólio — Joadson Rocha | Gestor em TI & Desenvolvedor Full Stack">
   <meta property="og:description"
-    content="Desenvolvedor Web e criador de soluções desktop, mobile e automações. Veja meus principais projetos e trajetória.">
+    content="Criador de soluções SaaS, aplicações desktop e automações em produção. Conheça o StratisPlanner, RiseMindr, Mestrio e meu currículo.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://joadsonrocha.github.io">
   <meta property="og:image" content="minha-foto.png">
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- CSS EXTERNO -->
-  <link rel="stylesheet" href="style.css?v=1.0.4" />
+  <link rel="stylesheet" href="style.css?v=1.0.5" />
 
   <!-- 🤖 JSON-LD para SEO -->
   <script type="application/ld+json">
@@ -49,12 +49,13 @@
         "https://github.com/joadsonrocha",
         "https://www.linkedin.com/in/joadson-rocha",
         "https://instagram.com/joadsonrocha_30",
-        "https://leving.com.br"
+        "https://stratisplanner.com.br",
+        "https://www.risemindr.com/"
       ],
-      "jobTitle": "Desenvolvedor Web",
+      "jobTitle": "Gestor em TI & Desenvolvedor Full Stack",
       "worksFor": {
         "@type": "Organization",
-        "name": "Freelancer"
+        "name": "Freelancer / OnRocha"
       },
       "address": {
         "@type": "PostalAddress",
@@ -100,9 +101,12 @@
     <ul>
       <li><a href="index.html" class="active" data-i18n="nav-home">Inicio</a></li>
       <li><a href="sobre.html" data-i18n="nav-about">Sobre Mim</a></li>
-      <li><a href="/artigo.html" data-i18n="nav-blog">Blog</a></li>
+      <li><a href="curriculo.html" data-i18n="nav-cv"><i class="fas fa-file-contract" style="margin-right:6px"></i>Currículo</a></li>
+      <li><a href="artigo.html" data-i18n="nav-blog">Blog</a></li>
       <li><a href="contato.html" data-i18n="nav-contact">Contato</a></li>
-      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>RiseMindr</a></li>
+      <li><a href="https://stratisplanner.com.br" target="_blank"><i class="fas fa-tasks" style="margin-right:6px; color:#3b82f6;"></i>StratisPlanner</a></li>
+      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-bolt" style="margin-right:6px; color:#10b981;"></i>RiseMindr</a></li>
+      <li><a href="https://mestrio-production.up.railway.app/" target="_blank"><i class="fas fa-cubes" style="margin-right:6px; color:#8b5cf6;"></i>Mestrio</a></li>
     </ul>
   </nav>
 
@@ -193,18 +197,191 @@
         <a href="https://instagram.com/joadsonrocha_30" target="_blank" class="contact-link">
           <i class="fab fa-instagram"></i> Instagram
         </a>
-        <a href="https://www.risemindr.com/" target="_blank" class="contact-link">
-          <i class="fas fa-globe"></i> risemindr.com
+        <a href="mailto:joadsonrocha2022@gmail.com" class="contact-link">
+          <i class="fas fa-envelope"></i> E-mail
+        </a>
+      </div>
+
+      <div style="margin-top: 30px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="curriculo.html" class="btn" style="padding: 13px 26px; font-size: 0.95rem;">
+          <i class="fas fa-file-contract"></i> <span data-i18n="btn-view-cv">Acessar Currículo Completo</span>
+        </a>
+        <a href="#saas-showcase" class="btn btn-secondary" style="padding: 13px 26px; font-size: 0.95rem;">
+          <i class="fas fa-rocket"></i> <span data-i18n="btn-view-saas">Aplicações SaaS no Ar</span>
         </a>
       </div>
     </header>
 
-    <!-- Projetos -->
-    <section>
-      <h2 class="section-title" data-i18n="section-projects-title">Meus Projetos</h2>
+    <!-- Destaque: Aplicações SaaS em Produção -->
+    <section id="saas-showcase" class="featured-section">
+      <div style="text-align: center;">
+        <span class="section-tag"><i class="fas fa-star"></i> <span data-i18n="tag-featured-saas">SaaS & Aplicações em Produção</span></span>
+        <h2 class="section-title" style="margin-bottom: 20px;" data-i18n="title-saas-showcase">Produtos Ativos no Ar</h2>
+      </div>
 
-      <div class="projects-grid">
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+      <div class="saas-grid">
+
+        <!-- StratisPlanner -->
+        <div class="saas-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
+          <div class="saas-card-header">
+            <div>
+              <span class="saas-category">Gestão Estratégica & OKRs</span>
+              <h3>StratisPlanner</h3>
+            </div>
+            <span class="badge-live"><i class="fas fa-circle"></i> Online</span>
+          </div>
+          <p class="saas-desc" data-i18n="saas-stratis-desc">
+            Plataforma robusta para planejamento estratégico ágil, governança de projetos, alinhamento de metas e visão executiva de alta produtividade.
+          </p>
+          <div class="tech">
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>Node.js</span>
+            <span>REST APIs</span>
+            <span>SaaS</span>
+          </div>
+          <div class="project-links" style="margin-top: auto;">
+            <a href="https://stratisplanner.com.br" target="_blank" class="btn">
+              <i class="fas fa-external-link-alt"></i> <span data-i18n="btn-access-saas">Acessar stratisplanner.com.br</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RiseMindr -->
+        <div class="saas-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
+          <div class="saas-card-header">
+            <div>
+              <span class="saas-category">Hábitos & Alta Performance</span>
+              <h3>RiseMindr</h3>
+            </div>
+            <span class="badge-live"><i class="fas fa-circle"></i> Online</span>
+          </div>
+          <p class="saas-desc" data-i18n="saas-risemindr-desc">
+            Ecossistema digital focado em construção de hábitos consistentes, gestão de tempo, foco e analytics comportamental de desempenho.
+          </p>
+          <div class="tech">
+            <span>Full Stack</span>
+            <span>JavaScript</span>
+            <span>Glassmorphism</span>
+            <span>Cloud DB</span>
+          </div>
+          <div class="project-links" style="margin-top: auto;">
+            <a href="https://www.risemindr.com/" target="_blank" class="btn">
+              <i class="fas fa-external-link-alt"></i> <span data-i18n="btn-access-risemindr">Acessar risemindr.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mestrio -->
+        <div class="saas-card" data-tilt data-tilt-max="4" data-tilt-speed="400">
+          <div class="saas-card-header">
+            <div>
+              <span class="saas-category">Gestão em Nuvem & Operações</span>
+              <h3>Mestrio</h3>
+            </div>
+            <span class="badge-live"><i class="fas fa-circle"></i> Online</span>
+          </div>
+          <p class="saas-desc" data-i18n="saas-mestrio-desc">
+            Aplicação em nuvem para automação e centralização operacional, gerenciamento modular de fluxos e visualização inteligente de métricas.
+          </p>
+          <div class="tech">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>PostgreSQL</span>
+            <span>Railway Cloud</span>
+          </div>
+          <div class="project-links" style="margin-top: auto;">
+            <a href="https://mestrio-production.up.railway.app/" target="_blank" class="btn">
+              <i class="fas fa-external-link-alt"></i> <span data-i18n="btn-access-mestrio">Acessar Mestrio App</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção de Todos os Projetos com Filtro -->
+    <section id="todos-projetos">
+      <h2 class="section-title" data-i18n="section-projects-title">Portfólio de Projetos</h2>
+
+      <!-- Filtros por Categoria -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-th-large"></i> <span data-i18n="filter-all">Todos</span>
+        </button>
+        <button class="filter-btn" data-filter="saas">
+          <i class="fas fa-star"></i> <span data-i18n="filter-saas">SaaS & Destaques</span>
+        </button>
+        <button class="filter-btn" data-filter="desktop">
+          <i class="fas fa-desktop"></i> <span data-i18n="filter-desktop">Desktop & Electron</span>
+        </button>
+        <button class="filter-btn" data-filter="web">
+          <i class="fas fa-globe"></i> <span data-i18n="filter-web">Web & Full Stack</span>
+        </button>
+        <button class="filter-btn" data-filter="mobile">
+          <i class="fas fa-mobile-alt"></i> <span data-i18n="filter-mobile">Mobile & PWA</span>
+        </button>
+        <button class="filter-btn" data-filter="tools">
+          <i class="fas fa-tools"></i> <span data-i18n="filter-tools">Utilidades & Scripts</span>
+        </button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <!-- StratisPlanner -->
+        <div class="project-card" data-category="saas web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="margin-bottom:0;">StratisPlanner</h3>
+            <span class="badge-live"><i class="fas fa-circle"></i> Online</span>
+          </div>
+          <p data-i18n="saas-stratis-desc">Plataforma robusta para planejamento estratégico ágil, governança de projetos, alinhamento de metas e produtividade.</p>
+          <div class="tech">
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>Node.js</span>
+            <span>SaaS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://stratisplanner.com.br" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> <span data-i18n="btn-access">Visitar App</span></a>
+          </div>
+        </div>
+
+        <!-- RiseMindr -->
+        <div class="project-card" data-category="saas web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="margin-bottom:0;">RiseMindr</h3>
+            <span class="badge-live"><i class="fas fa-circle"></i> Online</span>
+          </div>
+          <p data-i18n="saas-risemindr-desc">Ecossistema digital focado em hábitos consistentes, gestão de tempo, foco e analytics comportamental.</p>
+          <div class="tech">
+            <span>Full Stack</span>
+            <span>JavaScript</span>
+            <span>Glassmorphism</span>
+          </div>
+          <div class="project-links">
+            <a href="https://www.risemindr.com/" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> <span data-i18n="btn-access">Visitar App</span></a>
+          </div>
+        </div>
+
+        <!-- Mestrio -->
+        <div class="project-card" data-category="saas web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="margin-bottom:0;">Mestrio</h3>
+            <span class="badge-live"><i class="fas fa-circle"></i> Online</span>
+          </div>
+          <p data-i18n="saas-mestrio-desc">Aplicação em nuvem para automação de fluxos operacionais, dashboards dinâmicos e controle corporativo.</p>
+          <div class="tech">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>Railway</span>
+          </div>
+          <div class="project-links">
+            <a href="https://mestrio-production.up.railway.app/" target="_blank" class="btn"><i class="fas fa-external-link-alt"></i> <span data-i18n="btn-access">Visitar App</span></a>
+          </div>
+        </div>
+
+        <!-- Lumina Presentation -->
+        <div class="project-card" data-category="desktop saas" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>Lumina Presentation</h3>
           <p data-i18n="project-lumina-desc">Visualizador e apresentador de imagens de alta performance com design Glassmorphism e modo projeção.</p>
           <div class="tech">
@@ -218,7 +395,8 @@
           </div>
         </div>
 
-         <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+        <!-- MultDownload 4.0 -->
+        <div class="project-card" data-category="desktop saas" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>MultDownload 4.0</h3>
           <p data-i18n="project-multdownload-desc">Ferramenta para Baixar vídeos e áudios do YouTube em alta qualidade com interface performática.</p>
           <div class="tech">
@@ -232,7 +410,8 @@
           </div>
         </div>
 
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+        <!-- MediaFinder -->
+        <div class="project-card" data-category="desktop" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>MediaFinder</h3>
           <p data-i18n="project-mediafinder-desc">Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.</p>
           <div class="tech">
@@ -242,15 +421,14 @@
           </div>
           <div class="project-links">
             <a href="https://github.com/JoadsonRocha/mediaFinder" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
-            <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+            <a href="https://github.com/JoadsonRocha/MediaFinder/releases/" class="btn" target="_blank" data-i18n="btn-exec">Executável</a>
           </div>
         </div>
-        <!-- project-card -->
-        <!-- INICIO-->
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- YouFinder -->
+        <div class="project-card" data-category="desktop" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>YouFinder</h3>
-          <p data-i18n="project-youfinder-desc">O YouFinder é um reprodutor minimalista de vídeos do YouTube, desenvolvido em Electron, que transforma a
-            forma de assistir conteúdos online com controle de telas.</p>
+          <p data-i18n="project-youfinder-desc">Reprodutor minimalista de vídeos do YouTube em Electron, transformando a visualização online com controle de telas.</p>
           <div class="tech">
             <span>Electron</span>
             <span>yt-dlp</span>
@@ -258,11 +436,12 @@
           </div>
           <div class="project-links">
             <a href="https://github.com/JoadsonRocha/YouFinder" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
-            <a href="https://github.com/JoadsonRocha/YouFinder/releases/tag/3.1.0" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+            <a href="https://github.com/JoadsonRocha/YouFinder/releases/tag/3.1.0" class="btn" target="_blank" data-i18n="btn-exec">Executável</a>
           </div>
         </div>
-        <!-- FIM-->
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- MultDownloader Python -->
+        <div class="project-card" data-category="desktop tools" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>MultDownloader</h3>
           <p data-i18n="project-multdownloader-desc">Aplicativo em Python/Tk Desktop para baixar vídeos e reels com FFMPEG integrado.</p>
           <div class="tech">
@@ -272,13 +451,14 @@
           </div>
           <div class="project-links">
             <a href="https://github.com/JoadsonRocha/MultDownloader" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
-            <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank" data-i18n="btn-exec">Executavel</a>
+            <a href="https://github.com/JoadsonRocha/MultDownloader/releases" class="btn" target="_blank" data-i18n="btn-exec">Executável</a>
           </div>
         </div>
 
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+        <!-- HIASD -->
+        <div class="project-card" data-category="desktop web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>HIASD</h3>
-          <p data-i18n="project-hiasd-desc">Sistema desenvolvido em HTML/CSS/JS com funcionalidades de interface moderna e lógica em JavaScript.</p>
+          <p data-i18n="project-hiasd-desc">Sistema desenvolvido com funcionalidades de interface moderna e lógica em JavaScript.</p>
           <div class="tech">
             <span>Electronjs</span>
             <span>HTML</span>
@@ -290,7 +470,8 @@
           </div>
         </div>
 
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+        <!-- HIASD-py -->
+        <div class="project-card" data-category="desktop tools" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>HIASD-py</h3>
           <p data-i18n="project-hiasdpy-desc">Versão Python do sistema HIASD, trazendo automações, lógica avançada e execução local.</p>
           <div class="tech">
@@ -299,11 +480,12 @@
             <span>Automação</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/HIASD-py" class="btn" target="" data-i18n="btn-github">Ver no GitHub</a>
+            <a href="https://github.com/JoadsonRocha/HIASD-py" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
           </div>
         </div>
 
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+        <!-- MultDownloader Kivy -->
+        <div class="project-card" data-category="mobile" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>MultDownloader Kivy</h3>
           <p data-i18n="project-kivy-desc">Versão Android do MultDownloader desenvolvida com Kivy, interface mobile e FFMPEG integrado.</p>
           <div class="tech">
@@ -312,13 +494,66 @@
             <span>Android</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank" data-i18n="btn-github">Ver no
-              GitHub</a>
+            <a href="https://github.com/JoadsonRocha/MultDownloader---Kivy-Android" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- EduInclusivo -->
+        <div class="project-card" data-category="web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>EduInclusivo</h3>
+          <p>Assistente inteligente para criação de planos de aula, PEI e projetos de alfabetização para educação inclusiva e especial.</p>
+          <div class="tech">
+            <span>TypeScript</span>
+            <span>React</span>
+            <span>IA</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/EduInclusivo" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+          </div>
+        </div>
+
+        <!-- KoFoco -->
+        <div class="project-card" data-category="web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>KoFoco</h3>
+          <p>Aplicativo de produtividade para organização de tarefas diárias com filtros de prioridade, foco no presente e visual moderno.</p>
+          <div class="tech">
+            <span>TypeScript</span>
+            <span>Productivity</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/KoFoco" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+          </div>
+        </div>
+
+        <!-- PodCast-Studio -->
+        <div class="project-card" data-category="web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>PodCast-Studio</h3>
+          <p>Converta documentos, textos e links em podcasts dinâmicos com apresentadores inteligentes e vozes personalizáveis.</p>
+          <div class="tech">
+            <span>TypeScript</span>
+            <span>Audio AI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/PodCast-Studio" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+          </div>
+        </div>
+
+        <!-- FlowHub -->
+        <div class="project-card" data-category="web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>FlowHub</h3>
+          <p>Aplicativo para gerenciamento eficiente de tarefas do dia a dia, focado em organização e produtividade.</p>
+          <div class="tech">
+            <span>TypeScript</span> <span>Node.js</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/FlowHub" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+          </div>
+        </div>
+
+        <!-- CalculadoraFlex -->
+        <div class="project-card" data-category="tools web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>CalculadoraFlex</h3>
-          <p data-i18n="project-flex-desc">Aplicativo web simples para cálculo entre gasolina e etanol.</p>
+          <p data-i18n="project-flex-desc">Aplicativo web simples e rápido para cálculo de paridade entre gasolina e etanol.</p>
           <div class="tech">
             <span>HTML</span>
             <span>CSS</span>
@@ -328,9 +563,11 @@
             <a href="https://github.com/JoadsonRocha/CalculadoraFlex" class="btn" target="_blank" data-i18n="btn-github">Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- apoe-me -->
+        <div class="project-card" data-category="tools web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>apoe-me</h3>
-          <p>Sistema de apoio financeiro a desenvolvedores. Interface simples e direta.</p>
+          <p>Sistema de apoio financeiro e patrocínio a desenvolvedores com interface direta e minimalista.</p>
           <div class="tech">
             <span>HTML</span> <span>CSS</span>
           </div>
@@ -338,9 +575,11 @@
             <a href="https://github.com/JoadsonRocha/apoe-me" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- ColetaneaJA -->
+        <div class="project-card" data-category="web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>ColetaneaJA</h3>
-          <p>Coletânea de Louvor Multiplataforma rápida e de fácil acesso.</p>
+          <p>Coletânea de Louvor Multiplataforma rápida e de fácil acesso para comunidades.</p>
           <div class="tech">
             <span>JavaScript</span> <span>HTML</span> <span>CSS</span>
           </div>
@@ -348,49 +587,11 @@
             <a href="https://github.com/JoadsonRocha/ColetaneaJA" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Contador-js</h3>
-          <p>Contador interativo desenvolvido para praticar lógicas básicas.</p>
-          <div class="tech">
-            <span>JavaScript</span> <span>HTML</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/Contador-js" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Dados</h3>
-          <p>Jogo de dados virtual. Um pequeno passatempo dinâmico no navegador.</p>
-          <div class="tech">
-            <span>JavaScript</span> <span>HTML</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/Dados" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>EduInclusivo</h3>
-          <p>Assistente inteligente para criação de planos de aula, PEI e projetos de alfabetização para educação inclusiva e especial.</p>
-          <div class="tech">
-            <span>TypeScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/EduInclusivo" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>FlowHub</h3>
-          <p>Aplicativo para gerenciamento eficiente de tarefas do dia a dia, focado em organização.</p>
-          <div class="tech">
-            <span>TypeScript</span> <span>Node.js</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/FlowHub" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- GUI-Tkinter -->
+        <div class="project-card" data-category="desktop tools" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>GUI-Tkinter</h3>
-          <p>Interface gráfica para buscar e reproduzir vídeos locais no formato MP4.</p>
+          <p>Interface gráfica em Python para indexar, buscar e reproduzir vídeos locais no formato MP4.</p>
           <div class="tech">
             <span>Python</span> <span>Tkinter</span>
           </div>
@@ -398,8 +599,34 @@
             <a href="https://github.com/JoadsonRocha/GUI-Tkinter" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Headers-Animados-CSS-e-JS</h3>
+
+        <!-- Contador-js -->
+        <div class="project-card" data-category="tools" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>Contador-js</h3>
+          <p>Contador interativo desenvolvido com lógica em JavaScript puro e eventos do DOM.</p>
+          <div class="tech">
+            <span>JavaScript</span> <span>HTML</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/Contador-js" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+          </div>
+        </div>
+
+        <!-- Dados -->
+        <div class="project-card" data-category="tools" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>Dados</h3>
+          <p>Jogo de dados virtual. Um pequeno passatempo dinâmico no navegador com animação CSS.</p>
+          <div class="tech">
+            <span>JavaScript</span> <span>HTML</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/JoadsonRocha/Dados" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+          </div>
+        </div>
+
+        <!-- Headers-Animados-CSS-e-JS -->
+        <div class="project-card" data-category="tools" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <h3>Headers-Animados</h3>
           <p>Coleção de cabeçalhos responsivos e animados desenvolvidos em HTML, CSS e JS.</p>
           <div class="tech">
             <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
@@ -408,59 +635,11 @@
             <a href="https://github.com/JoadsonRocha/Headers-Animados-CSS-e-JS" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Html-e-CSS-GoogleGlass</h3>
-          <p>Página estática informativa sobre o Google Glass.</p>
-          <div class="tech">
-            <span>HTML</span> <span>CSS</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/Html-e-CSS-GoogleGlass" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>joadsonrocha.github.io</h3>
-          <p>Repositório do portfólio pessoal e página hospedada no GitHub Pages.</p>
-          <div class="tech">
-            <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/joadsonrocha.github.io" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>KoFoco</h3>
-          <p>Ko é um aplicativo de produtividade inspirado na simplicidade e na força da palavra tupi “agora”. Ele ajuda você a organizar suas tarefas do dia com clareza e leveza, mantendo o foco no presente. Com notificações inteligentes, filtros de prioridade e visual moderno, o Ko transforma sua rotina em um fluxo natural de conquistas.</p>
-          <div class="tech">
-            <span>TypeScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/KoFoco" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Logo-Instagran</h3>
-          <p>Recriação visual do logo do Instagram utilizando apenas marcação e estilo.</p>
-          <div class="tech">
-            <span>HTML</span> <span>CSS</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/Logo-Instagran" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Modelo-Templates-dos-projetos</h3>
-          <p>Template base pré-formatado para iniciar projetos web de forma ágil e padronizada.</p>
-          <div class="tech">
-            <span>HTML</span> <span>CSS</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/Modelo-Templates-dos-projetos" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+
+        <!-- MultDowload_Web -->
+        <div class="project-card" data-category="web" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
           <h3>MultDowload_Web</h3>
-          <p>Versão web da ferramenta MultDownload com interface amigável.</p>
+          <p>Versão web da ferramenta MultDownload com interface amigável e design responsivo.</p>
           <div class="tech">
             <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
           </div>
@@ -468,49 +647,18 @@
             <a href="https://github.com/JoadsonRocha/MultDowload_Web" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
           </div>
         </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>PodCast-Studio</h3>
-          <p>Converta documentos, textos e links em podcasts dinâmicos com dois apresentadores inteligentes e vozes personalizáveis.</p>
-          <div class="tech">
-            <span>TypeScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/PodCast-Studio" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>RochaFlamengo.ga</h3>
-          <p>Blog temático dedicado ao time do Flamengo. Foco em estruturação web.</p>
-          <div class="tech">
-            <span>HTML</span> <span>CSS</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/RochaFlamengo.ga" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
-        <div class="project-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
-          <h3>Verificar-de-idade</h3>
-          <p>Aplicação em JavaScript para verificação e validação de faixa etária baseada no ano.</p>
-          <div class="tech">
-            <span>JavaScript</span> <span>HTML</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/JoadsonRocha/Verificar-de-idade" class="btn" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-          </div>
-        </div>
+
       </div>
     </section>
 
+    <!-- Painel de Estudos / Hub -->
     <section id="dashboard">
       <h2 class="section-title" data-i18n="section-dashboard-title">Painel de Estudos</h2>
       <div class="dashboard-box">
-        <p data-i18n="dashboard-desc">Confira aqui o painel de estudos em uma área dedicada. Clique para abrir o painel completo e continuar seus estudos.</p>
+        <p data-i18n="dashboard-desc">Confira o painel de estudos e acompanhamento diário de metas e rotinas.</p>
         <a href="https://joadsonrocha.github.io/my-study/index.html" target="_blank" class="btn" data-i18n="dashboard-btn">Abrir Painel</a>
       </div>
     </section>
-
-    <!-- Blog Section -->
-    
 
   </div>
 
@@ -520,7 +668,7 @@
   </button>
 
   <footer>
-    <p data-i18n="footer-text">© 2025 Joadson Rocha — Desenvolvedor Web • Boa Vista - RR</p>
+    <p data-i18n="footer-text">© 2025 Joadson Rocha — Gestor em TI & Desenvolvedor Full Stack • Boa Vista - RR</p>
   </footer>
 
   <!-- Vanilla Tilt (Efeito 3D) -->
