@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sobre • Joadson Rocha</title>
+  <title>Sobre Mim • Joadson Rocha</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Font Awesome para ícone do hambúrguer -->
+  <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Ícone da página -->
   <link rel="icon" type="image/x-icon" href="JoadsonRocha.ico">
 
   <!-- CSS EXTERNO -->
-  <link rel="stylesheet" href="style.css?v=1.0.4" />
+  <link rel="stylesheet" href="style.css?v=1.0.5" />
 
   <!-- 🤖 JSON-LD para SEO -->
   <script type="application/ld+json">
@@ -27,13 +27,14 @@
       "sameAs": [
         "https://github.com/joadsonrocha",
         "https://www.linkedin.com/in/joadson-rocha",
-        "https://instagram.com/joadsonrocha_29",
-        "https://leving.com.br"
+        "https://instagram.com/joadsonrocha_30",
+        "https://stratisplanner.com.br",
+        "https://www.risemindr.com/"
       ],
-      "jobTitle": "Desenvolvedor Web",
+      "jobTitle": "Gestor em TI & Desenvolvedor Full Stack",
       "worksFor": {
         "@type": "Organization",
-        "name": "Freelancer"
+        "name": "Freelancer / OnRocha"
       },
       "address": {
         "@type": "PostalAddress",
@@ -77,13 +78,14 @@
   <!-- Menu lateral -->
   <nav class="menu-side" id="menuSide">
     <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="sobre.html" class="active">Sobre Mim</a></li>
-      <li><a href="/artigo.html">Blog</a></li>
-      <li><a href="contato.html">Contato</a></li>
-      <li><a href="my%20study/index.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>Dashboard</a></li>
-      <li><a href="my%20study/pages/meta-diaria.html" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>Meta Diária</a></li>
-      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-chart-bar" style="margin-right:6px"></i>RiseMindr</a></li>
+      <li><a href="index.html" data-i18n="nav-home">Inicio</a></li>
+      <li><a href="sobre.html" class="active" data-i18n="nav-about">Sobre Mim</a></li>
+      <li><a href="curriculo.html" data-i18n="nav-cv"><i class="fas fa-file-contract" style="margin-right:6px"></i>Currículo</a></li>
+      <li><a href="artigo.html" data-i18n="nav-blog">Blog</a></li>
+      <li><a href="contato.html" data-i18n="nav-contact">Contato</a></li>
+      <li><a href="https://stratisplanner.com.br" target="_blank"><i class="fas fa-tasks" style="margin-right:6px; color:#3b82f6;"></i>StratisPlanner</a></li>
+      <li><a href="https://www.risemindr.com/" target="_blank"><i class="fas fa-bolt" style="margin-right:6px; color:#10b981;"></i>RiseMindr</a></li>
+      <li><a href="https://mestrio-production.up.railway.app/" target="_blank"><i class="fas fa-cubes" style="margin-right:6px; color:#8b5cf6;"></i>Mestrio</a></li>
     </ul>
   </nav>
 
@@ -93,22 +95,27 @@
         <img src="minha-foto.png" alt="Foto de Joadson Rocha" />
       </div>
       <h1>Joadson Rocha</h1>
-      <div class="role">Desenvolvedor Web • Tecnologias Open Source</div>
+      <div class="role">Gestor em TI & Desenvolvedor Full Stack • Especialista em Projetos Ágeis</div>
       <div class="location">
         📍 Boa Vista, Roraima – Brasil
+      </div>
+      <div style="margin-top: 16px;">
+        <a href="curriculo.html" class="btn" style="padding: 10px 20px;">
+          <i class="fas fa-file-contract"></i> <span data-i18n="btn-view-cv">Visualizar Currículo Completo</span>
+        </a>
       </div>
     </div>
 
     <div class="content">
-      <h2>Sobre Mim</h2>
+      <h2>Minha Trajetória</h2>
       <p>
-        Com uma formação multidisciplinar única, sou graduado em <span class="highlight">Gestão em Tecnologia da Informação</span>, <span class="highlight">Pedagogia</span>, <span class="highlight">História</span> e <span class="highlight">Física</span>. Essa base diversificada me permite enxergar problemas complexos sob diferentes perspectivas, unindo o rigor analítico da ciência com a visão humana e organizacional.
+        Com uma formação multidisciplinar única, sou graduado em <span class="highlight">Gestão em Tecnologia da Informação</span>, <span class="highlight">Pedagogia</span>, <span class="highlight">História</span> e <span class="highlight">Física</span>. Essa base diversificada me permite enxergar desafios sob múltiplas perspectivas: combinando o rigor matemático e analítico das ciências exatas com a sensibilidade pedagógica, a comunicação e a visão de governança estratégica.
       </p>
       <p>
-        Como <span class="highlight">Especialista em Projetos Ágeis</span>, foco na entrega de valor contínua e na eficiência operacional. Minha trajetória como desenvolvedor é marcada pela criação de ferramentas de <span class="highlight">Código Aberto (Open Source)</span>, como o <strong>MultDownload</strong> e o <strong>YouFinder</strong>, focadas em resolver necessidades reais de milhares de usuários.
+        Como <span class="highlight">Especialista em Projetos Ágeis</span>, meu foco central é a entrega contínua de valor de alto impacto, arquitetura robusta e eficiência operacional. Sou criador e mantenedor de produtos SaaS e soluções multiplataforma no ar, tais como <strong>StratisPlanner</strong>, <strong>RiseMindr</strong>, <strong>Mestrio</strong>, <strong>Lumina Presentation</strong> e <strong>MultDownload</strong>.
       </p>
       <p>
-        Acredito que a tecnologia deve ser acessível e educativa. Por isso, projeto interfaces intuitivas e sistemas robustos que combinam <strong>criatividade</strong>, <strong>boas práticas de engenharia</strong> e uma <strong>visão pedagógica</strong> sobre a experiência do usuário.
+        Acredito firmemente que a engenharia de software deve ser elegante, intuitiva e focada nas pessoas. Por isso, projeto interfaces com <strong>Glassmorphism UX</strong>, micro-interações fluidas e infraestrutura em nuvem resiliente.
       </p>
 
       <div class="tech-tags-container">
@@ -177,34 +184,21 @@
         </div>
       </div>
 
-      <p>
-        Atualmente, mantenho o projeto <a href="https://leving.com.br" target="_blank"
-          style="color: var(--primary); text-decoration: none;">Leving.com.br</a> e contribuo ativamente para a
-        comunidade de desenvolvedores.
-      </p>
-
       <div class="links">
         <a href="https://github.com/joadsonrocha" target="_blank" class="link-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-          GitHub
+          <i class="fab fa-github"></i> GitHub
         </a>
         <a href="https://www.linkedin.com/in/joadson-rocha" target="_blank" class="link-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-          </svg>
-          LinkedIn
+          <i class="fab fa-linkedin"></i> LinkedIn
         </a>
-        <a href="https://leving.com.br" target="_blank" class="link-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
-            <path d="M13 7h-2v6h2V7zm-3 8h2v2h-2v-2z" />
-          </svg>
-          Leving.com.br
+        <a href="https://stratisplanner.com.br" target="_blank" class="link-btn">
+          <i class="fas fa-tasks"></i> StratisPlanner
+        </a>
+        <a href="https://www.risemindr.com/" target="_blank" class="link-btn">
+          <i class="fas fa-bolt"></i> RiseMindr
+        </a>
+        <a href="https://mestrio-production.up.railway.app/" target="_blank" class="link-btn">
+          <i class="fas fa-cubes"></i> Mestrio
         </a>
       </div>
     </div>
@@ -216,10 +210,10 @@
   </button>
 
   <footer>
-    <p>© 2025 Joadson Rocha • Desenvolvedor Web em Boa Vista, RR</p>
+    <p data-i18n="footer-text">© 2025 Joadson Rocha — Gestor em TI & Desenvolvedor Full Stack • Boa Vista, RR</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
