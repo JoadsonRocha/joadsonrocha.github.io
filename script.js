@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   // Apply to project cards and sections
-  const animatedElements = document.querySelectorAll('.project-card, .saas-card, .dashboard-box, .cv-card, .cv-edu-card, .cv-skill-group');
+  const animatedElements = document.querySelectorAll('.project-card, .saas-card, .cv-card, .cv-edu-card, .cv-skill-group');
   animatedElements.forEach((el, i) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';

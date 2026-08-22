@@ -423,27 +423,7 @@ section {
   font-weight: 600;
 }
 
-.dashboard-box {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 30px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
 
-.dashboard-box p {
-  color: var(--text-muted);
-  margin-bottom: 24px;
-  line-height: 1.8;
-  font-size: 1rem;
-}
-
-.dashboard-box .btn {
-  padding: 14px 28px;
-  font-size: 1rem;
-}
 
 .tech {
   display: flex;
