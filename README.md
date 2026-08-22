@@ -34,7 +34,7 @@ Bem-vindo ao repositório central do meu **Portfólio Pessoal**. Este repositór
 | **RiseMindr** | Alta Performance, Rotinas & Hábitos Inteligentes | Full Stack, JavaScript, Glassmorphism UX | 🟢 [risemindr.com](https://www.risemindr.com/) |
 | **Mestrio** | Gestão em Nuvem & Centralização Operacional | React, Node.js, PostgreSQL, Railway | 🟢 [mestrio.up.railway.app](https://mestrio-production.up.railway.app/) |
 | **Lumina Presentation** | Apresentador de imagens ultra-rápido | Electron, Vanilla JS, Glassmorphism | 🟢 [Acessar](https://joadsonrocha.github.io/projetos/lumina/index.html) |
-| **MultDownload 4.0** | Downloader de mídia com conversão | Electron, FFmpeg, JavaScript | 🟢 [Acessar](https://joadsonrocha.github.io/projetos/multdownload/index.html) |
+| **MultDownload 4.0** | Downloader de mídia com conversão | Electron, FFmpeg, JavaScript | 🟢 [Página Web](https://joadsonrocha.github.io/projetos/multdownload/index.html) • [Baixar .MSI](https://github.com/JoadsonRocha/MultDownload_Oficial/releases/download/4.2.0/MultDownload.4.2.0.4.2.0.msi) |
 
 ---
 
