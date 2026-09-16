@@ -1,0 +1,483 @@
+[
+  {
+    "name": "localpdf.io",
+    "description": "Este fork do projeto localpdf.io adiciona uma interface gráfica (GUI) para facilitar o uso da ferramenta. Com a GUI, o usuário pode interagir de forma intuitiva, sem depender apenas de comandos no terminal, tornando o processo de carregar, visualizar e manipular PDFs mais acessível.",
+    "html_url": "https://github.com/JoadsonRocha/localpdf.io",
+    "homepage": null,
+    "pushed_at": "2026-09-16T21:42:02Z",
+    "archived": false,
+    "fork": true,
+    "language": "Python",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "EbookFinder",
+    "description": "O EbookFinder é um organizador desktop leve e 100% offline para sua coleção de e-books e quadrinhos (EPUB, PDF, CBZ). Conta com extração instantânea de capas, busca em tempo real por título e autor, estantes virtuais de leitura (Lendo, Concluídos, Quero Ler) ",
+    "html_url": "https://github.com/JoadsonRocha/EbookFinder",
+    "homepage": "",
+    "pushed_at": "2026-09-16T22:02:42Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "MediaFinder",
+    "description": "Aplicativo desktop para organizar e assistir vídeos locais com busca inteligente e capas automáticas.",
+    "html_url": "https://github.com/JoadsonRocha/MediaFinder",
+    "homepage": null,
+    "pushed_at": "2026-09-14T20:22:27Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": [
+      {
+        "tag_name": "v2.0",
+        "name": "MediaFinder",
+        "html_url": "https://github.com/JoadsonRocha/MediaFinder/releases/tag/v2.0",
+        "assets": [
+          {
+            "name": "MediaFinder.2.1.0.exe",
+            "download_url": "https://github.com/JoadsonRocha/MediaFinder/releases/download/v2.0/MediaFinder.2.1.0.exe",
+            "size": 236260581
+          },
+          {
+            "name": "MediaFinder.Setup.2.1.0.exe",
+            "download_url": "https://github.com/JoadsonRocha/MediaFinder/releases/download/v2.0/MediaFinder.Setup.2.1.0.exe",
+            "size": 236454583
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "MultDownloader---Kivy-Android",
+    "description": "Aplicativo Android",
+    "html_url": "https://github.com/JoadsonRocha/MultDownloader---Kivy-Android",
+    "homepage": null,
+    "pushed_at": "2026-09-14T20:08:04Z",
+    "archived": false,
+    "fork": false,
+    "language": "Python",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "lumina-presentation",
+    "description": "Lumina — Uma experiência visual moderna e sofisticada para apresentações de imagens em alta performance. Desenvolvido com Electron, suporte a múltiplos monitores, metadados EXIF e design glassmorphism.",
+    "html_url": "https://github.com/JoadsonRocha/lumina-presentation",
+    "homepage": null,
+    "pushed_at": "2026-09-15T23:33:37Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": [
+      {
+        "tag_name": "2.0",
+        "name": "lumina-presentation",
+        "html_url": "https://github.com/JoadsonRocha/lumina-presentation/releases/tag/2.0",
+        "assets": [
+          {
+            "name": "Lumina.Presentation-2.0.0-Setup.msi",
+            "download_url": "https://github.com/JoadsonRocha/lumina-presentation/releases/download/2.0/Lumina.Presentation-2.0.0-Setup.msi",
+            "size": 114581504
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "MultDownload_Oficial",
+    "description": "Nome do Projeto: MultDownload 4.0 Arquitetura: Desktop Híbrida (Electron.js) Objetivo: Oferecer uma interface de alto desempenho e amigável para a extração de vídeos e áudios de alta qualidade de plataformas de streaming (foco em YouTube), utilizando motores de processamento de ponta.",
+    "html_url": "https://github.com/JoadsonRocha/MultDownload_Oficial",
+    "homepage": null,
+    "pushed_at": "2026-09-14T18:38:31Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": [
+      {
+        "tag_name": "4.2.0",
+        "name": "MultDownload_4.2.0",
+        "html_url": "https://github.com/JoadsonRocha/MultDownload_Oficial/releases/tag/4.2.0",
+        "assets": [
+          {
+            "name": "MultDownload-4.2.0-Setup.msi",
+            "download_url": "https://github.com/JoadsonRocha/MultDownload_Oficial/releases/download/4.2.0/MultDownload-4.2.0-Setup.msi",
+            "size": 156405760
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Com1Site",
+    "description": "Agencia de criação de sites e gerenciamentos ",
+    "html_url": "https://github.com/JoadsonRocha/Com1Site",
+    "homepage": null,
+    "pushed_at": "2026-09-09T00:40:15Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "My-Daily-Habits",
+    "description": "Modulos Iteam ",
+    "html_url": "https://github.com/JoadsonRocha/My-Daily-Habits",
+    "homepage": null,
+    "pushed_at": "2026-09-16T21:41:44Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "OnRocha",
+    "description": "A OnRocha Tecnologia é uma iniciativa voltada para criar soluções digitais inovadoras",
+    "html_url": "https://github.com/JoadsonRocha/OnRocha",
+    "homepage": null,
+    "pushed_at": "2026-08-26T14:58:56Z",
+    "archived": false,
+    "fork": false,
+    "language": null,
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "MultDownloader",
+    "description": "Para baixar video do youtube e instagran ",
+    "html_url": "https://github.com/JoadsonRocha/MultDownloader",
+    "homepage": null,
+    "pushed_at": "2026-08-27T16:18:31Z",
+    "archived": false,
+    "fork": false,
+    "language": "Python",
+    "topics": [],
+    "releases": [
+      {
+        "tag_name": "v2.0",
+        "name": "MultDownload",
+        "html_url": "https://github.com/JoadsonRocha/MultDownloader/releases/tag/v2.0",
+        "assets": [
+          {
+            "name": "MultDownloader2.1-2.1-win64.msi",
+            "download_url": "https://github.com/JoadsonRocha/MultDownloader/releases/download/v2.0/MultDownloader2.1-2.1-win64.msi",
+            "size": 203595776
+          }
+        ]
+      },
+      {
+        "tag_name": "v1.0",
+        "name": "MultDownload",
+        "html_url": "https://github.com/JoadsonRocha/MultDownloader/releases/tag/v1.0",
+        "assets": [
+          {
+            "name": "MultDownloader-1.0-win64.msi",
+            "download_url": "https://github.com/JoadsonRocha/MultDownloader/releases/download/v1.0/MultDownloader-1.0-win64.msi",
+            "size": 32411648
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AGROFACIL",
+    "description": "Sistema Inteligente para Agricultura e Piscicultura Familiar Desenvolva um sistema simples",
+    "html_url": "https://github.com/JoadsonRocha/AGROFACIL",
+    "homepage": null,
+    "pushed_at": "2026-07-19T17:00:17Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "ITEAM_FULLSATRAK_DEVELOPER_CURSO",
+    "description": "Curso de desenvolvedor do Iteam ",
+    "html_url": "https://github.com/JoadsonRocha/ITEAM_FULLSATRAK_DEVELOPER_CURSO",
+    "homepage": null,
+    "pushed_at": "2026-08-25T23:12:25Z",
+    "archived": false,
+    "fork": false,
+    "language": "Portugol",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "-Beleza",
+    "description": null,
+    "html_url": "https://github.com/JoadsonRocha/-Beleza",
+    "homepage": "https://maisbeleza.vercel.app",
+    "pushed_at": "2026-08-07T21:41:08Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "NEXUS_OFICIAL",
+    "description": null,
+    "html_url": "https://github.com/JoadsonRocha/NEXUS_OFICIAL",
+    "homepage": null,
+    "pushed_at": "2026-08-24T23:06:32Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "NextBlog---CMS",
+    "description": "CMS moderno e visual inspirado no WordPress, com editor drag-and-drop de blocos, gestão de posts/páginas, API REST/GraphQL e IA.",
+    "html_url": "https://github.com/JoadsonRocha/NextBlog---CMS",
+    "homepage": null,
+    "pushed_at": "2026-08-23T18:48:22Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "joadsonrocha.github.io",
+    "description": "Site do meu gitHub",
+    "html_url": "https://github.com/JoadsonRocha/joadsonrocha.github.io",
+    "homepage": "https://joadsonrocha-github-io.vercel.app",
+    "pushed_at": "2026-08-22T12:04:06Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "apoe-me",
+    "description": "sistema de apoio financeiro a desenvovedor",
+    "html_url": "https://github.com/JoadsonRocha/apoe-me",
+    "homepage": null,
+    "pushed_at": "2026-07-24T17:25:48Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "PodCast-Studio",
+    "description": "Converta documentos, textos e links em podcasts dinâmicos com dois apresentadores inteligentes e vozes personalizáveis.",
+    "html_url": "https://github.com/JoadsonRocha/PodCast-Studio",
+    "homepage": null,
+    "pushed_at": "2026-07-24T17:17:47Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "FlowHub",
+    "description": "Programa de gerenciar tarefas do dia ",
+    "html_url": "https://github.com/JoadsonRocha/FlowHub",
+    "homepage": "https://flow-hub-gold.vercel.app",
+    "pushed_at": "2026-07-19T18:16:57Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "KoFoco",
+    "description": "Ko é um aplicativo de produtividade inspirado na simplicidade e na força da palavra tupi “agora”. Ele ajuda você a organizar suas tarefas do dia com clareza e leveza, mantendo o foco no presente. Com notificações inteligentes, filtros de prioridade e visual moderno, o Ko transforma sua rotina em um fluxo natural de conquistas.",
+    "html_url": "https://github.com/JoadsonRocha/KoFoco",
+    "homepage": "https://kofoco.vercel.app",
+    "pushed_at": "2026-07-19T17:40:10Z",
+    "archived": false,
+    "fork": false,
+    "language": "TypeScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "MultDowload_Web",
+    "description": null,
+    "html_url": "https://github.com/JoadsonRocha/MultDowload_Web",
+    "homepage": null,
+    "pushed_at": "2026-05-01T20:03:25Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "YouFinder",
+    "description": "Aplicativo para pesquisar video no youtube com controle de tela proprio - Sonoplastia",
+    "html_url": "https://github.com/JoadsonRocha/YouFinder",
+    "homepage": null,
+    "pushed_at": "2026-07-19T17:37:49Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": [
+      {
+        "tag_name": "3.1.0",
+        "name": "YouFinder",
+        "html_url": "https://github.com/JoadsonRocha/YouFinder/releases/tag/3.1.0",
+        "assets": [
+          {
+            "name": "YouFinder_3.0-Setup-3.0.0.exe",
+            "download_url": "https://github.com/JoadsonRocha/YouFinder/releases/download/3.1.0/YouFinder_3.0-Setup-3.0.0.exe",
+            "size": 96044968
+          },
+          {
+            "name": "YouFinder_3.0-Setup-3.0.0.msi",
+            "download_url": "https://github.com/JoadsonRocha/YouFinder/releases/download/3.1.0/YouFinder_3.0-Setup-3.0.0.msi",
+            "size": 108748800
+          },
+          {
+            "name": "YouFinder_3.0-Setup-3.1.0.exe",
+            "download_url": "https://github.com/JoadsonRocha/YouFinder/releases/download/3.1.0/YouFinder_3.0-Setup-3.1.0.exe",
+            "size": 96047491
+          },
+          {
+            "name": "YouFinder_3.0-Setup-3.1.0.msi",
+            "download_url": "https://github.com/JoadsonRocha/YouFinder/releases/download/3.1.0/YouFinder_3.0-Setup-3.1.0.msi",
+            "size": 108752896
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "HIASD-py",
+    "description": "Hinario Adventista feito em python",
+    "html_url": "https://github.com/JoadsonRocha/HIASD-py",
+    "homepage": "",
+    "pushed_at": "2025-03-12T12:33:47Z",
+    "archived": false,
+    "fork": false,
+    "language": "Python",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Modelo-Templates-dos-projetos",
+    "description": "Modelo para criar projetos com uma pequena Formatação",
+    "html_url": "https://github.com/JoadsonRocha/Modelo-Templates-dos-projetos",
+    "homepage": null,
+    "pushed_at": "2023-02-02T13:52:04Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Logo-Instagran",
+    "description": "Logo do Instagram  com HTML e CSS",
+    "html_url": "https://github.com/JoadsonRocha/Logo-Instagran",
+    "homepage": null,
+    "pushed_at": "2022-03-11T16:43:37Z",
+    "archived": false,
+    "fork": false,
+    "language": "CSS",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "CalculadoraFlex",
+    "description": "Calculadora de gasolina e etanol javascript",
+    "html_url": "https://github.com/JoadsonRocha/CalculadoraFlex",
+    "homepage": null,
+    "pushed_at": "2021-01-03T00:33:27Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Dados",
+    "description": "jogo de dados",
+    "html_url": "https://github.com/JoadsonRocha/Dados",
+    "homepage": null,
+    "pushed_at": "2021-01-03T00:35:04Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Verificar-de-idade",
+    "description": "javascript",
+    "html_url": "https://github.com/JoadsonRocha/Verificar-de-idade",
+    "homepage": null,
+    "pushed_at": "2020-12-09T23:39:00Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Html-e-CSS-GoogleGlass",
+    "description": null,
+    "html_url": "https://github.com/JoadsonRocha/Html-e-CSS-GoogleGlass",
+    "homepage": null,
+    "pushed_at": "2020-11-24T18:37:11Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Contador-js",
+    "description": "pequeno projeto em javascript ",
+    "html_url": "https://github.com/JoadsonRocha/Contador-js",
+    "homepage": null,
+    "pushed_at": "2020-11-23T15:07:55Z",
+    "archived": false,
+    "fork": false,
+    "language": "JavaScript",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "Headers-Animados-CSS-e-JS",
+    "description": "Headers animados html e css",
+    "html_url": "https://github.com/JoadsonRocha/Headers-Animados-CSS-e-JS",
+    "homepage": null,
+    "pushed_at": "2020-09-08T01:07:50Z",
+    "archived": false,
+    "fork": false,
+    "language": "CSS",
+    "topics": [],
+    "releases": []
+  },
+  {
+    "name": "RochaFlamengo.ga",
+    "description": "Projeto BlogFlamengo",
+    "html_url": "https://github.com/JoadsonRocha/RochaFlamengo.ga",
+    "homepage": null,
+    "pushed_at": "2020-08-25T01:37:13Z",
+    "archived": false,
+    "fork": false,
+    "language": "HTML",
+    "topics": [],
+    "releases": []
+  }
+]
